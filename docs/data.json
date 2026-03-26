@@ -22,8 +22,8 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 280,
-      "slot": 158,
+      "pachinko": 260,
+      "slot": 178,
       "total": 438
     },
     "lat": 43.788876,
@@ -2687,8 +2687,8 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 480,
-      "slot": 456,
+      "pachinko": 444,
+      "slot": 492,
       "total": 936
     },
     "lat": 35.912704,
@@ -2702,9 +2702,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 480,
+      "pachinko": 479,
       "slot": 240,
-      "total": 720
+      "total": 719
     },
     "lat": 36.184032,
     "lng": 139.144501
@@ -3912,9 +3912,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 195,
-      "slot": 95,
-      "total": 290
+      "pachinko": 168,
+      "slot": 116,
+      "total": 284
     },
     "lat": 35.53537,
     "lng": 139.691544
@@ -4151,8 +4151,8 @@
     "is_grand_open": false,
     "machines": {
       "pachinko": 600,
-      "slot": 422,
-      "total": 1022
+      "slot": 424,
+      "total": 1024
     },
     "lat": 35.474808,
     "lng": 139.345184
@@ -4344,9 +4344,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 156,
+      "pachinko": 158,
       "slot": 108,
-      "total": 264
+      "total": 266
     },
     "lat": 37.898571,
     "lng": 139.080887
@@ -4870,8 +4870,8 @@
     "is_grand_open": false,
     "machines": {
       "pachinko": 280,
-      "slot": 262,
-      "total": 542
+      "slot": 265,
+      "total": 545
     },
     "lat": 37.037556,
     "lng": 136.949158
@@ -5169,9 +5169,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 288,
-      "slot": 240,
-      "total": 528
+      "pachinko": 252,
+      "slot": 246,
+      "total": 498
     },
     "lat": 35.593021,
     "lng": 138.516586
@@ -5199,9 +5199,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 318,
+      "pachinko": 320,
       "slot": 240,
-      "total": 558
+      "total": 560
     },
     "lat": 35.587635,
     "lng": 138.496277
@@ -6099,8 +6099,8 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 592,
-      "slot": 409,
+      "pachinko": 524,
+      "slot": 477,
       "total": 1001
     },
     "lat": 35.169411,
@@ -6115,8 +6115,8 @@
     "is_grand_open": false,
     "machines": {
       "pachinko": 560,
-      "slot": 470,
-      "total": 1030
+      "slot": 472,
+      "total": 1032
     },
     "lat": 35.065922,
     "lng": 137.124451
@@ -6174,8 +6174,8 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 360,
-      "slot": 160,
+      "pachinko": 324,
+      "slot": 196,
       "total": 520
     },
     "lat": 34.869381,
@@ -6547,8 +6547,8 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 324,
-      "slot": 180,
+      "pachinko": 288,
+      "slot": 216,
       "total": 504
     },
     "lat": 34.781189,
@@ -7162,9 +7162,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 320,
-      "slot": 160,
-      "total": 480
+      "pachinko": 240,
+      "slot": 232,
+      "total": 472
     },
     "lat": 34.330921,
     "lng": 135.187653
@@ -8298,8 +8298,8 @@
     "is_grand_open": false,
     "machines": {
       "pachinko": 120,
-      "slot": 117,
-      "total": 237
+      "slot": 116,
+      "total": 236
     },
     "lat": 35.425545,
     "lng": 133.796127
@@ -8432,8 +8432,8 @@
     "is_grand_open": false,
     "machines": {
       "pachinko": 252,
-      "slot": 180,
-      "total": 432
+      "slot": 181,
+      "total": 433
     },
     "lat": 35.194576,
     "lng": 132.519653
@@ -9656,9 +9656,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 120,
-      "slot": 168,
-      "total": 288
+      "pachinko": 100,
+      "slot": 186,
+      "total": 286
     },
     "lat": 34.294003,
     "lng": 133.837082
@@ -10568,8 +10568,8 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 329,
-      "slot": 168,
+      "pachinko": 299,
+      "slot": 198,
       "total": 497
     },
     "lat": 33.184917,
@@ -11362,9 +11362,9 @@
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 474,
-      "slot": 519,
-      "total": 993
+      "pachinko": 476,
+      "slot": 518,
+      "total": 994
     },
     "lat": 31.7386,
     "lng": 131.089508
