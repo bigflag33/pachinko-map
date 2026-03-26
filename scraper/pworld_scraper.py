@@ -3,18 +3,20 @@ P-WORLD (p-world.co.jp) 店舗情報スクレイパー
 
 URL構造:
   一覧: GET https://www.p-world.co.jp/_machine/kensaku.cgi?dir={dir}&is_new_ver=1&page={n}
-        dir の値: tokyo, kanagawa, osaka, aichi, fukuoka, saitama, chiba,
-                  hyogo, hokkaido, miyagi, hiroshima, etc.
-  1ページ50件、「全XXX件」でページ数判定
+        dir の値: tokyo, kanagawa, osaka, aichi 等
 
-ページのテキスト形式 (例):
-  51 ＴＯＨＯ 要町店 http://69822.p-world.jp 1時間前 東京都豊島区要町1-2-17周辺 41パチ 1000円/46枚スロ
+ページ構造:
+  div.hallList-item が各店舗のコンテナ
+  内部の a[href$=".htm"] が店舗ページリンク（店名テキスト含む）
+  テキストから「都道府県名〜周辺」パターンで住所を抽出
+  1ページ50件、「全XXX件」でページ総数を判定
 """
 import re
 import time
+import logging
+
 import requests
 from bs4 import BeautifulSoup
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -27,59 +29,27 @@ HEADERS = {
 
 BASE_URL = "https://www.p-world.co.jp"
 
-# 都道府県名 → P-WORLD の dir パラメータ
 PREF_DIRS = {
-    "北海道": "hokkaido",
-    "青森":   "aomori",
-    "岩手":   "iwate",
-    "宮城":   "miyagi",
-    "秋田":   "akita",
-    "山形":   "yamagata",
-    "福島":   "fukushima",
-    "茨城":   "ibaraki",
-    "栃木":   "tochigi",
-    "群馬":   "gunma",
-    "埼玉":   "saitama",
-    "千葉":   "chiba",
-    "東京":   "tokyo",
-    "神奈川": "kanagawa",
-    "新潟":   "niigata",
-    "富山":   "toyama",
-    "石川":   "ishikawa",
-    "福井":   "fukui",
-    "山梨":   "yamanashi",
-    "長野":   "nagano",
-    "岐阜":   "gifu",
-    "静岡":   "shizuoka",
-    "愛知":   "aichi",
-    "三重":   "mie",
-    "滋賀":   "shiga",
-    "京都":   "kyoto",
-    "大阪":   "osaka",
-    "兵庫":   "hyogo",
-    "奈良":   "nara",
-    "和歌山": "wakayama",
-    "鳥取":   "tottori",
-    "島根":   "shimane",
-    "岡山":   "okayama",
-    "広島":   "hiroshima",
-    "山口":   "yamaguchi",
-    "徳島":   "tokushima",
-    "香川":   "kagawa",
-    "愛媛":   "ehime",
-    "高知":   "kochi",
-    "福岡":   "fukuoka",
-    "佐賀":   "saga",
-    "長崎":   "nagasaki",
-    "熊本":   "kumamoto",
-    "大分":   "oita",
-    "宮崎":   "miyazaki",
-    "鹿児島": "kagoshima",
-    "沖縄":   "okinawa",
+    "北海道": "hokkaido", "青森": "aomori",  "岩手": "iwate",
+    "宮城":   "miyagi",   "秋田": "akita",    "山形": "yamagata",
+    "福島":   "fukushima","茨城": "ibaraki",  "栃木": "tochigi",
+    "群馬":   "gunma",    "埼玉": "saitama",  "千葉": "chiba",
+    "東京":   "tokyo",    "神奈川":"kanagawa", "新潟": "niigata",
+    "富山":   "toyama",   "石川": "ishikawa", "福井": "fukui",
+    "山梨":   "yamanashi","長野": "nagano",   "岐阜": "gifu",
+    "静岡":   "shizuoka", "愛知": "aichi",    "三重": "mie",
+    "滋賀":   "shiga",    "京都": "kyoto",    "大阪": "osaka",
+    "兵庫":   "hyogo",    "奈良": "nara",     "和歌山":"wakayama",
+    "鳥取":   "tottori",  "島根": "shimane",  "岡山": "okayama",
+    "広島":   "hiroshima","山口": "yamaguchi","徳島": "tokushima",
+    "香川":   "kagawa",   "愛媛": "ehime",    "高知": "kochi",
+    "福岡":   "fukuoka",  "佐賀": "saga",     "長崎": "nagasaki",
+    "熊本":   "kumamoto", "大分": "oita",     "宮崎": "miyazaki",
+    "鹿児島": "kagoshima","沖縄": "okinawa",
 }
 
 
-def fetch_page(url: str, retries: int = 3, session=None):
+def fetch_page(url: str, retries: int = 3, session=None) -> BeautifulSoup | None:
     s = session or requests.Session()
     for i in range(retries):
         try:
@@ -100,9 +70,6 @@ def scrape_pworld_by_prefs(target_prefs=None, max_stores=500):
     Args:
         target_prefs: 取得する都道府県名リスト (None=全国)
         max_stores: 最大取得店舗数
-
-    Returns:
-        list of dict with keys: name, address, url, source, machines, lat, lng
     """
     prefs_to_scrape = target_prefs if target_prefs else list(PREF_DIRS.keys())
     results = []
@@ -122,14 +89,15 @@ def scrape_pworld_by_prefs(target_prefs=None, max_stores=500):
         logger.info(f"  → {len(stores)}件")
         time.sleep(1)
 
-    logger.info(f"P-WORLD合計: {len(results)}件")
+    logger.info(f"p-world: {len(results)} halls scraped")
     return results
 
 
-def _scrape_pref(dir_name: str, pref_name: str, session, limit: int):
-    """都道府県別にP-WORLD店舗一覧を取得"""
+def _scrape_pref(dir_name: str, pref_name: str, session, limit: int) -> list[dict]:
+    """都道府県別にP-WORLD店舗一覧を取得（ページネーション対応）"""
     stores = []
     page = 1
+    total = None  # 全件数（初回取得後にセット）
 
     while len(stores) < limit:
         url = (
@@ -140,64 +108,28 @@ def _scrape_pref(dir_name: str, pref_name: str, session, limit: int):
         if not soup:
             break
 
-        # ストアリンク: href が http://{数字}.p-world.jp 形式
-        store_links = soup.find_all(
-            "a", href=re.compile(r"https?://[^/]+\.p-world\.jp/?$")
-        )
-        if not store_links:
+        # 全件数を初回に取得
+        if total is None:
+            m = re.search(r"全(\d+)件", soup.get_text())
+            total = int(m.group(1)) if m else 0
+
+        # div.hallList-item が各店舗
+        items = soup.select("div.hallList-item")
+        if not items:
             break
 
-        for a in store_links:
+        for item in items:
             if len(stores) >= limit:
                 break
+            store = _parse_item(item, dir_name, pref_name)
+            if store:
+                stores.append(store)
 
-            store_url = a.get("href", "").rstrip("/")
-            if not store_url:
-                continue
-
-            # 店舗名
-            name = a.get_text(strip=True)
-            if not name:
-                continue
-
-            # 親要素のテキストから住所を抽出
-            parent = a.find_parent(["tr", "li", "div", "p"]) or a
-            text = parent.get_text(" ", strip=True)
-
-            # 住所: 都道府県〜「周辺」の直前まで
-            address = _extract_address(text, pref_name)
-
-            stores.append({
-                "name": name,
-                "address": address,
-                "open_date": "",
-                "url": store_url,
-                "source": "P-WORLD",
-                "is_grand_open": False,
-                "machines": {},   # 詳細ページ取得なし (速度優先)
-                "lat": None,
-                "lng": None,
-            })
-
-        # 次ページ判定: 50件未満なら最終ページ
-        if len(store_links) < 50:
+        # ページ終了判定
+        if len(items) < 50:
             break
-
-        # ページネーションリンクで確認
-        next_link = soup.find("a", string=re.compile(r"次|Next|>"))
-        if not next_link:
-            # URL内 page= を直接チェック
-            page_links = soup.find_all(
-                "a", href=re.compile(rf"dir={dir_name}.*page=\d+")
-            )
-            current_pages = {
-                int(m.group(1))
-                for lnk in page_links
-                for m in [re.search(r"page=(\d+)", lnk.get("href", ""))]
-                if m
-            }
-            if not current_pages or max(current_pages) <= page:
-                break
+        if total and len(stores) >= min(total, limit):
+            break
 
         page += 1
         time.sleep(0.8)
@@ -205,17 +137,47 @@ def _scrape_pref(dir_name: str, pref_name: str, session, limit: int):
     return stores
 
 
+def _parse_item(item, dir_name: str, pref_name: str) -> dict | None:
+    """div.hallList-item から店舗情報を抽出"""
+    # 店舗リンク: /tokyo/xxx.htm 形式
+    link = item.select_one(f"a[href*='/{dir_name}/'][href$='.htm']")
+    if not link:
+        # 任意の .htm リンクでも試す
+        link = item.select_one("a[href$='.htm']")
+    if not link:
+        return None
+
+    href = link.get("href", "")
+    store_url = href if href.startswith("http") else BASE_URL + href
+    name = link.get_text(strip=True)
+    if not name:
+        return None
+
+    # テキストから住所を抽出（「都道府県名〜周辺」パターン）
+    text = item.get_text(" ", strip=True)
+    address = _extract_address(text, pref_name)
+
+    return {
+        "name":         name,
+        "address":      address,
+        "open_date":    "",
+        "url":          store_url,
+        "source":       "P-WORLD",
+        "is_grand_open": False,
+        "machines":     {},
+        "lat":          None,
+        "lng":          None,
+    }
+
+
 def _extract_address(text: str, fallback: str) -> str:
-    """テキストから住所を抽出 (「周辺」の直前まで)"""
-    # 「都道府県名〜周辺」パターン
+    """テキストから住所部分を抽出"""
     m = re.search(
         r"((?:北海道|[^\s]{2,3}[都道府県]).{4,60}?)(?:周辺|$)",
         text
     )
     if m:
-        addr = m.group(1).strip()
-        # 不要な時刻表現を除去
-        addr = re.sub(r"\d+(?:時間|分|日)前.*", "", addr).strip()
+        addr = re.sub(r"\d+(?:時間|分|日)前.*", "", m.group(1)).strip()
         if len(addr) > 5:
             return addr
     return fallback
