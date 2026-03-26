@@ -1,0 +1,91 @@
+name: 毎日データ更新 & GitHub Pages デプロイ
+
+on:
+  schedule:
+    # 毎朝6:00 JST (21:00 UTC) に自動実行
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+    # 手動実行ボタンも用意
+    inputs:
+      dry_run:
+        description: "サンプルデータで実行 (dry-run)"
+        required: false
+        default: "false"
+        type: boolean
+
+permissions:
+  contents: write   # geocache.json を commit するため
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  scrape-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # ── リポジトリ取得 ──
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── Python セットアップ ──
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      # ── 依存パッケージインストール ──
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ── スクレイピング + HTML生成 ──
+      - name: Scrape & Generate HTML
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python generate.py --dry-run --output docs/index.html
+          else
+            python generate.py \
+              --go8-days 90 \
+              --prefs 東京 神奈川 大阪 愛知 福岡 埼玉 千葉 兵庫 北海道 宮城 広島 \
+              --output docs/index.html
+          fi
+
+      # ── ジオキャッシュをコミット (変更があれば) ──
+      - name: Commit geocache
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add geocache.json docs/data.json || true
+          git diff --staged --quiet || git commit -m "chore: update geocache & data [skip ci]"
+          git push || true
+
+      # ── GitHub Pages デプロイ ──
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # ── 結果サマリー ──
+      - name: Summary
+        run: |
+          echo "## ✅ デプロイ完了" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻: $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M JST')" >> $GITHUB_STEP_SUMMARY
+          echo "- URL: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          if [ -f docs/data.json ]; then
+            COUNT=$(python3 -c "import json; d=json.load(open('docs/data.json')); print(len(d))")
+            GO=$(python3 -c "import json; d=json.load(open('docs/data.json')); print(sum(1 for h in d if h.get('is_grand_open')))")
+            echo "- 店舗数: ${COUNT}件 (GO: ${GO}件)" >> $GITHUB_STEP_SUMMARY
+          fi
