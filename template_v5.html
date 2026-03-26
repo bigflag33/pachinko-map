@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>パチンコホール 立地・商圏・条件検索 v5</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e8eaed;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── Header ── */
+#hdr{background:linear-gradient(135deg,#161b2a,#0d1117);border-bottom:1px solid #21262d;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap}
+#hdr h1{font-size:14px;font-weight:800;white-space:nowrap}
+#hdr h1 .g{color:#f72585}#hdr h1 .b{color:#7c6af7}#hdr h1 .t{color:#f7c948}
+.badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700;white-space:nowrap}
+.badge-go{background:#f72585;color:#fff}.badge-pw{background:#2a2f3e;color:#aaa}
+#hdr .meta{margin-left:auto;font-size:10px;color:#444;white-space:nowrap}
+
+/* ── Layout ── */
+#main{flex:1;display:flex;overflow:hidden}
+#left{width:300px;min-width:240px;background:#0d1117;border-right:1px solid #21262d;display:flex;flex-direction:column;overflow:hidden;transition:transform .2s}
+
+/* ── Control ── */
+#ctrl{padding:10px 12px;border-bottom:1px solid #21262d;background:#161b2a;flex-shrink:0}
+.cl{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.rrow{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+#rsl{flex:1;-webkit-appearance:none;height:3px;border-radius:2px;outline:none;cursor:pointer;background:linear-gradient(to right,#7c6af7 0%,#7c6af7 var(--p,22%),#2a2f3e var(--p,22%),#2a2f3e 100%)}
+#rsl::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#7c6af7;cursor:pointer;box-shadow:0 0 6px rgba(124,106,247,.7)}
+#rv{font-size:13px;font-weight:700;color:#7c6af7;min-width:48px;text-align:right}
+
+.search-row{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+#search{flex:1;padding:6px 10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#e8eaed;font-size:12px;outline:none}
+#search:focus{border-color:#7c6af7}#search::placeholder{color:#333}
+#condBtn{background:#1a1640;border:1px solid #7c6af7;border-radius:6px;padding:5px 8px;cursor:pointer;font-size:10px;color:#7c6af7;white-space:nowrap;transition:all .15s;flex-shrink:0}
+#condBtn:hover,#condBtn.active{background:#7c6af7;color:#fff}
+#condBtn.active{background:#f72585;border-color:#f72585;color:#fff}
+
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid #2a2f3e;background:#161b2a;color:#666;cursor:pointer;user-select:none;transition:all .15s}
+.chip.on{border-color:#7c6af7;background:#7c6af7;color:#fff}
+
+/* ── List ── */
+#list{flex:1;overflow-y:auto;padding:5px}
+#list::-webkit-scrollbar{width:3px}
+#list::-webkit-scrollbar-thumb{background:#2a2f3e;border-radius:2px}
+.hitem{padding:8px 10px;border-radius:6px;margin-bottom:4px;border:1px solid transparent;cursor:pointer;transition:all .15s}
+.hitem.go{background:#1e1129;border-color:#3a1540}
+.hitem.pw{background:#111520;border-color:transparent}
+.hitem:hover{border-color:#7c6af7!important;background:#1e2035!important}
+.hitem.on{border-color:#7c6af7!important;background:#1e2035!important;box-shadow:0 0 8px rgba(124,106,247,.25)}
+.hitem.match{border-color:#f72585!important;box-shadow:0 0 6px rgba(247,37,133,.3)!important}
+.htag{display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;margin-bottom:3px;font-weight:700}
+.htag-go{background:#f72585;color:#fff}.htag-pw{background:#2a2f3e;color:#888}
+.htag-match{background:#f72585;color:#fff;margin-left:3px}
+.hname{font-size:12px;font-weight:700;margin-bottom:2px}
+.hmeta{font-size:10px;color:#555;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.hdate{color:#7c6af7;font-weight:600}
+.haddr{font-size:10px;color:#3a3f50;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hmach{font-size:10px;margin-top:3px;display:flex;gap:4px;flex-wrap:wrap}
+.mt{padding:1px 5px;border-radius:3px;font-weight:600}
+.mp{background:#1a2a4a;color:#58a6ff}.ms{background:#1a3020;color:#3fb950}
+
+/* ── Footer ── */
+#foot{flex-shrink:0;border-top:1px solid #21262d;background:#161b2a;font-size:10px;color:#555;padding:5px 10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:3px}
+#foot strong{color:#ccc}
+
+/* ── Map area ── */
+#mapwrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
+#map{flex:1;position:relative}
+
+/* ── Analysis panel ── */
+#toggle{flex-shrink:0;background:#161b2a;border-top:1px solid #21262d;padding:5px 16px;cursor:pointer;font-size:11px;color:#555;text-align:center;user-select:none}
+#toggle:hover{color:#e8eaed}
+#analysis{height:0;background:#0d1117;border-top:2px solid #21262d;overflow:hidden;transition:height .3s;flex-shrink:0}
+#analysis.open{height:280px;overflow-y:auto}
+#ap{display:flex;height:100%;min-height:280px}
+.asec{flex:1;padding:12px 14px;border-right:1px solid #21262d;min-width:135px;overflow:hidden}
+.asec:last-child{border-right:none}
+.atitle{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.atitle::before{content:'';display:block;width:3px;height:12px;border-radius:2px}
+.at-pop::before{background:#7c6af7}.at-trend::before{background:#f7c948}
+.at-mach::before{background:#58a6ff}.at-eff::before{background:#3fb950}
+.at-rank::before{background:#f72585}.at-similar::before{background:#ff851b}
+.at-demo::before{background:#f7c948}
+
+/* 人口トレンドグラフ */
+.trend-stats{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.tstat{display:flex;flex-direction:column;gap:2px}
+.tstat-l{font-size:9px;color:#555}
+.tstat-v{font-size:13px;font-weight:700}
+.trend-badge{display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:4px 9px;border-radius:5px;font-size:10px;font-weight:700}
+.tb-grow{background:#0a2018;border:1px solid #1a5030;color:#3fb950}
+.tb-flat{background:#1a1a10;border:1px solid #3a3a10;color:#f7c948}
+.tb-shrink{background:#1a0a0a;border:1px solid #5a1a1a;color:#ff851b}
+.tb-big-shrink{background:#250505;border:1px solid #7a0a0a;color:#ff4136}
+
+/* 台数メトリクス */
+.ametrics{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.am{display:flex;align-items:center;gap:7px}
+.am-label{font-size:10px;color:#666;width:90px;flex-shrink:0}
+.am-bar{flex:1;height:5px;border-radius:3px;background:#1a2035;overflow:hidden}
+.am-fill{height:100%;border-radius:3px}
+.am-val{font-size:10px;font-weight:700;min-width:46px;text-align:right}
+
+/* 年齢構成バー */
+.demo-bar{display:flex;height:16px;border-radius:4px;overflow:hidden;margin:8px 0 3px}
+.db-y{background:#f72585}.db-ya{background:#7c6af7}.db-wa{background:#58a6ff}.db-s{background:#2a3050}
+.demo-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.dl{display:flex;align-items:center;gap:3px;font-size:9px;color:#666}
+.dl-dot{width:7px;height:7px;border-radius:2px}
+.gender-bar{display:flex;height:10px;border-radius:3px;overflow:hidden;margin:6px 0 2px}
+.gb-m{background:#58a6ff}.gb-f{background:#f72585}
+
+/* 競合ランキング */
+.comp-list{max-height:180px;overflow-y:auto}
+.comp-list::-webkit-scrollbar{width:2px}
+.comp-list::-webkit-scrollbar-thumb{background:#2a2f3e;border-radius:2px}
+.citem{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #161b2a;font-size:10px}
+.crank{color:#444;min-width:16px}.cname{flex:1;color:#ccc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ctotal{font-weight:700;color:#e8eaed;min-width:42px;text-align:right}
+.cdist{color:#444;min-width:33px;text-align:right}
+
+/* 類似商圏 */
+.sim-item{padding:6px 0;border-bottom:1px solid #161b2a;cursor:pointer;transition:opacity .15s}
+.sim-item:last-child{border-bottom:none}
+.sim-item:hover{opacity:.75}
+.sim-header{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.sim-rank{font-size:10px;color:#444;min-width:14px}
+.sim-name{font-size:11px;font-weight:700;color:#ccc;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sim-score{font-size:9px;padding:1px 6px;border-radius:10px;font-weight:700;white-space:nowrap}
+.ss-hi{background:#0a2018;border:1px solid #1a5030;color:#3fb950}
+.ss-md{background:#1a1a10;border:1px solid #3a3a10;color:#f7c948}
+.ss-lo{background:#1a0f05;border:1px solid #3a2a10;color:#ff851b}
+.sim-metrics{display:flex;gap:8px;margin-top:2px;flex-wrap:wrap}
+.sim-m{display:flex;flex-direction:column}
+.sim-ml{font-size:8px;color:#444}.sim-mv{font-size:10px;font-weight:600;color:#888}
+
+/* ── Popup ── */
+.leaflet-popup-content-wrapper{background:#161b2a!important;border:1px solid #2a2f3e!important;border-radius:10px!important;box-shadow:0 4px 24px rgba(0,0,0,.7)!important;color:#e8eaed!important;min-width:270px}
+.leaflet-popup-tip{background:#161b2a!important}
+.ptag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:3px;margin-bottom:5px;font-weight:700}
+.ptag-go{background:#f72585;color:#fff}.ptag-pw{background:#2a2f3e;color:#aaa}
+.ptitle{font-size:14px;font-weight:800;margin-bottom:8px;line-height:1.3}
+.prow{display:flex;gap:5px;margin:3px 0;font-size:11px}
+.plabel{color:#555;min-width:55px;flex-shrink:0}.pval{color:#ccc}
+.pdate{color:#7c6af7;font-weight:700}
+.pmach{margin-top:10px;padding:9px 10px;background:#0d1117;border-radius:7px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.pmitem-l{font-size:9px;color:#555;text-transform:uppercase;letter-spacing:.4px}
+.pmitem-v{font-size:16px;font-weight:800}
+.p4en{color:#58a6ff}.p1en{color:#79c0ff}.s20en{color:#3fb950}.s5en{color:#56d364}
+.ppop{margin-top:10px;padding:9px 10px;background:#1a1040;border-radius:7px;border:1px solid #2e1a6e}
+.ppop-t{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.ppop-n{font-size:18px;font-weight:800;color:#c084fc;line-height:1}
+.ppop-s{font-size:9px;color:#555;margin-top:2px}
+
+/* ── 凡例 ── */
+#legend{position:absolute;bottom:8px;right:10px;z-index:900;background:rgba(13,17,23,.95);border:1px solid #21262d;border-radius:8px;padding:10px 12px;font-size:10px}
+#legend h4{color:#555;margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
+.li{display:flex;align-items:center;gap:6px;margin:3px 0}
+.ld{width:9px;height:9px;border-radius:50%}
+#tilebtn{position:absolute;top:10px;right:10px;z-index:900;background:rgba(13,17,23,.95);border:1px solid #21262d;border-radius:6px;padding:5px 9px;font-size:10px;color:#888;cursor:pointer;user-select:none}
+#tilebtn:hover{color:#e8eaed}
+
+#loading{position:absolute;inset:0;background:rgba(10,12,16,.92);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+.spin{width:32px;height:32px;border:3px solid #21262d;border-top-color:#7c6af7;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ── 条件検索モーダル ── */
+#condModal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.75);align-items:center;justify-content:center}
+#condModal.show{display:flex}
+#condBox{background:#161b2a;border:1px solid #2a2f3e;border-radius:12px;width:min(480px,95vw);max-height:90vh;overflow-y:auto;padding:20px}
+#condBox h2{font-size:14px;font-weight:800;margin-bottom:4px;color:#e8eaed}
+#condBox .subtitle{font-size:10px;color:#555;margin-bottom:16px}
+.cond-sec{margin-bottom:16px}
+.cond-label{font-size:11px;color:#888;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.cond-label strong{color:#e8eaed;font-size:13px}
+.cond-sl{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;outline:none;cursor:pointer}
+.cond-sl::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#7c6af7;cursor:pointer;box-shadow:0 0 8px rgba(124,106,247,.6)}
+.cond-sl.sl-red::-webkit-slider-thumb{background:#f72585;box-shadow:0 0 8px rgba(247,37,133,.6)}
+.cond-checks{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.cond-check{display:flex;align-items:center;gap:5px;cursor:pointer;padding:5px 10px;border-radius:6px;border:1px solid #2a2f3e;font-size:11px;color:#888;user-select:none;transition:all .15s}
+.cond-check:hover{border-color:#7c6af7;color:#ccc}
+.cond-check.on{border-color:#7c6af7;background:#1a1640;color:#c084fc}
+.cond-check input{display:none}
+.cond-divider{height:1px;background:#21262d;margin:16px 0}
+.cond-btns{display:flex;gap:8px;margin-top:16px}
+.cbtn{flex:1;padding:10px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:700;transition:all .15s}
+.cbtn-apply{background:#7c6af7;color:#fff}.cbtn-apply:hover{background:#9b8cf9}
+.cbtn-clear{background:#21262d;color:#888}.cbtn-clear:hover{background:#2a2f3e;color:#ccc}
+.cbtn-cancel{background:#161b2a;color:#555;border:1px solid #21262d}.cbtn-cancel:hover{color:#ccc}
+.cond-result{margin-top:12px;padding:10px 14px;border-radius:8px;background:#0d1117;border:1px solid #21262d;font-size:12px;color:#888;text-align:center;min-height:38px}
+.cond-result strong{color:#f72585;font-size:16px}
+
+/* ── Mobile tabs ── */
+#mobtabs{display:none;background:#161b2a;border-top:1px solid #21262d;flex-shrink:0;z-index:800}
+.mobtab{flex:1;padding:10px 5px;text-align:center;cursor:pointer;font-size:10px;color:#555;transition:all .15s;user-select:none}
+.mobtab.on{color:#7c6af7;border-top:2px solid #7c6af7}
+.mobtab-icon{font-size:18px;display:block;margin-bottom:1px}
+
+/* ── レスポンシブ ── */
+@media(max-width:768px){
+  #left{position:absolute;top:0;left:0;bottom:0;width:100%!important;z-index:700;transform:translateX(-100%)}
+  #left.mob-show{transform:translateX(0)}
+  #mapwrap{width:100%}
+  #main{position:relative}
+  #mobtabs{display:flex}
+  #analysis.open{height:220px}
+  #ap{flex-direction:column;overflow-y:auto}
+  .asec{border-right:none;border-bottom:1px solid #21262d;min-width:unset}
+  #legend{display:none}
+  #hdr h1{font-size:12px}
+}
+@media(min-width:769px) and (max-width:1100px){
+  #left{width:260px}
+  #analysis.open{height:260px}
+  #ap{flex-wrap:wrap}
+  .asec{min-width:140px;flex:1 1 140px}
+}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <h1>🎰 パチンコホール <span class="g">立地・商圏</span>+<span class="t">人口</span>+<span class="b">条件検索</span></h1>
+  <span class="badge badge-go" id="hdr-go">— GO</span>
+  <span class="badge badge-pw" id="hdr-pw">— 競合</span>
+  <span class="meta" id="hdr-date">v5</span>
+</div>
+
+<div id="main">
+  <!-- 左パネル -->
+  <div id="left">
+    <div id="ctrl">
+      <div class="cl">商圏・競合検索半径</div>
+      <div class="rrow">
+        <input type="range" id="rsl" min="1" max="10" step="0.5" value="3">
+        <span id="rv">3.0 km</span>
+      </div>
+      <div class="search-row">
+        <input type="text" id="search" placeholder="🔍 店舗名・住所で絞り込み">
+        <div id="condBtn" onclick="openCondModal()">🔎 条件</div>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div id="list"></div>
+    <div id="foot">
+      <span>表示: <strong id="disp">0</strong></span>
+      <span>GO: <strong id="goct">0</strong> / 競合: <strong id="pwct">0</strong></span>
+      <span id="matchInfo" style="display:none;color:#f72585">条件一致: <strong id="matchCt">0</strong></span>
+      <span>商圏人口: <strong id="totpop">—</strong></span>
+    </div>
+  </div>
+
+  <!-- マップエリア -->
+  <div id="mapwrap">
+    <div id="map">
+      <div id="loading"><div class="spin"></div><div style="color:#555;font-size:12px">マップ初期化中...</div></div>
+      <div id="tilebtn" onclick="toggleTile()">🗺 地図切替</div>
+      <div id="legend">
+        <h4>凡例</h4>
+        <div class="li"><div class="ld" style="background:#f72585"></div>グランドオープン</div>
+        <div class="li"><div class="ld" style="background:#f7c948"></div>条件一致 GO</div>
+        <div class="li"><div class="ld" style="background:#58a6ff"></div>競合 (最近更新)</div>
+        <div class="li"><div class="ld" style="background:#2a3050"></div>競合 (通常)</div>
+        <div class="li"><div class="ld" style="background:rgba(124,106,247,.4)"></div>商圏半径</div>
+      </div>
+    </div>
+    <div id="toggle" onclick="togglePanel()">▲ エリア分析パネルを表示</div>
+    <div id="analysis">
+      <div id="ap">
+        <div class="asec" id="ap-pop"></div>
+        <div class="asec" id="ap-demo" style="flex:1.3;min-width:155px"></div>
+        <div class="asec" id="ap-trend" style="flex:1.4;min-width:180px"></div>
+        <div class="asec" id="ap-mach"></div>
+        <div class="asec" id="ap-rank" style="flex:1.3"></div>
+        <div class="asec" id="ap-similar" style="flex:1.3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- モバイルタブ -->
+<div id="mobtabs">
+  <div class="mobtab on" id="tab-map" onclick="mobTab('map')"><span class="mobtab-icon">🗺</span>マップ</div>
+  <div class="mobtab" id="tab-list" onclick="mobTab('list')"><span class="mobtab-icon">📋</span>一覧</div>
+  <div class="mobtab" id="tab-cond" onclick="openCondModal()"><span class="mobtab-icon">🔎</span>条件検索</div>
+</div>
+
+<!-- 条件検索モーダル -->
+<div id="condModal" onclick="condModalBg(event)">
+  <div id="condBox">
+    <h2>🔎 条件検索</h2>
+    <div class="subtitle">グランドオープン店舗を条件で絞り込みます</div>
+
+    <div class="cond-sec">
+      <div class="cond-label">
+        若年層(20-39歳)比率 ≥ <strong id="v-young">15%</strong>
+        <span style="font-size:9px;color:#444">商圏人口に占める割合</span>
+      </div>
+      <input type="range" class="cond-sl" id="sl-young" min="0" max="35" step="1" value="15"
+             oninput="updCond('young',this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#333;margin-top:2px">
+        <span>0% (制限なし)</span><span>35%</span>
+      </div>
+    </div>
+
+    <div class="cond-sec">
+      <div class="cond-label">
+        人口変化率(2010→2020) ≥ <strong id="v-trend">-10%</strong>
+        <span style="font-size:9px;color:#444">小さいほど衰退が少ない</span>
+      </div>
+      <input type="range" class="cond-sl sl-red" id="sl-trend" min="-30" max="10" step="1" value="-10"
+             oninput="updCond('trend',this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#333;margin-top:2px">
+        <span>-30% (急減も含む)</span><span>+10%</span>
+      </div>
+    </div>
+
+    <div class="cond-sec">
+      <div class="cond-label">
+        商圏最大競合台数 &lt; <strong id="v-maxcomp">1000台</strong>
+        <span style="font-size:9px;color:#444">商圏内の最大店舗台数上限</span>
+      </div>
+      <input type="range" class="cond-sl" id="sl-maxcomp" min="100" max="2000" step="50" value="1000"
+             oninput="updCond('maxcomp',this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#333;margin-top:2px">
+        <span>100台</span><span>2000台 (制限なし)</span>
+      </div>
+    </div>
+
+    <div class="cond-sec">
+      <div class="cond-label">
+        商圏人口(2020) ≥ <strong id="v-minpop">0万人</strong>
+      </div>
+      <input type="range" class="cond-sl" id="sl-minpop" min="0" max="100" step="1" value="0"
+             oninput="updCond('minpop',this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#333;margin-top:2px">
+        <span>0 (制限なし)</span><span>100万人</span>
+      </div>
+    </div>
+
+    <div class="cond-divider"></div>
+
+    <div class="cond-sec">
+      <div class="cl" style="margin-bottom:8px">追加フィルター</div>
+      <div class="cond-checks" id="condChecks">
+        <label class="cond-check" id="chk-goonly" onclick="toggleChk(this)">
+          <input type="checkbox" checked> 🎰 GOのみ表示
+        </label>
+        <label class="cond-check" id="chk-growonly" onclick="toggleChk(this)">
+          <input type="checkbox"> 📈 成長/横ばいエリアのみ
+        </label>
+        <label class="cond-check" id="chk-nosolo1000" onclick="toggleChk(this)">
+          <input type="checkbox"> 🏆 単独1000台以上なし
+        </label>
+      </div>
+    </div>
+
+    <div class="cond-result" id="condResult">条件を設定して「検索実行」を押してください</div>
+
+    <div class="cond-btns">
+      <button class="cbtn cbtn-apply" onclick="applyCondSearch()">🔍 検索実行</button>
+      <button class="cbtn cbtn-clear" onclick="clearCondSearch()">✕ クリア</button>
+      <button class="cbtn cbtn-cancel" onclick="closeCondModal()">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ================================================================
+// ホールデータ
+// ================================================================
+const HALLS = {{HALLS_JSON}};
+
+// ================================================================
+// 市区町村データ (人口 + 年齢構成 + 男女比)
+// y0:0-14歳%, ya:15-39歳%(若年成人), wa:40-64歳%(中年), s:65+%, m:男性%
+// 出典: 総務省統計局 国勢調査 2020年 (概算)
+// ================================================================
+const CITIES = [
+  {n:"札幌市",    la:43.0618,lo:141.3545,p10:1913545,p15:1952356,p20:1973395,a:1121,y0:10.5,ya:25.8,wa:35.2,s:28.5,m:47.8},
+  {n:"旭川市",    la:43.7705,lo:142.3650,p10:348237, p15:335575, p20:322759, a:747, y0:10.1,ya:23.5,wa:33.8,s:32.6,m:47.2},
+  {n:"函館市",    la:41.7687,lo:140.7288,p10:279127, p15:265979, p20:251084, a:677, y0:9.8, ya:22.1,wa:33.0,s:35.1,m:47.0},
+  {n:"仙台市",    la:38.2682,lo:140.8694,p10:1045986,p15:1082159,p20:1097196,a:788, y0:11.5,ya:28.3,wa:35.8,s:24.4,m:48.2},
+  {n:"秋田市",    la:39.7186,lo:140.1024,p10:328154, p15:317625, p20:308040, a:906, y0:9.5, ya:21.0,wa:31.8,s:37.7,m:46.9},
+  {n:"山形市",    la:38.2404,lo:140.3634,p10:254244, p15:249487, p20:243720, a:381, y0:11.2,ya:23.4,wa:33.5,s:31.9,m:47.8},
+  {n:"郡山市",    la:37.3981,lo:140.3879,p10:338834, p15:334074, p20:328408, a:757, y0:11.8,ya:24.5,wa:34.2,s:29.5,m:48.3},
+  {n:"いわき市",  la:37.0503,lo:140.8878,p10:342249, p15:350041, p20:341952, a:1231,y0:11.5,ya:23.8,wa:34.5,s:30.2,m:48.5},
+  {n:"水戸市",    la:36.3658,lo:140.4713,p10:268040, p15:270783, p20:270783, a:217, y0:11.9,ya:26.8,wa:34.5,s:26.8,m:48.8},
+  {n:"宇都宮市",  la:36.5658,lo:139.8836,p10:511739, p15:518594, p20:519114, a:417, y0:12.2,ya:26.5,wa:35.8,s:25.5,m:49.0},
+  {n:"前橋市",    la:36.3895,lo:139.0634,p10:340291, p15:336153, p20:330288, a:311, y0:11.5,ya:24.5,wa:34.8,s:29.2,m:48.5},
+  {n:"高崎市",    la:36.3228,lo:139.0031,p10:371302, p15:372117, p20:369929, a:459, y0:11.8,ya:25.0,wa:35.5,s:27.7,m:48.8},
+  {n:"さいたま市",la:35.8617,lo:139.6455,p10:1222910,p15:1263979,p20:1324025,a:217, y0:12.5,ya:28.5,wa:37.5,s:21.5,m:49.5},
+  {n:"川口市",    la:35.8072,lo:139.7247,p10:533270, p15:570668, p20:601411, a:62,  y0:13.0,ya:30.5,wa:36.5,s:20.0,m:50.5},
+  {n:"川越市",    la:35.9251,lo:139.4856,p10:342670, p15:350610, p20:355546, a:109, y0:12.2,ya:27.0,wa:36.5,s:24.3,m:49.2},
+  {n:"越谷市",    la:35.8914,lo:139.7898,p10:322811, p15:331788, p20:341112, a:60,  y0:12.8,ya:28.0,wa:37.0,s:22.2,m:49.5},
+  {n:"千葉市",    la:35.6073,lo:140.1063,p10:961749, p15:971882, p20:972688, a:272, y0:11.8,ya:27.5,wa:36.5,s:24.2,m:49.0},
+  {n:"船橋市",    la:35.6953,lo:140.0166,p10:609040, p15:629775, p20:648094, a:86,  y0:12.5,ya:29.0,wa:37.0,s:21.5,m:49.8},
+  {n:"松戸市",    la:35.7876,lo:139.9026,p10:484457, p15:490269, p20:492765, a:61,  y0:12.0,ya:27.5,wa:36.0,s:24.5,m:49.2},
+  {n:"市川市",    la:35.7217,lo:139.9313,p10:474854, p15:484466, p20:496340, a:57,  y0:11.8,ya:28.0,wa:36.5,s:23.7,m:49.0},
+  {n:"柏市",      la:35.8685,lo:139.9757,p10:406505, p15:419435, p20:428150, a:114, y0:12.2,ya:27.5,wa:36.5,s:23.8,m:49.2},
+  {n:"特別区部",  la:35.6762,lo:139.6503,p10:8945695,p15:9272565,p20:9733616,a:627, y0:10.5,ya:34.5,wa:36.5,s:18.5,m:50.5},
+  {n:"八王子市",  la:35.6663,lo:139.3162,p10:580053, p15:577513, p20:578321, a:186, y0:11.5,ya:26.5,wa:35.5,s:26.5,m:49.0},
+  {n:"町田市",    la:35.5439,lo:139.4450,p10:427542, p15:430710, p20:432627, a:72,  y0:11.8,ya:26.0,wa:36.0,s:26.2,m:48.8},
+  {n:"横浜市",    la:35.4437,lo:139.6380,p10:3688773,p15:3724844,p20:3777491,a:438, y0:11.5,ya:27.5,wa:36.0,s:25.0,m:49.0},
+  {n:"川崎市",    la:35.5308,lo:139.7032,p10:1425512,p15:1475213,p20:1539081,a:144, y0:12.0,ya:30.5,wa:37.5,s:20.0,m:50.5},
+  {n:"相模原市",  la:35.5533,lo:139.3522,p10:717544, p15:720780, p20:725493, a:328, y0:11.8,ya:26.5,wa:36.5,s:25.2,m:49.2},
+  {n:"藤沢市",    la:35.3381,lo:139.4888,p10:408475, p15:427665, p20:444203, a:70,  y0:12.5,ya:27.5,wa:36.5,s:23.5,m:49.5},
+  {n:"新潟市",    la:37.9161,lo:139.0364,p10:811901, p15:801069, p20:789275, a:726, y0:10.8,ya:24.5,wa:34.5,s:30.2,m:47.8},
+  {n:"富山市",    la:36.6953,lo:137.2113,p10:421953, p15:418686, p20:415005, a:1241,y0:11.0,ya:23.5,wa:34.5,s:31.0,m:48.2},
+  {n:"金沢市",    la:36.5613,lo:136.6562,p10:462362, p15:465699, p20:462361, a:468, y0:11.5,ya:26.0,wa:35.0,s:27.5,m:48.5},
+  {n:"長野市",    la:36.6486,lo:138.1941,p10:381511, p15:374361, p20:367560, a:835, y0:11.0,ya:23.8,wa:34.5,s:30.7,m:48.5},
+  {n:"松本市",    la:36.2380,lo:137.9719,p10:243209, p15:243037, p20:243037, a:979, y0:11.5,ya:25.0,wa:35.0,s:28.5,m:48.5},
+  {n:"岐阜市",    la:35.4232,lo:136.7608,p10:413136, p15:406735, p20:402751, a:203, y0:11.5,ya:25.0,wa:34.5,s:29.0,m:48.5},
+  {n:"静岡市",    la:34.9769,lo:138.3831,p10:716328, p15:704989, p20:693389, a:1411,y0:11.2,ya:24.5,wa:35.0,s:29.3,m:48.5},
+  {n:"浜松市",    la:34.7108,lo:137.7262,p10:800866, p15:797980, p20:797980, a:1558,y0:12.0,ya:25.0,wa:36.0,s:27.0,m:49.5},
+  {n:"名古屋市",  la:35.1815,lo:136.9066,p10:2263894,p15:2295638,p20:2332176,a:326, y0:12.0,ya:28.5,wa:36.0,s:23.5,m:49.0},
+  {n:"豊田市",    la:35.0836,lo:137.1561,p10:422542, p15:424243, p20:421487, a:918, y0:13.0,ya:27.0,wa:37.5,s:22.5,m:50.5},
+  {n:"岡崎市",    la:34.9570,lo:137.1744,p10:372357, p15:381051, p20:386769, a:387, y0:12.5,ya:27.0,wa:36.5,s:24.0,m:49.5},
+  {n:"一宮市",    la:35.3039,lo:136.8028,p10:378566, p15:382743, p20:383091, a:113, y0:12.5,ya:26.5,wa:36.5,s:24.5,m:49.5},
+  {n:"豊橋市",    la:34.7693,lo:137.3916,p10:376665, p15:374493, p20:374583, a:261, y0:12.2,ya:26.5,wa:35.5,s:25.8,m:49.5},
+  {n:"大津市",    la:35.0045,lo:135.8686,p10:337634, p15:342357, p20:342148, a:464, y0:12.5,ya:26.0,wa:35.5,s:26.0,m:48.8},
+  {n:"京都市",    la:35.0116,lo:135.7681,p10:1474015,p15:1475183,p20:1463723,a:828, y0:10.8,ya:28.5,wa:34.0,s:26.7,m:48.0},
+  {n:"大阪市",    la:34.6937,lo:135.5022,p10:2666371,p15:2691185,p20:2752412,a:225, y0:11.5,ya:30.5,wa:35.0,s:23.0,m:49.5},
+  {n:"堺市",      la:34.5733,lo:135.4830,p10:841966, p15:839310, p20:827374, a:150, y0:11.2,ya:25.5,wa:35.0,s:28.3,m:48.5},
+  {n:"東大阪市",  la:34.6795,lo:135.6009,p10:509553, p15:502551, p20:491403, a:62,  y0:11.0,ya:26.5,wa:34.5,s:28.0,m:48.5},
+  {n:"枚方市",    la:34.8136,lo:135.6522,p10:407609, p15:406553, p20:402370, a:66,  y0:11.2,ya:25.0,wa:35.5,s:28.3,m:48.5},
+  {n:"豊中市",    la:34.7830,lo:135.4698,p10:392586, p15:394872, p20:405284, a:36,  y0:11.5,ya:28.0,wa:36.0,s:24.5,m:48.5},
+  {n:"吹田市",    la:34.7625,lo:135.5166,p10:361624, p15:374822, p20:388174, a:36,  y0:11.8,ya:30.5,wa:36.5,s:21.2,m:49.0},
+  {n:"高槻市",    la:34.8487,lo:135.6176,p10:358818, p15:352890, p20:350350, a:105, y0:11.2,ya:26.0,wa:35.0,s:27.8,m:48.5},
+  {n:"神戸市",    la:34.6901,lo:135.1955,p10:1544200,p15:1537272,p20:1525152,a:558, y0:11.0,ya:26.5,wa:35.0,s:27.5,m:48.2},
+  {n:"姫路市",    la:34.8154,lo:134.6857,p10:536270, p15:534821, p20:523153, a:534, y0:11.5,ya:25.5,wa:34.5,s:28.5,m:48.8},
+  {n:"西宮市",    la:34.7369,lo:135.3414,p10:480714, p15:488204, p20:487869, a:100, y0:12.0,ya:27.5,wa:35.5,s:25.0,m:48.5},
+  {n:"尼崎市",    la:34.7335,lo:135.4067,p10:452964, p15:453890, p20:453748, a:51,  y0:12.0,ya:28.0,wa:34.5,s:25.5,m:49.0},
+  {n:"奈良市",    la:34.6851,lo:135.8050,p10:366591, p15:360310, p20:354630, a:277, y0:10.8,ya:24.5,wa:34.5,s:30.2,m:48.2},
+  {n:"岡山市",    la:34.6551,lo:133.9195,p10:709584, p15:719474, p20:724691, a:789, y0:12.0,ya:27.0,wa:35.5,s:25.5,m:48.5},
+  {n:"広島市",    la:34.3853,lo:132.4553,p10:1173843,p15:1194034,p20:1200754,a:906, y0:11.5,ya:27.5,wa:35.5,s:25.5,m:48.5},
+  {n:"福山市",    la:34.4858,lo:133.3626,p10:462779, p15:463491, p20:459613, a:518, y0:11.5,ya:25.5,wa:35.0,s:28.0,m:49.0},
+  {n:"高松市",    la:34.3402,lo:134.0434,p10:419429, p15:419429, p20:419429, a:375, y0:11.2,ya:25.5,wa:35.0,s:28.3,m:48.5},
+  {n:"松山市",    la:33.8392,lo:132.7657,p10:517231, p15:514937, p20:505645, a:429, y0:11.5,ya:26.0,wa:34.5,s:28.0,m:48.5},
+  {n:"高知市",    la:33.5597,lo:133.5311,p10:340130, p15:330006, p20:320084, a:309, y0:10.8,ya:25.0,wa:33.5,s:30.7,m:47.8},
+  {n:"福岡市",    la:33.5904,lo:130.4017,p10:1463743,p15:1538681,p20:1612392,a:341, y0:11.5,ya:32.5,wa:36.0,s:20.0,m:49.0},
+  {n:"北九州市",  la:33.8839,lo:130.8751,p10:976846, p15:961286, p20:939029, a:492, y0:10.5,ya:23.5,wa:34.0,s:32.0,m:48.2},
+  {n:"久留米市",  la:33.3197,lo:130.5080,p10:302478, p15:304767, p20:301744, a:229, y0:11.8,ya:25.5,wa:35.0,s:27.7,m:48.8},
+  {n:"熊本市",    la:32.8031,lo:130.7079,p10:730179, p15:740822, p20:740822, a:390, y0:11.8,ya:27.5,wa:35.0,s:25.7,m:48.5},
+  {n:"大分市",    la:33.2382,lo:131.6126,p10:474094, p15:478326, p20:478326, a:502, y0:11.5,ya:26.0,wa:35.0,s:27.5,m:48.8},
+  {n:"鹿児島市",  la:31.5602,lo:130.5581,p10:605846, p15:600165, p20:599814, a:548, y0:12.0,ya:26.5,wa:34.5,s:27.0,m:48.2},
+  {n:"那覇市",    la:26.2123,lo:127.6792,p10:315954, p15:320480, p20:317405, a:40,  y0:14.5,ya:31.5,wa:34.5,s:19.5,m:49.2},
+];
+
+// ================================================================
+// 地理計算
+// ================================================================
+function haversine(la1,lo1,la2,lo2){
+  const R=6371,dLa=(la2-la1)*Math.PI/180,dLo=(lo2-lo1)*Math.PI/180;
+  const a=Math.sin(dLa/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dLo/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function cityFraction(d,r,rc){
+  if(d<=Math.abs(r-rc)) return r<rc?(r*r)/(rc*rc):1;
+  if(d>=r+rc) return 0;
+  const a1=r*r*Math.acos(Math.min(1,Math.max(-1,(d*d+r*r-rc*rc)/(2*d*r))));
+  const a2=rc*rc*Math.acos(Math.min(1,Math.max(-1,(d*d+rc*rc-r*r)/(2*d*rc))));
+  const a3=0.5*Math.sqrt(Math.max(0,(-d+r+rc)*(d+r-rc)*(d-r+rc)*(d+r+rc)));
+  return Math.min(1,Math.max(0,(a1+a2-a3)/(Math.PI*rc*rc)));
+}
+
+// ================================================================
+// 人口・年齢構成推計
+// ================================================================
+function calcPopYear(lat,lng,r,key){
+  let total=0;
+  CITIES.forEach(c=>{
+    const d=haversine(lat,lng,c.la,c.lo);
+    total+=c[key]*cityFraction(d,r,Math.sqrt(c.a/Math.PI));
+  });
+  return Math.round(total);
+}
+function calcPop(lat,lng,r){return calcPopYear(lat,lng,r,'p20');}
+
+function calcTrend(lat,lng,r){
+  const p10=calcPopYear(lat,lng,r,'p10');
+  const p15=calcPopYear(lat,lng,r,'p15');
+  const p20=calcPopYear(lat,lng,r,'p20');
+  const pct5=(p20-p15)/p15*100;
+  const pct10=(p20-p10)/p10*100;
+  const slope=(p20-p10)/10;
+  const p25=Math.max(0,Math.round(p20+slope*5));
+  const p30=Math.max(0,Math.round(p20+slope*10));
+  return {p10,p15,p20,p25,p30,pct5,pct10,slope};
+}
+
+// 年齢構成・男女比の加重平均推計
+function calcDemographics(lat,lng,r){
+  let totalW=0,y0W=0,yaW=0,waW=0,sW=0,mW=0;
+  CITIES.forEach(c=>{
+    const d=haversine(lat,lng,c.la,c.lo);
+    const frac=cityFraction(d,r,Math.sqrt(c.a/Math.PI));
+    const w=c.p20*frac;
+    totalW+=w;
+    y0W+=c.y0*w;
+    yaW+=c.ya*w;
+    waW+=c.wa*w;
+    sW+=c.s*w;
+    mW+=c.m*w;
+  });
+  if(totalW===0) return {y0:11,ya:26,wa:35,s:28,m:49};
+  return {
+    y0:parseFloat((y0W/totalW).toFixed(1)),
+    ya:parseFloat((yaW/totalW).toFixed(1)),
+    wa:parseFloat((waW/totalW).toFixed(1)),
+    s:parseFloat((sW/totalW).toFixed(1)),
+    m:parseFloat((mW/totalW).toFixed(1))
+  };
+}
+
+// ================================================================
+// フォーマット
+// ================================================================
+function fmtPop(n){return n>=10000?(n/10000).toFixed(1)+' 万人':n.toLocaleString()+' 人';}
+function fmtPop2(n){return n>=10000?(n/10000).toFixed(1)+'万':n.toLocaleString();}
+function fmtPct(p,d=1){return (p>=0?'+':'')+p.toFixed(d)+'%';}
+
+function trendLevel(pct5){
+  if(pct5>=2)  return {cls:'tb-grow',      label:'📈 成長エリア',   col:'#3fb950'};
+  if(pct5>=0)  return {cls:'tb-flat',      label:'➡ ほぼ横ばい',   col:'#f7c948'};
+  if(pct5>=-3) return {cls:'tb-shrink',    label:'📉 緩やかな減少',col:'#ff851b'};
+  return         {cls:'tb-big-shrink',     label:'⚠ 急速な人口減', col:'#ff4136'};
+}
+
+// ================================================================
+// スパークライン
+// ================================================================
+function sparklineSVG(t){
+  const W=165,H=50,pad=3;
+  const vals=[t.p10,t.p15,t.p20,t.p25,t.p30];
+  const labels=['2010','2015','2020','25予','30予'];
+  const isProj=[false,false,false,true,true];
+  const maxV=Math.max(...vals)*1.05,minV=Math.min(...vals)*0.95;
+  const range=maxV-minV||1;
+  const bw=(W-pad*2)/vals.length-3;
+  const posColor=t.pct10>=0;
+  const bars=vals.map((v,i)=>{
+    const x=pad+i*((W-pad*2)/vals.length)+1;
+    const bh=Math.max(3,(v-minV)/range*(H-14));
+    const y=H-bh-1;
+    const col=isProj[i]?'#3a3f55':(posColor?'#4a85c4':'#b04040');
+    return `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="2" fill="${col}" opacity="${isProj[i]?.45:.8}" ${isProj[i]?'stroke="#5a6080" stroke-width="0.5"':''}/><text x="${x+bw/2}" y="${H+2}" text-anchor="middle" font-size="7" fill="#444">${labels[i]}</text>`;
+  }).join('');
+  const pts=vals.map((v,i)=>{
+    const x=pad+i*((W-pad*2)/vals.length)+1+bw/2;
+    const bh=Math.max(3,(v-minV)/range*(H-14));
+    return `${x},${H-bh-1}`;
+  }).join(' ');
+  return `<svg viewBox="0 0 ${W} ${H+12}" width="${W}" height="${H+12}"><polyline points="${pts}" fill="none" stroke="${posColor?'#7c6af7':'#ff6060'}" stroke-width="1.5" opacity="0.65"/>${bars}</svg>`;
+}
+
+// ================================================================
+// 競合取得・エリア集計
+// ================================================================
+function getCompetitors(hall,r){
+  return HALLS.filter(h=>{
+    if(h===hall) return false;
+    const d=haversine(hall.lat,hall.lng,h.lat,h.lng);
+    h._dist=d;return d<=r;
+  }).sort((a,b)=>a._dist-b._dist);
+}
+function areaStats(focal,comps){
+  const all=[focal,...comps];
+  const sum=k=>all.reduce((s,h)=>s+(h.machines[k]||0),0);
+  const maxComp=comps.length?Math.max(...comps.map(h=>h.machines.total||0)):0;
+  return {total:sum('total'),p4en:sum('pachinko_4en'),p1en:sum('pachinko_1en'),s20en:sum('slot_20en'),s5en:sum('slot_5en'),stores:all.length,maxComp};
+}
+
+// ================================================================
+// 類似商圏
+// ================================================================
+function findSimilarHalls(focal,r){
+  const fT=calcTrend(focal.lat,focal.lng,r);
+  const fC=getCompetitors(focal,r);
+  const fS=areaStats(focal,fC);
+  const fE4=fS.p4en>0?fT.p20/fS.p4en:0;
+  const goList=HALLS.filter(h=>h.is_grand_open&&h!==focal&&h.lat&&h.lng);
+  if(!goList.length) return [];
+  const cands=goList.map(h=>{
+    const hT=calcTrend(h.lat,h.lng,r);
+    const hC=getCompetitors(h,r);
+    const hS=areaStats(h,hC);
+    const hE4=hS.p4en>0?hT.p20/hS.p4en:0;
+    const popSc=Math.max(fT.p20,hT.p20,50000);
+    const dPop=Math.abs(fT.p20-hT.p20)/popSc;
+    const dTrend=Math.min(1,Math.abs(fT.pct5-hT.pct5)/10);
+    const effSc=Math.max(fE4,hE4,200);
+    const dEff=(fE4>0&&hE4>0)?Math.abs(fE4-hE4)/effSc:0.5;
+    const dist=Math.sqrt(0.5*dPop**2+0.3*dTrend**2+0.2*dEff**2);
+    const simPct=Math.round(Math.max(0,Math.min(100,(1-dist*1.4)*100)));
+    return {h,t:hT,s:hS,e4:hE4,dist,simPct};
+  });
+  return cands.sort((a,b)=>a.dist-b.dist).slice(0,3);
+}
+
+// ================================================================
+// マーカーアイコン
+// ================================================================
+function goIcon(matched=false){
+  const col=matched?'#f7c948':'#f72585';
+  const s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 46" width="32" height="46"><path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 30 16 30S32 28 32 16C32 7.2 24.8 0 16 0z" fill="${col}" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/><circle cx="16" cy="15" r="9" fill="rgba(255,255,255,.9)"/><text x="16" y="19.5" text-anchor="middle" font-size="8.5" font-weight="900" fill="${col}" font-family="sans-serif">${matched?'★':'NEW'}</text></svg>`;
+  return L.divIcon({html:s,className:'',iconSize:[32,46],iconAnchor:[16,46],popupAnchor:[0,-46]});
+}
+function pwIcon(color){
+  const s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 32" width="22" height="32"><path d="M11 0C4.9 0 0 4.9 0 11c0 8.3 11 21 11 21S22 19.3 22 11C22 4.9 17.1 0 11 0z" fill="${color}" stroke="rgba(0,0,0,.3)" stroke-width="1"/><circle cx="11" cy="10" r="5" fill="rgba(255,255,255,.7)"/><text x="11" y="14" text-anchor="middle" font-size="7" font-weight="900" fill="${color}" font-family="sans-serif">P</text></svg>`;
+  return L.divIcon({html:s,className:'',iconSize:[22,32],iconAnchor:[11,32],popupAnchor:[0,-32]});
+}
+function mcolor(h){
+  if(h.is_grand_open) return '#f72585';
+  const d=h.open_date?(Date.now()-new Date(h.open_date).getTime())/86400000:9999;
+  return d<=180?'#58a6ff':'#2a3050';
+}
+
+// ================================================================
+// マップ初期化
+// ================================================================
+const map=L.map('map',{zoomControl:true}).setView([35.6762,139.6503],6);
+const tileDark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© CARTO',maxZoom:19});
+const tileStreet=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM',maxZoom:19});
+let curTile='dark';tileDark.addTo(map);
+function toggleTile(){
+  if(curTile==='dark'){map.removeLayer(tileDark);tileStreet.addTo(map);curTile='street';}
+  else{map.removeLayer(tileStreet);tileDark.addTo(map);curTile='dark';}
+}
+
+const cluster=L.markerClusterGroup({maxClusterRadius:50,showCoverageOnHover:false,
+  iconCreateFunction:c=>{const n=c.getChildCount();return L.divIcon({html:`<div style="background:#7c6af7;border-radius:50%;width:${n>9?34:28}px;height:${n>9?34:28}px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px;border:2px solid rgba(255,255,255,.3)">${n}</div>`,className:'',iconSize:[34,34]});}
+});
+
+let selIdx=-1,actCircle=null,actCompCircles=[],curR=3;
+const markers=HALLS.map((h,i)=>{
+  if(!h.lat||!h.lng) return null;
+  const mk=L.marker([h.lat,h.lng],{icon:h.is_grand_open?goIcon():pwIcon(mcolor(h))});
+  mk.bindPopup(buildPopup(h,i),{maxWidth:320});
+  mk.on('click',()=>selectHall(i,mk));
+  return mk;
+});
+
+function buildPopup(h,i){
+  const m=h.machines||{};
+  const pop=calcPop(h.lat,h.lng,curR);
+  const comps=getCompetitors(h,curR);
+  return `<div>
+    <div class="ptag ${h.is_grand_open?'ptag-go':'ptag-pw'}">${h.is_grand_open?'GRAND OPEN':'P-WORLD'}</div>
+    <div class="ptitle">${h.name}</div>
+    ${h.open_date?`<div class="prow"><span class="plabel">開店日</span><span class="pdate">${h.open_date}</span></div>`:''}
+    <div class="prow"><span class="plabel">住所</span><span class="pval">${h.address||'—'}</span></div>
+    ${m.total!=null?`<div class="pmach">
+      <div><div class="pmitem-l">総台数</div><div class="pmitem-v" style="color:#e8eaed">${m.total}</div></div>
+      <div><div class="pmitem-l">4円パチ</div><div class="pmitem-v p4en">${m.pachinko_4en??'—'}</div></div>
+      <div><div class="pmitem-l">1円パチ</div><div class="pmitem-v p1en">${m.pachinko_1en??'—'}</div></div>
+      <div><div class="pmitem-l">20円スロ</div><div class="pmitem-v s20en">${m.slot_20en??'—'}</div></div>
+    </div>`:''}
+    <div class="ppop">
+      <div class="ppop-t">商圏人口 ${curR}km圏</div>
+      <div class="ppop-n">${fmtPop(pop)}</div>
+      <div class="ppop-s">競合 ${comps.length} 店 / エリア総台数 ${areaStats(h,comps).total} 台</div>
+    </div>
+  </div>`;
+}
+
+// ================================================================
+// 分析パネル
+// ================================================================
+let panelOpen=false;
+function togglePanel(){
+  panelOpen=!panelOpen;
+  document.getElementById('analysis').classList.toggle('open',panelOpen);
+  document.getElementById('toggle').textContent=panelOpen?'▼ エリア分析パネルを閉じる':'▲ エリア分析パネルを表示';
+  if(panelOpen&&selIdx>=0) showAnalysis(selIdx);
+}
+
+function selectHall(i,mk){
+  document.querySelectorAll('.hitem').forEach(el=>el.classList.remove('on'));
+  const el=document.querySelector(`.hitem[data-i="${i}"]`);
+  if(el){el.classList.add('on');el.scrollIntoView({block:'nearest'});}
+  selIdx=i;
+  const h=HALLS[i];
+  if(actCircle) map.removeLayer(actCircle);
+  actCompCircles.forEach(l=>map.removeLayer(l));actCompCircles=[];
+  actCircle=L.circle([h.lat,h.lng],{radius:curR*1000,color:'#7c6af7',fillColor:'#7c6af7',fillOpacity:.07,weight:2,dashArray:'6,4'}).addTo(map);
+  const comps=getCompetitors(h,curR);
+  comps.forEach(c=>actCompCircles.push(L.circle([c.lat,c.lng],{radius:100,color:'#ff851b',fillColor:'#ff851b',fillOpacity:.6,weight:1}).addTo(map)));
+  map.setView([h.lat,h.lng],13);
+  document.getElementById('totpop').textContent=fmtPop2(calcPop(h.lat,h.lng,curR));
+  if(panelOpen) showAnalysis(i);
+  // mobile: switch to map
+  if(window.innerWidth<=768) mobTab('map');
+}
+
+function showAnalysis(i){
+  const h=HALLS[i];
+  const comps=getCompetitors(h,curR);
+  const trend=calcTrend(h.lat,h.lng,curR);
+  const stats=areaStats(h,comps);
+  const demo=calcDemographics(h.lat,h.lng,curR);
+  const tl=trendLevel(trend.pct5);
+
+  // ── 1. 商圏人口 ──
+  document.getElementById('ap-pop').innerHTML=`
+    <div class="atitle at-pop">商圏人口 (${curR}km)</div>
+    <div style="font-size:24px;font-weight:800;color:#c084fc">${fmtPop(trend.p20)}</div>
+    <div style="font-size:9px;color:#555;margin-top:2px">2020年国勢調査ベース・概算</div>
+    <div class="trend-stats">
+      <div class="tstat"><div class="tstat-l">2010年</div><div class="tstat-v" style="color:#58a6ff">${fmtPop2(trend.p10)}</div></div>
+      <div class="tstat"><div class="tstat-l">2025予</div><div class="tstat-v" style="color:#f7c948">${fmtPop2(trend.p25)}</div></div>
+      <div class="tstat"><div class="tstat-l">2030予</div><div class="tstat-v" style="color:#ff851b">${fmtPop2(trend.p30)}</div></div>
+    </div>`;
+
+  // ── 2. 年齢構成・男女比 ──
+  document.getElementById('ap-demo').innerHTML=`
+    <div class="atitle at-demo">年齢構成・男女比 (商圏加重平均)</div>
+    <div style="font-size:9px;color:#555;margin-bottom:4px">0-14歳 / 15-39歳 / 40-64歳 / 65歳以上</div>
+    <div class="demo-bar">
+      <div class="db-y" style="width:${demo.y0}%"></div>
+      <div class="db-ya" style="width:${demo.ya}%"></div>
+      <div class="db-wa" style="width:${demo.wa}%"></div>
+      <div class="db-s" style="width:${demo.s}%"></div>
+    </div>
+    <div class="demo-legend">
+      <div class="dl"><div class="dl-dot" style="background:#f72585"></div>0-14歳 <strong style="color:#ccc;margin-left:2px">${demo.y0}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#7c6af7"></div>15-39歳 <strong style="color:#c084fc;margin-left:2px">${demo.ya}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#58a6ff"></div>40-64歳 <strong style="color:#79c0ff;margin-left:2px">${demo.wa}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#2a3050"></div>65歳+ <strong style="color:#888;margin-left:2px">${demo.s}%</strong></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:#555;margin-bottom:3px">男女比</div>
+    <div class="gender-bar">
+      <div class="gb-m" style="width:${demo.m}%"></div>
+      <div class="gb-f" style="width:${100-demo.m}%"></div>
+    </div>
+    <div class="demo-legend">
+      <div class="dl"><div class="dl-dot" style="background:#58a6ff"></div>男性 <strong style="color:#58a6ff;margin-left:2px">${demo.m}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#f72585"></div>女性 <strong style="color:#f72585;margin-left:2px">${(100-demo.m).toFixed(1)}%</strong></div>
+    </div>
+    <div style="margin-top:8px;padding:5px 8px;background:#0d1117;border-radius:5px;font-size:9px;color:#555">
+      <span style="color:#7c6af7;font-weight:700">若年成人 ${demo.ya}%</span> = 商圏人口の約
+      <span style="color:#c084fc;font-weight:700">${fmtPop2(Math.round(trend.p20*demo.ya/100))}</span>
+    </div>`;
+
+  // ── 3. 人口トレンド ──
+  document.getElementById('ap-trend').innerHTML=`
+    <div class="atitle at-trend">人口トレンド (2010→2030)</div>
+    ${sparklineSVG(trend)}
+    <div class="trend-stats">
+      <div class="tstat"><div class="tstat-l">5年変化</div><div class="tstat-v" style="color:${trend.pct5>=0?'#3fb950':'#ff851b'}">${fmtPct(trend.pct5)}</div></div>
+      <div class="tstat"><div class="tstat-l">10年変化</div><div class="tstat-v" style="color:${trend.pct10>=0?'#3fb950':'#ff4136'}">${fmtPct(trend.pct10)}</div></div>
+    </div>
+    <div class="trend-badge ${tl.cls}">${tl.label}</div>`;
+
+  // ── 4. 台数メトリクス ──
+  const maxM=Math.max(stats.total,1);
+  document.getElementById('ap-mach').innerHTML=`
+    <div class="atitle at-mach">エリア台数合計</div>
+    <div class="ametrics">
+      ${[['総台数',stats.total,'#e8eaed'],['4円パチ',stats.p4en,'#58a6ff'],['1円パチ',stats.p1en,'#79c0ff'],['20円スロ',stats.s20en,'#3fb950'],['5円スロ',stats.s5en,'#56d364']]
+        .map(([l,v,c])=>`<div class="am"><div class="am-label">${l}</div><div class="am-bar"><div class="am-fill" style="width:${(v/maxM*100).toFixed(1)}%;background:${c}"></div></div><div class="am-val" style="color:${c}">${v}台</div></div>`).join('')}
+    </div>
+    <div style="margin-top:8px;font-size:10px;color:#555">店舗数: <strong style="color:#ccc">${stats.stores}</strong> / 最大競合: <strong style="color:#f7c948">${stats.maxComp}台</strong></div>`;
+
+  // ── 5. 競合ランキング ──
+  const effs=[[`4円パチ/台あたり人口`,trend.p20/(stats.p4en||1),`#58a6ff`],[`20円スロ/台あたり人口`,trend.p20/(stats.s20en||1),`#3fb950`]];
+  document.getElementById('ap-rank').innerHTML=`
+    <div class="atitle at-rank">競合ランキング (${curR}km)</div>
+    <div class="comp-list">
+      ${comps.length?comps.slice(0,8).map((c,j)=>`
+        <div class="citem">
+          <div class="crank">${j+1}</div>
+          <div class="cname">${c.name}</div>
+          <div style="font-size:9px;color:#58a6ff;min-width:30px">${c.machines?.pachinko_4en!=null?c.machines.pachinko_4en+'P4':''}</div>
+          <div style="font-size:9px;color:#3fb950;min-width:30px">${c.machines?.slot_20en!=null?c.machines.slot_20en+'S20':''}</div>
+          <div class="ctotal">${c.machines?.total!=null?c.machines.total+'台':'—'}</div>
+          <div class="cdist">${c._dist.toFixed(1)}km</div>
+        </div>`).join(''):'<div style="color:#333;font-size:11px;padding:8px 0">商圏内に競合なし</div>'}
+    </div>
+    <div style="margin-top:8px;border-top:1px solid #161b2a;padding-top:6px">
+      ${effs.map(([l,v,c])=>`<div style="font-size:9px;color:#555;margin-bottom:3px">${l}: <strong style="color:${c}">${v>=1000?(v/10000).toFixed(1)+'万':Math.round(v)}人</strong></div>`).join('')}
+    </div>`;
+
+  // ── 6. 類似商圏 ──
+  const sims=findSimilarHalls(h,curR);
+  const simScoreCls=sc=>sc>=70?'ss-hi':sc>=40?'ss-md':'ss-lo';
+  document.getElementById('ap-similar').innerHTML=`
+    <div class="atitle at-similar">類似商圏 TOP3</div>
+    ${sims.length?sims.map((s,j)=>`
+      <div class="sim-item" onclick="selectHall(${HALLS.indexOf(s.h)},markers[${HALLS.indexOf(s.h)}])">
+        <div class="sim-header">
+          <div class="sim-rank">${j+1}</div>
+          <div class="sim-name">${s.h.name}</div>
+          <div class="sim-score ${simScoreCls(s.simPct)}">${s.simPct}%</div>
+        </div>
+        <div class="sim-metrics">
+          <div class="sim-m"><div class="sim-ml">商圏人口</div><div class="sim-mv" style="color:#c084fc">${fmtPop2(s.t.p20)}</div></div>
+          <div class="sim-m"><div class="sim-ml">5年変化</div><div class="sim-mv" style="color:${s.t.pct5>=0?'#3fb950':'#ff851b'}">${fmtPct(s.t.pct5)}</div></div>
+          <div class="sim-m"><div class="sim-ml">競合店</div><div class="sim-mv">${s.s.stores}店</div></div>
+        </div>
+      </div>`).join('')
+    :'<div style="color:#333;font-size:11px;padding:8px 0">他のGO店がありません</div>'}
+    <div style="font-size:9px;color:#444;margin-top:8px;line-height:1.5">人口規模・トレンド・効率指標が近い<br>グランドオープン店</div>`;
+}
+
+// ================================================================
+// リスト描画
+// ================================================================
+function renderList(halls){
+  const c=document.getElementById('list');c.innerHTML='';
+  document.getElementById('disp').textContent=halls.length;
+  document.getElementById('goct').textContent=halls.filter(h=>h.is_grand_open).length;
+  document.getElementById('pwct').textContent=halls.filter(h=>!h.is_grand_open).length;
+  if(!halls.length){c.innerHTML='<div style="padding:20px;text-align:center;color:#333">該当なし</div>';return;}
+  halls.forEach(h=>{
+    const i=HALLS.indexOf(h);
+    const m=h.machines||{};
+    const isMatch=matchedSet.has(i);
+    const d=document.createElement('div');
+    d.className=`hitem ${h.is_grand_open?'go':'pw'}${isMatch?' match':''}`;d.dataset.i=i;
+    d.innerHTML=`
+      <div>
+        <span class="htag ${h.is_grand_open?'htag-go':'htag-pw'}">${h.is_grand_open?'NEW':'P-WORLD'}</span>
+        ${isMatch?'<span class="htag htag-match">★条件一致</span>':''}
+      </div>
+      <div class="hname">${h.name}</div>
+      ${h.open_date?`<div class="hmeta"><span class="hdate">${h.open_date}</span></div>`:''}
+      ${h.address?`<div class="haddr">📍 ${h.address.substring(0,35)}</div>`:''}
+      <div class="hmach">
+        ${m.pachinko_4en!=null?`<span class="mt mp">4円 ${m.pachinko_4en}台</span>`:''}
+        ${m.slot_20en!=null?`<span class="mt ms">20円 ${m.slot_20en}台</span>`:''}
+        ${m.total!=null?`<span class="mt" style="background:#1a1a2e;color:#555">計 ${m.total}台</span>`:''}
+      </div>`;
+    d.addEventListener('click',()=>selectHall(i,markers[i]));
+    c.appendChild(d);
+  });
+}
+
+// ================================================================
+// フィルタ
+// ================================================================
+const activeSrc=new Set(HALLS.map(h=>h.source));
+let matchedSet=new Set();
+
+function buildChips(){
+  [...new Set(HALLS.map(h=>h.source))].forEach(s=>{
+    const el=document.createElement('div');
+    el.className='chip on';el.textContent=s;
+    el.onclick=()=>{
+      activeSrc.has(s)?(activeSrc.delete(s),el.classList.remove('on')):(activeSrc.add(s),el.classList.add('on'));
+      applyFilter();
+    };
+    document.getElementById('chips').appendChild(el);
+  });
+}
+function applyFilter(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const filtered=HALLS.filter(h=>activeSrc.has(h.source)&&(h.name.toLowerCase().includes(q)||h.address.toLowerCase().includes(q)));
+  cluster.clearLayers();
+  filtered.forEach(h=>{
+    const i=HALLS.indexOf(h);
+    if(markers[i]){
+      if(h.is_grand_open) markers[i].setIcon(goIcon(matchedSet.has(i)));
+      cluster.addLayer(markers[i]);
+    }
+  });
+  renderList(filtered);
+}
+document.getElementById('search').addEventListener('input',applyFilter);
+
+// ================================================================
+// 半径スライダー
+// ================================================================
+const sl=document.getElementById('rsl');
+sl.addEventListener('input',function(){
+  curR=parseFloat(this.value);
+  document.getElementById('rv').textContent=curR.toFixed(1)+' km';
+  this.style.setProperty('--p',((curR-1)/9*100).toFixed(1)+'%');
+  if(actCircle&&selIdx>=0){
+    const h=HALLS[selIdx];
+    map.removeLayer(actCircle);
+    actCircle=L.circle([h.lat,h.lng],{radius:curR*1000,color:'#7c6af7',fillColor:'#7c6af7',fillOpacity:.07,weight:2,dashArray:'6,4'}).addTo(map);
+    actCompCircles.forEach(l=>map.removeLayer(l));actCompCircles=[];
+    const comps=getCompetitors(h,curR);
+    comps.forEach(c=>actCompCircles.push(L.circle([c.lat,c.lng],{radius:100,color:'#ff851b',fillColor:'#ff851b',fillOpacity:.6,weight:1}).addTo(map)));
+    document.getElementById('totpop').textContent=fmtPop2(calcPop(h.lat,h.lng,curR));
+    if(panelOpen) showAnalysis(selIdx);
+  }
+});
+
+// ================================================================
+// 条件検索
+// ================================================================
+const condState={young:15,trend:-10,maxcomp:1000,minpop:0};
+const activeChks=new Set(['chk-goonly']);
+
+function updCond(key,val){
+  condState[key]=parseFloat(val);
+  if(key==='young') document.getElementById('v-young').textContent=val+'%';
+  if(key==='trend') document.getElementById('v-trend').textContent=(val>=0?'+':'')+val+'%';
+  if(key==='maxcomp') document.getElementById('v-maxcomp').textContent=(parseFloat(val)>=2000?'制限なし':val+'台');
+  if(key==='minpop') document.getElementById('v-minpop').textContent=(parseFloat(val)===0?'制限なし':(parseFloat(val)/10).toFixed(1)+'万人');
+}
+function toggleChk(el){
+  const id=el.id;
+  if(activeChks.has(id)){activeChks.delete(id);el.classList.remove('on');}
+  else{activeChks.add(id);el.classList.add('on');}
+}
+function openCondModal(){
+  document.getElementById('condModal').classList.add('show');
+}
+function closeCondModal(){document.getElementById('condModal').classList.remove('show');}
+function condModalBg(e){if(e.target===document.getElementById('condModal'))closeCondModal();}
+
+function applyCondSearch(){
+  const r=curR;
+  const goHalls=HALLS.filter(h=>h.is_grand_open&&h.lat&&h.lng);
+  const results=[];
+
+  goHalls.forEach((h,_)=>{
+    const i=HALLS.indexOf(h);
+    const trend=calcTrend(h.lat,h.lng,r);
+    const demo=calcDemographics(h.lat,h.lng,r);
+    const comps=getCompetitors(h,r);
+    const stats=areaStats(h,comps);
+
+    // 若年層比率
+    if(demo.ya < condState.young) return;
+    // 人口変化率
+    if(trend.pct10 < condState.trend) return;
+    // 商圏最大競合台数
+    if(condState.maxcomp<2000 && stats.maxComp >= condState.maxcomp) return;
+    // 商圏人口最低
+    if(condState.minpop>0 && trend.p20 < condState.minpop*10000) return;
+    // 成長/横ばいのみ
+    if(activeChks.has('chk-growonly') && trend.pct5 < 0) return;
+    // 単独1000台以上なし
+    if(activeChks.has('chk-nosolo1000')){
+      const has1000=comps.some(c=>(c.machines?.total||0)>=1000);
+      if(has1000) return;
+    }
+
+    results.push(i);
+  });
+
+  matchedSet=new Set(results);
+  document.getElementById('condResult').innerHTML=
+    results.length>0
+      ? `<strong>${results.length}</strong> 店が条件を満たしました`
+      : `<span style="color:#555">条件を満たす店舗はありません</span>`;
+
+  // ヘッダーバッジ更新
+  document.getElementById('condBtn').classList.add('active');
+  const matchInfo=document.getElementById('matchInfo');
+  matchInfo.style.display='';
+  document.getElementById('matchCt').textContent=results.length;
+
+  applyFilter();
+  closeCondModal();
+}
+
+function clearCondSearch(){
+  matchedSet=new Set();
+  document.getElementById('condBtn').classList.remove('active');
+  document.getElementById('matchInfo').style.display='none';
+  // スライダーリセット
+  document.getElementById('sl-young').value=15;updCond('young',15);
+  document.getElementById('sl-trend').value=-10;updCond('trend',-10);
+  document.getElementById('sl-maxcomp').value=1000;updCond('maxcomp',1000);
+  document.getElementById('sl-minpop').value=0;updCond('minpop',0);
+  activeChks.clear();activeChks.add('chk-goonly');
+  ['chk-goonly','chk-growonly','chk-nosolo1000'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.toggle('on',activeChks.has(id));
+  });
+  document.getElementById('condResult').textContent='条件を設定して「検索実行」を押してください';
+  applyFilter();
+  closeCondModal();
+}
+
+// ================================================================
+// モバイルタブ
+// ================================================================
+function mobTab(tab){
+  document.querySelectorAll('.mobtab').forEach(t=>t.classList.remove('on'));
+  if(tab==='map'){
+    document.getElementById('left').classList.remove('mob-show');
+    document.getElementById('tab-map').classList.add('on');
+  } else if(tab==='list'){
+    document.getElementById('left').classList.add('mob-show');
+    document.getElementById('tab-list').classList.add('on');
+  } else {
+    document.getElementById('tab-cond').classList.add('on');
+  }
+}
+
+// ================================================================
+// 初期化
+// ================================================================
+document.getElementById('hdr-go').textContent=HALLS.filter(h=>h.is_grand_open).length+' GO';
+document.getElementById('hdr-pw').textContent=HALLS.filter(h=>!h.is_grand_open).length+' 競合';
+document.getElementById('hdr-date').textContent='v5 · {{GENERATED_AT}}';
+
+// 初期チップのon設定
+['chk-goonly'].forEach(id=>document.getElementById(id)?.classList.add('on'));
+
+buildChips();
+cluster.addLayers(markers.filter(Boolean));
+map.addLayer(cluster);
+renderList(HALLS);
+document.getElementById('loading').style.display='none';
+</script>
+</body>
+</html>
