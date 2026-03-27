@@ -142,11 +142,19 @@ def scrape_pworld_by_prefs(target_prefs=None, max_stores=500):
     return results
 
 
+def _get_store_url(tag, dir_name: str) -> str:
+    """aタグからURLを取得（href / data-href 両対応）"""
+    href = tag.get("href", "") or tag.get("data-href", "")
+    if not href or href.startswith("javascript"):
+        href = ""
+    return href if href.startswith("http") else (BASE_URL + href if href else "")
+
+
 def _scrape_pref(dir_name: str, pref_name: str, session, limit: int) -> list[dict]:
     """都道府県別にP-WORLD店舗一覧を取得（ページネーション対応）"""
     stores = []
     page = 1
-    total = None  # 全件数（初回取得後にセット）
+    total = None
 
     while len(stores) < limit:
         url = (
@@ -158,30 +166,40 @@ def _scrape_pref(dir_name: str, pref_name: str, session, limit: int) -> list[dic
             logger.warning(f"  {pref_name} p{page}: ページ取得失敗")
             break
 
-        # 全件数を初回に取得
         if total is None:
             m = re.search(r"全(\d+)件", soup.get_text())
             total = int(m.group(1)) if m else 0
             logger.info(f"  {pref_name}: 全{total}件")
 
-        # div.hallList-item が各店舗
-        items = soup.select("div.hallList-item")
-        logger.info(f"  {pref_name} p{page}: {len(items)}件の hallList-item")
-        if not items:
-            # セレクタが合わない場合、別のパターンを試す
-            alt = soup.select("div[class*='hall']")
-            logger.info(f"  hallクラスを含むdiv: {len(alt)}件 → {[str(d)[:80] for d in alt[:3]]}")
-            break
+        # ── アプローチ1: hallList-bodyの中の.htmリンクを直接収集 ──
+        page_stores = _extract_stores_from_links(soup, dir_name, pref_name)
 
-        for item in items:
+        if not page_stores:
+            # ── アプローチ2: div.hallList-item / div.js-hallList-item ──
+            for selector in ("div.js-hallList-item", "div.hallList-item"):
+                items = soup.select(selector)
+                if items:
+                    logger.info(f"  {pref_name} p{page}: {selector} {len(items)}件")
+                    for item in items:
+                        if len(page_stores) >= limit:
+                            break
+                        store = _parse_item(item, dir_name, pref_name)
+                        if store:
+                            page_stores.append(store)
+                    if page_stores:
+                        break
+            if not page_stores:
+                logger.warning(f"  {pref_name} p{page}: 店舗抽出0件 → 終了")
+                break
+
+        before = len(stores)
+        for s in page_stores:
             if len(stores) >= limit:
                 break
-            store = _parse_item(item, dir_name, pref_name)
-            if store:
-                stores.append(store)
+            stores.append(s)
+        logger.info(f"  {pref_name} p{page}: +{len(stores)-before}件 (累計{len(stores)}件)")
 
-        # ページ終了判定
-        if len(items) < 50:
+        if len(page_stores) < 50:
             break
         if total and len(stores) >= min(total, limit):
             break
@@ -192,30 +210,96 @@ def _scrape_pref(dir_name: str, pref_name: str, session, limit: int) -> list[dic
     return stores
 
 
+def _extract_stores_from_links(soup, dir_name: str, pref_name: str) -> list[dict]:
+    """ページ全体の.htmリンクから店舗一覧を抽出（hallList-item不依存）"""
+    stores = []
+    pattern = re.compile(rf"/{dir_name}/[^/]+\.htm$")
+
+    # hallList-body または hallList を探す
+    container = soup.select_one("div.hallList-body") or soup.select_one("div.hallList")
+    if not container:
+        return stores
+
+    seen_urls = set()
+    for a in container.find_all("a"):
+        # href と data-href 両方チェック
+        href = a.get("href", "") or a.get("data-href", "")
+        if not href or href.startswith("javascript"):
+            continue
+        if not pattern.search(href):
+            continue
+        store_url = href if href.startswith("http") else BASE_URL + href
+        if store_url in seen_urls:
+            continue
+        seen_urls.add(store_url)
+
+        name = a.get_text(strip=True)
+        if not name:
+            # 親要素のテキストを探す
+            parent = a.parent
+            for _ in range(3):
+                if parent:
+                    name = parent.get_text(strip=True)[:40]
+                    if name:
+                        break
+                    parent = parent.parent
+
+        # 住所: aタグの親付近のテキストから抽出
+        context_text = ""
+        p = a.parent
+        for _ in range(5):
+            if p:
+                context_text = p.get_text(" ", strip=True)
+                if len(context_text) > 20:
+                    break
+                p = p.parent
+        address = _extract_address(context_text, pref_name)
+
+        if name:
+            stores.append({
+                "name":         name,
+                "address":      address,
+                "open_date":    "",
+                "url":          store_url,
+                "source":       "P-WORLD",
+                "is_grand_open": False,
+                "machines":     {},
+                "lat":          None,
+                "lng":          None,
+            })
+
+    logger.info(f"  リンク直接抽出: {len(stores)}件")
+    return stores
+
+
 def _parse_item(item, dir_name: str, pref_name: str) -> dict | None:
-    """div.hallList-item から店舗情報を抽出"""
-    # 店舗リンク: /tokyo/xxx.htm 形式
-    link = item.select_one(f"a[href*='/{dir_name}/'][href$='.htm']")
+    """div要素から店舗情報を抽出（href / data-href 両対応）"""
+    pattern = re.compile(rf"/{dir_name}/[^/]+\.htm")
+    link = None
+
+    for a in item.find_all("a"):
+        href = a.get("href", "") or a.get("data-href", "")
+        if href and pattern.search(href):
+            link = a
+            break
+
     if not link:
-        # 任意の .htm リンクでも試す
-        link = item.select_one("a[href$='.htm']")
-    if not link:
-        # href に dir_name を含む任意リンク
-        for a in item.find_all("a", href=True):
-            href = a.get("href", "")
-            if dir_name in href or ".htm" in href:
+        # .htm ならなんでも
+        for a in item.find_all("a"):
+            href = a.get("href", "") or a.get("data-href", "")
+            if href and ".htm" in href and not href.startswith("javascript"):
                 link = a
                 break
+
     if not link:
         return None
 
-    href = link.get("href", "")
+    href = link.get("href", "") or link.get("data-href", "")
     store_url = href if href.startswith("http") else BASE_URL + href
     name = link.get_text(strip=True)
     if not name:
         return None
 
-    # テキストから住所を抽出（「都道府県名〜周辺」パターン）
     text = item.get_text(" ", strip=True)
     address = _extract_address(text, pref_name)
 
