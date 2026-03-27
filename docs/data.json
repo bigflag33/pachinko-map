@@ -1169,21 +1169,6 @@
     "lng": 140.867065
   },
   {
-    "name": "夢広場ニューセブン六丁の目",
-    "address": "宮城県仙台市若林区六丁の目26-60齋喜東部ビル１Ｆ",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/101226",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 337,
-      "slot": 111,
-      "total": 448
-    },
-    "lat": 38.249203,
-    "lng": 140.929688
-  },
-  {
     "name": "ダイナム横手店",
     "address": "秋田県横手市婦気大堤字堤下224-4",
     "open_date": "2026/03/18",
@@ -1361,21 +1346,6 @@
     },
     "lat": 39.297939,
     "lng": 140.555908
-  },
-  {
-    "name": "ダイナム本荘店",
-    "address": "秋田県由利本荘市二十六木字久保田23",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/101671",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 160,
-      "total": 480
-    },
-    "lat": 39.369247,
-    "lng": 140.069733
   },
   {
     "name": "パーラー　七ツ星酒田店",
@@ -1690,36 +1660,6 @@
     },
     "lat": 37.398872,
     "lng": 140.402115
-  },
-  {
-    "name": "ビックつばめ須賀川店",
-    "address": "福島県須賀川市仲の町142",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/19410",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 571,
-      "slot": 439,
-      "total": 1010
-    },
-    "lat": 37.295914,
-    "lng": 140.38298
-  },
-  {
-    "name": "ダイナム会津若松店",
-    "address": "福島県会津若松市門田町飯寺字上川原138-12",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/102003",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 195,
-      "total": 515
-    },
-    "lat": 37.472286,
-    "lng": 139.906113
   },
   {
     "name": "ダイナム日立北店",
@@ -2142,19 +2082,19 @@
     "lng": 140.669296
   },
   {
-    "name": "ダイナム茨城石岡店",
-    "address": "茨城県石岡市東大橋3134-8",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/12060119",
+    "name": "コンサートホール今泉店",
+    "address": "栃木県宇都宮市中今泉1-7-1",
+    "open_date": "2026/04/01",
+    "url": "https://5pachi.com/hall/details/2/102641",
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 320,
-      "slot": 208,
-      "total": 528
+      "pachinko": 240,
+      "slot": 223,
+      "total": 463
     },
-    "lat": 36.196651,
-    "lng": 140.302521
+    "lat": 36.569214,
+    "lng": 139.90239
   },
   {
     "name": "ダイエー佐野店",
@@ -2259,21 +2199,6 @@
     },
     "lat": 36.325985,
     "lng": 139.428146
-  },
-  {
-    "name": "コンサートホール今泉店",
-    "address": "栃木県宇都宮市中今泉1-7-1",
-    "open_date": "2026/02/04",
-    "url": "https://5pachi.com/hall/details/2/102641",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 240,
-      "slot": 223,
-      "total": 463
-    },
-    "lat": 36.569214,
-    "lng": 139.90239
   },
   {
     "name": "ライブガーデン佐野店",
@@ -2528,21 +2453,6 @@
     },
     "lat": 36.416832,
     "lng": 139.288055
-  },
-  {
-    "name": "ダイナム渋川店",
-    "address": "群馬県渋川市白井2138",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/127702",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 205,
-      "total": 525
-    },
-    "lat": 36.512444,
-    "lng": 139.013016
   },
   {
     "name": "メルヘンワールド鷲宮店",
@@ -3456,6 +3366,21 @@
     "lng": 139.625092
   },
   {
+    "name": "ＳＡＰ日野",
+    "address": "東京都八王子市石川町2974-13",
+    "open_date": "2026/03/31",
+    "url": "https://5pachi.com/hall/details/2/106108",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 416,
+      "slot": 392,
+      "total": 808
+    },
+    "lat": 35.675816,
+    "lng": 139.369965
+  },
+  {
     "name": "コンサートホール荒川",
     "address": "東京都荒川区荒川5-19-5",
     "open_date": "2026/03/30",
@@ -3484,6 +3409,21 @@
     },
     "lat": 35.608917,
     "lng": 139.670441
+  },
+  {
+    "name": "ダイナム金町南口店",
+    "address": "東京都葛飾区金町6-5-8ＤＹビル",
+    "open_date": "2026/03/28",
+    "url": "https://5pachi.com/hall/details/2/105773",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 320,
+      "slot": 360,
+      "total": 680
+    },
+    "lat": 35.768803,
+    "lng": 139.871628
   },
   {
     "name": "やすだ西池袋６号店",
@@ -3529,6 +3469,21 @@
     },
     "lat": 35.686008,
     "lng": 139.884521
+  },
+  {
+    "name": "ＳＡＰ北野・北野２",
+    "address": "東京都八王子市打越町333-2",
+    "open_date": "2026/03/23",
+    "url": "https://5pachi.com/hall/details/2/106111",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 182,
+      "slot": 152,
+      "total": 334
+    },
+    "lat": 35.643932,
+    "lng": 139.354584
   },
   {
     "name": "ＡＩＳ小川店",
@@ -3589,21 +3544,6 @@
     },
     "lat": 35.628574,
     "lng": 139.736984
-  },
-  {
-    "name": "ダイナム金町南口店",
-    "address": "東京都葛飾区金町6-5-8ＤＹビル",
-    "open_date": "2026/03/18",
-    "url": "https://5pachi.com/hall/details/2/105773",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 360,
-      "total": 680
-    },
-    "lat": 35.768803,
-    "lng": 139.871628
   },
   {
     "name": "ミカド田無店",
@@ -3861,35 +3801,6 @@
     "lng": 139.774292
   },
   {
-    "name": "マルハン青梅新町店",
-    "address": "東京都青梅市新町6-8-1マルハン青梅新町ビル",
-    "open_date": "2026/03/02",
-    "url": "https://5pachi.com/hall/details/2/20267",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "slot": 690,
-      "total": 690
-    },
-    "lat": 35.790234,
-    "lng": 139.316559
-  },
-  {
-    "name": "ＳＡＮＣＯ梅島店",
-    "address": "東京都足立区梅島1-14-7",
-    "open_date": "2026/03/02",
-    "url": "https://5pachi.com/hall/details/2/20566",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 184,
-      "slot": 128,
-      "total": 312
-    },
-    "lat": 35.773521,
-    "lng": 139.797653
-  },
-  {
     "name": "スーパーハリウッド",
     "address": "神奈川県横浜市中区伊勢佐木町3-107-2",
     "open_date": "2026/03/20",
@@ -4007,6 +3918,21 @@
     },
     "lat": 35.257973,
     "lng": 139.661072
+  },
+  {
+    "name": "アフェスタ三春町店",
+    "address": "神奈川県横須賀市三春町4-1",
+    "open_date": "2026/03/16",
+    "url": "https://5pachi.com/hall/details/2/106870",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 320,
+      "slot": 140,
+      "total": 460
+    },
+    "lat": 35.265572,
+    "lng": 139.692047
   },
   {
     "name": "横浜マリーン",
@@ -4322,21 +4248,6 @@
     "lng": 139.630051
   },
   {
-    "name": "東横フェスタ２",
-    "address": "神奈川県横浜市戸塚区戸塚町16-1戸塚西口共同ビルＢ－２０１",
-    "open_date": "2026/02/20",
-    "url": "https://5pachi.com/hall/details/2/1200167",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 484,
-      "slot": 116,
-      "total": 600
-    },
-    "lat": 35.400028,
-    "lng": 139.532776
-  },
-  {
     "name": "ダムズイン紫竹",
     "address": "新潟県新潟市東区南紫竹2-6-40",
     "open_date": "2026/03/20",
@@ -4650,6 +4561,36 @@
     },
     "lat": 37.150856,
     "lng": 138.249603
+  },
+  {
+    "name": "ダイナム高岡店",
+    "address": "富山県高岡市吉久1-2334-1",
+    "open_date": "2026/03/28",
+    "url": "https://5pachi.com/hall/details/2/108618",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 320,
+      "slot": 160,
+      "total": 480
+    },
+    "lat": 36.78159,
+    "lng": 137.053711
+  },
+  {
+    "name": "ダイナム上市店",
+    "address": "富山県中新川郡上市町正印236",
+    "open_date": "2026/03/27",
+    "url": "https://5pachi.com/hall/details/2/1202112",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 320,
+      "slot": 160,
+      "total": 480
+    },
+    "lat": 36.70034,
+    "lng": 137.346573
   },
   {
     "name": "ダイナム滑川店",
@@ -5762,21 +5703,6 @@
     "lng": 137.016525
   },
   {
-    "name": "ダイナム岐阜関緑町店",
-    "address": "岐阜県関市緑町2-4-17",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/952012897",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 432,
-      "slot": 393,
-      "total": 825
-    },
-    "lat": 35.488281,
-    "lng": 136.906891
-  },
-  {
     "name": "タイホー藤枝",
     "address": "静岡県藤枝市高柳1-19-40",
     "open_date": "2026/03/20",
@@ -6060,21 +5986,6 @@
     },
     "lat": 34.94165,
     "lng": 139.082626
-  },
-  {
-    "name": "コンコルド築地東店",
-    "address": "静岡県藤枝市築地293",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/116461",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 457,
-      "total": 777
-    },
-    "lat": 34.861023,
-    "lng": 138.278656
   },
   {
     "name": "小牧コロナ",
@@ -7140,19 +7051,34 @@
     "lng": 135.71489
   },
   {
-    "name": "オメガ寺町",
-    "address": "京都府京都市中京区寺町通錦小路下る東大文字町302・303寺町ＭＥＧＡＰＯＷＥＲビル",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/110375",
+    "name": "ＳＵＰＥＲ　ＣＯＳＭＯ　ＰＲＥＭＩＵＭ岸和田店",
+    "address": "大阪府岸和田市並松町28-18",
+    "open_date": "2026/03/24",
+    "url": "https://5pachi.com/hall/details/2/20444",
     "source": "ゴーパチ",
     "is_grand_open": false,
     "machines": {
-      "pachinko": 311,
-      "slot": 289,
-      "total": 600
+      "pachinko": 760,
+      "slot": 448,
+      "total": 1208
     },
-    "lat": 35.009998,
-    "lng": 135.751389
+    "lat": 34.468792,
+    "lng": 135.373871
+  },
+  {
+    "name": "イーグルＲ－１十三駅東口店",
+    "address": "大阪府大阪市淀川区十三東2-12-47",
+    "open_date": "2026/03/23",
+    "url": "https://5pachi.com/hall/details/2/952012146",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 140,
+      "slot": 214,
+      "total": 354
+    },
+    "lat": 34.720821,
+    "lng": 135.482712
   },
   {
     "name": "ＶＥＮＩＣＥ岬店",
@@ -7572,36 +7498,6 @@
     "lng": 135.6194
   },
   {
-    "name": "パーラーＡＲＵＳＡ　Ⅰ＆Ⅱ",
-    "address": "大阪府堺市北区蔵前町2-17-33",
-    "open_date": "2026/02/05",
-    "url": "https://5pachi.com/hall/details/2/111198",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 318,
-      "slot": 205,
-      "total": 523
-    },
-    "lat": 34.576607,
-    "lng": 135.516098
-  },
-  {
-    "name": "Ｑ－Ｂａｎｇ西梅田店",
-    "address": "大阪府大阪市北区梅田1-3-1大阪駅前第一ビル",
-    "open_date": "2026/02/02",
-    "url": "https://5pachi.com/hall/details/2/1179129",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 180,
-      "slot": 187,
-      "total": 367
-    },
-    "lat": 34.698494,
-    "lng": 135.49704
-  },
-  {
     "name": "ミクちゃんガイア三宮店",
     "address": "兵庫県神戸市中央区旭通5-3-2",
     "open_date": "2026/03/20",
@@ -8005,21 +7901,6 @@
     "lng": 135.339645
   },
   {
-    "name": "Ａ　ＴＩＭＥ新開地店",
-    "address": "兵庫県神戸市兵庫区新開地2-6-8",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/111940",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 159,
-      "slot": 380,
-      "total": 539
-    },
-    "lat": 34.677792,
-    "lng": 135.169601
-  },
-  {
     "name": "プレミオ",
     "address": "奈良県高市郡高取町越智48-1",
     "open_date": "2026/03/20",
@@ -8377,51 +8258,6 @@
     },
     "lat": 35.520889,
     "lng": 134.200974
-  },
-  {
-    "name": "ジャンボマックス３米子店",
-    "address": "鳥取県米子市新開7-6-9",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/112859",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 397,
-      "total": 717
-    },
-    "lat": 35.456551,
-    "lng": 133.336807
-  },
-  {
-    "name": "ダイナム境港店",
-    "address": "鳥取県境港市高松町字川尻141",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/127851",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 160,
-      "total": 480
-    },
-    "lat": 35.516514,
-    "lng": 133.243423
-  },
-  {
-    "name": "デルパラ７倉吉店",
-    "address": "鳥取県倉吉市河北町180",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/1206116",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 304,
-      "total": 624
-    },
-    "lat": 35.46962,
-    "lng": 133.845963
   },
   {
     "name": "マンモス大田店",
@@ -8855,21 +8691,6 @@
     },
     "lat": 35.079178,
     "lng": 133.764771
-  },
-  {
-    "name": "グレートハリウッド",
-    "address": "岡山県岡山市北区下中野396-4",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/113088",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 480,
-      "slot": 332,
-      "total": 812
-    },
-    "lat": 34.638386,
-    "lng": 133.903839
   },
   {
     "name": "パーラーハリウッド東雲店",
@@ -10127,6 +9948,36 @@
     "lng": 130.907639
   },
   {
+    "name": "Ａ－ＳＬＯＴ３３３",
+    "address": "福岡県福岡市東区香椎駅前1-6-18",
+    "open_date": "2026/03/25",
+    "url": "https://5pachi.com/hall/details/2/114453",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 90,
+      "slot": 178,
+      "total": 268
+    },
+    "lat": 33.657249,
+    "lng": 130.442871
+  },
+  {
+    "name": "つかさ筑紫野店",
+    "address": "福岡県筑紫野市石崎1-5-17",
+    "open_date": "2026/03/17",
+    "url": "https://5pachi.com/hall/details/2/1206090",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 360,
+      "slot": 414,
+      "total": 774
+    },
+    "lat": 33.48494,
+    "lng": 130.529037
+  },
+  {
     "name": "アウトバーン　ブリッツ",
     "address": "福岡県福岡市西区橋本2-14-14",
     "open_date": "2026/03/10",
@@ -10291,6 +10142,20 @@
     "lng": 130.737503
   },
   {
+    "name": "ワンダーランドメタルポリス",
+    "address": "福岡県大牟田市八江町48",
+    "open_date": "2026/03/04",
+    "url": "https://5pachi.com/hall/details/2/114699",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "slot": 356,
+      "total": 356
+    },
+    "lat": 33.015053,
+    "lng": 130.439438
+  },
+  {
     "name": "荒江プラザ",
     "address": "福岡県福岡市城南区飯倉1-6-37",
     "open_date": "2026/03/03",
@@ -10319,21 +10184,6 @@
     },
     "lat": 33.58567,
     "lng": 130.313812
-  },
-  {
-    "name": "つかさ筑紫野店",
-    "address": "福岡県筑紫野市石崎1-5-17",
-    "open_date": "2026/03/03",
-    "url": "https://5pachi.com/hall/details/2/1206090",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 360,
-      "slot": 414,
-      "total": 774
-    },
-    "lat": 33.48494,
-    "lng": 130.529037
   },
   {
     "name": "１２３博多店",
@@ -10529,36 +10379,6 @@
     },
     "lat": 33.548759,
     "lng": 130.481186
-  },
-  {
-    "name": "メガフェイス１２５０田川",
-    "address": "福岡県田川市弓削田3646-1",
-    "open_date": "2026/02/05",
-    "url": "https://5pachi.com/hall/details/2/952012502",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 704,
-      "slot": 548,
-      "total": 1252
-    },
-    "lat": 33.642296,
-    "lng": 130.767746
-  },
-  {
-    "name": "ヴィーナスギャラリー清川",
-    "address": "福岡県福岡市中央区清川2-12-8",
-    "open_date": "2026/02/04",
-    "url": "https://5pachi.com/hall/details/2/114481",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 524,
-      "slot": 507,
-      "total": 1031
-    },
-    "lat": 33.579689,
-    "lng": 130.410599
   },
   {
     "name": "ＳＡＫＵＲＡ有田店",
@@ -11698,20 +11518,5 @@
     },
     "lat": 31.423933,
     "lng": 130.318268
-  },
-  {
-    "name": "ゴールデン八光松元店",
-    "address": "鹿児島県鹿児島市石谷町1218-1",
-    "open_date": "2025/12/27",
-    "url": "https://5pachi.com/hall/details/2/19573",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 360,
-      "slot": 216,
-      "total": 576
-    },
-    "lat": 31.611431,
-    "lng": 130.459442
   }
 ]
