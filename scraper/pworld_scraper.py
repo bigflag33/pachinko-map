@@ -20,11 +20,15 @@ from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
+# ブラウザに近い完全なヘッダーセット
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
-    "Referer": "https://www.p-world.co.jp/",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
 }
 
 BASE_URL = "https://www.p-world.co.jp"
@@ -49,14 +53,51 @@ PREF_DIRS = {
 }
 
 
+def _make_session() -> requests.Session:
+    """セッションを初期化。トップページを訪問してCookieを取得する。"""
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    try:
+        resp = session.get(BASE_URL + "/", timeout=15)
+        logger.info(f"P-WORLD トップページ: HTTP {resp.status_code}")
+    except Exception as e:
+        logger.warning(f"P-WORLD トップページ取得失敗: {e}")
+    return session
+
+
 def fetch_page(url: str, retries: int = 3, session=None) -> BeautifulSoup | None:
     s = session or requests.Session()
     for i in range(retries):
         try:
-            resp = s.get(url, headers=HEADERS, timeout=20)
+            resp = s.get(url, timeout=20)
+            logger.info(f"  HTTP {resp.status_code} | {len(resp.content)} bytes | {url}")
             resp.raise_for_status()
-            resp.encoding = resp.apparent_encoding or "utf-8"
-            return BeautifulSoup(resp.text, "html.parser")
+
+            # エンコーディング検出（Shift-JIS / EUC-JP 対策）
+            if resp.encoding and resp.encoding.lower() in ("shift_jis", "shift-jis", "sjis", "cp932"):
+                text = resp.content.decode("cp932", errors="replace")
+            elif resp.encoding and resp.encoding.lower() in ("euc-jp", "euc_jp"):
+                text = resp.content.decode("euc-jp", errors="replace")
+            else:
+                enc = resp.apparent_encoding or "utf-8"
+                text = resp.content.decode(enc, errors="replace")
+
+            soup = BeautifulSoup(text, "html.parser")
+
+            # 診断ログ（最初のページのみ詳細出力）
+            if i == 0:
+                title = soup.find("title")
+                logger.info(f"  ページタイトル: {title.get_text(strip=True) if title else '(なし)'}")
+                items_found = len(soup.select("div.hallList-item"))
+                htm_links   = len(soup.select("a[href$='.htm']"))
+                all_divs    = [d.get("class", []) for d in soup.find_all("div", limit=20)]
+                logger.info(f"  hallList-item: {items_found}件 | .htm リンク: {htm_links}件")
+                logger.info(f"  先頭20divクラス: {all_divs}")
+                # 先頭300文字をダンプ（文字化け検出）
+                preview = text[:300].replace("\n", " ").replace("\r", "")
+                logger.info(f"  HTML先頭: {preview}")
+
+            return soup
         except Exception as e:
             logger.warning(f"Fetch failed ({i+1}/{retries}): {url} - {e}")
             time.sleep(2 ** i)
@@ -73,7 +114,7 @@ def scrape_pworld_by_prefs(target_prefs=None, max_stores=500):
     """
     prefs_to_scrape = target_prefs if target_prefs else list(PREF_DIRS.keys())
     results = []
-    session = requests.Session()
+    session = _make_session()
 
     for pref in prefs_to_scrape:
         if len(results) >= max_stores:
@@ -106,16 +147,22 @@ def _scrape_pref(dir_name: str, pref_name: str, session, limit: int) -> list[dic
         )
         soup = fetch_page(url, session=session)
         if not soup:
+            logger.warning(f"  {pref_name} p{page}: ページ取得失敗")
             break
 
         # 全件数を初回に取得
         if total is None:
             m = re.search(r"全(\d+)件", soup.get_text())
             total = int(m.group(1)) if m else 0
+            logger.info(f"  {pref_name}: 全{total}件")
 
         # div.hallList-item が各店舗
         items = soup.select("div.hallList-item")
+        logger.info(f"  {pref_name} p{page}: {len(items)}件の hallList-item")
         if not items:
+            # セレクタが合わない場合、別のパターンを試す
+            alt = soup.select("div[class*='hall']")
+            logger.info(f"  hallクラスを含むdiv: {len(alt)}件 → {[str(d)[:80] for d in alt[:3]]}")
             break
 
         for item in items:
@@ -144,6 +191,13 @@ def _parse_item(item, dir_name: str, pref_name: str) -> dict | None:
     if not link:
         # 任意の .htm リンクでも試す
         link = item.select_one("a[href$='.htm']")
+    if not link:
+        # href に dir_name を含む任意リンク
+        for a in item.find_all("a", href=True):
+            href = a.get("href", "")
+            if dir_name in href or ".htm" in href:
+                link = a
+                break
     if not link:
         return None
 
