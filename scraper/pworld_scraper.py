@@ -96,6 +96,14 @@ def fetch_page(url: str, retries: int = 3, session=None) -> BeautifulSoup | None
                 # 先頭300文字をダンプ（文字化け検出）
                 preview = text[:300].replace("\n", " ").replace("\r", "")
                 logger.info(f"  HTML先頭: {preview}")
+                # ★ 最初のhallList-itemの中身を詳細ダンプ
+                first_items = soup.select("div.hallList-item")
+                if first_items:
+                    item_html = str(first_items[0])[:600].replace("\n", " ")
+                    logger.info(f"  [DEBUG] 1件目のhallList-item HTML: {item_html}")
+                    # その中のリンクをすべて列挙
+                    links_in_item = first_items[0].find_all("a", href=True)
+                    logger.info(f"  [DEBUG] 1件目のリンク一覧: {[(a.get('href'), a.get_text(strip=True)[:20]) for a in links_in_item]}")
 
             return soup
         except Exception as e:
