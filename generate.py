@@ -32,15 +32,23 @@ SAMPLE_HALLS = [
 ]
 
 
+PWORLD_ALL_JSON = Path("docs/pworld_all.json")  # 全件スクレイプ済みJSON
+
+
 def run_scraper(dry_run: bool = False, go8_days: int = 90, pworld_prefs: list[str] | None = None) -> list[dict]:
-    """スクレイピング実行"""
+    """スクレイピング実行
+
+    P-WORLD 全件JSON (docs/pworld_all.json) が存在する場合はそれを読み込む。
+    存在しない場合は従来の一覧スクレイピング（都道府県指定・上限300件）にフォールバック。
+    ゴーパチは毎回スクレイプ（新規GO情報のため）。
+    """
     if dry_run:
         logger.info("Dry-run mode: using sample data")
         return SAMPLE_HALLS
 
     halls = []
 
-    # ゴーパチ スクレイピング
+    # ── ゴーパチ（毎回スクレイプ） ──
     try:
         from scraper.go8_scraper import scrape_go8
         logger.info(f"Scraping ゴーパチ (直近{go8_days}日)...")
@@ -50,18 +58,31 @@ def run_scraper(dry_run: bool = False, go8_days: int = 90, pworld_prefs: list[st
     except Exception as e:
         logger.error(f"ゴーパチ スクレイピング失敗: {e}")
 
-    # P-WORLD スクレイピング
-    try:
-        from scraper.pworld_scraper import scrape_pworld_by_prefs
-        target_prefs = pworld_prefs or ["東京", "神奈川", "大阪", "愛知", "福岡", "埼玉", "千葉", "兵庫"]
-        logger.info(f"Scraping P-WORLD ({', '.join(target_prefs)})...")
-        pw_halls = scrape_pworld_by_prefs(target_prefs=target_prefs, max_stores=300)
-        halls.extend(pw_halls)
-        logger.info(f"  P-WORLD: {len(pw_halls)}件")
-    except Exception as e:
-        logger.error(f"P-WORLD スクレイピング失敗: {e}")
+    # ── P-WORLD（全件JSONがあればそれを優先） ──
+    if PWORLD_ALL_JSON.exists():
+        try:
+            pw_halls = json.loads(PWORLD_ALL_JSON.read_text(encoding="utf-8"))
+            # lat/lng がある店舗だけ使う
+            pw_halls = [h for h in pw_halls if h.get("lat") and h.get("lng")]
+            halls.extend(pw_halls)
+            logger.info(f"  P-WORLD (全件JSON): {len(pw_halls)}件")
+        except Exception as e:
+            logger.error(f"P-WORLD 全件JSON読み込み失敗: {e}")
+    else:
+        # フォールバック: 一覧スクレイピング（従来の都道府県指定方式）
+        logger.info("  pworld_all.json が未生成。一覧スクレイピングにフォールバック。")
+        logger.info("  ヒント: python3 scraper/pworld_full_scraper.py を実行すると全件取得できます。")
+        try:
+            from scraper.pworld_scraper import scrape_pworld_by_prefs
+            target_prefs = pworld_prefs or ["東京", "神奈川", "大阪", "愛知", "福岡", "埼玉", "千葉", "兵庫"]
+            logger.info(f"  Scraping P-WORLD ({', '.join(target_prefs)})...")
+            pw_halls = scrape_pworld_by_prefs(target_prefs=target_prefs, max_stores=300)
+            halls.extend(pw_halls)
+            logger.info(f"  P-WORLD (一覧): {len(pw_halls)}件")
+        except Exception as e:
+            logger.error(f"P-WORLD スクレイピング失敗: {e}")
 
-    # 重複除去 (同じ名前+住所)
+    # ── 重複除去 (同名+同住所) ──
     seen = set()
     deduped = []
     for h in halls:
