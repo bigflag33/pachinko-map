@@ -133,6 +133,7 @@ def collect_store_urls(session: requests.Session, dir_name: str, pref_name: str)
                 logger.warning(f"  {pref_name} p{page}: HTTP {resp.status_code}")
                 break
 
+            resp.encoding = "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
 
             # 一覧コンテナを探す
@@ -189,6 +190,7 @@ def scrape_detail(session: requests.Session, url: str) -> Optional[dict]:
         if resp.status_code != 200:
             return None
 
+        resp.encoding = "utf-8"
         html = resp.text
 
         # ── lat/lng ──
