@@ -1,0 +1,3547 @@
+{
+  "done_prefs": [
+    "hokkaido"
+  ],
+  "stores": [
+    {
+      "name": "�ޥ�ϥ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-ebetsu.htm",
+      "address": "",
+      "lat": 43.0984588254021,
+      "lng": 141.547347789553,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�۾���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-hakodateshowa.htm",
+      "address": "",
+      "lat": 41.8196219444444,
+      "lng": 140.74165,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ�׻�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-kotoni.htm",
+      "address": "",
+      "lat": 43.0741051890075,
+      "lng": 141.320096198303,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ��ϩŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-kushiro.htm",
+      "address": "",
+      "lat": 43.0129662807688,
+      "lng": 144.325138113515,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ��ھ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-kiba.htm",
+      "address": "",
+      "lat": 43.0061780555556,
+      "lng": 144.414794166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ��̸�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-kitami.htm",
+      "address": "",
+      "lat": 43.8051058333333,
+      "lng": 143.839828611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "ȡ�ۤҤޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/hakodate-himawari.htm",
+      "address": "",
+      "lat": 41.8082102777778,
+      "lng": 140.739864166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ӥå��Х�îŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/bigbang-otaru.htm",
+      "address": "",
+      "lat": 43.1786666666667,
+      "lng": 141.012,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤��������",
+      "url": "https://www.p-world.co.jp/hokkaido/rising-naebo.htm",
+      "address": "",
+      "lat": 43.07225,
+      "lng": 141.382805555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥�������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-asahikawa.htm",
+      "address": "",
+      "lat": 43.7945049154473,
+      "lng": 142.414706950858,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ��ӹ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-obihiro.htm",
+      "address": "",
+      "lat": 42.8931602954868,
+      "lng": 143.212541612361,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-abashiri.htm",
+      "address": "",
+      "lat": 43.9922545248732,
+      "lng": 144.278196091502,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�ģ��ɣǣϣңϡ���",
+      "url": "https://www.p-world.co.jp/hokkaido/daigoro-x.htm",
+      "address": "",
+      "lat": 43.8186944444444,
+      "lng": 143.916388888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����꡼�С���������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/earlybirdhoshigaura1.htm",
+      "address": "",
+      "lat": 43.0139061111111,
+      "lng": 144.329728611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��������R-1����8��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-r1-south8jou.htm",
+      "address": "",
+      "lat": 43.0461922222222,
+      "lng": 141.343689444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ǥ����������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/g-taiho.htm",
+      "address": "",
+      "lat": 42.9961388888889,
+      "lng": 141.336611111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ����Ļ;�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/p-happy-t.htm",
+      "address": "",
+      "lat": 43.1276039951044,
+      "lng": 141.332411383428,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/happy.htm",
+      "address": "",
+      "lat": 43.0075555555556,
+      "lng": 141.348258333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ饹���������ϩ������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/pluseagle-kusirostar.htm",
+      "address": "",
+      "lat": 43.0134708333333,
+      "lng": 144.33377,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ��۹�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/pl-happy.htm",
+      "address": "",
+      "lat": 43.1832835732765,
+      "lng": 141.021780152461,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ݤ��ӹ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/gachapon-obihiro.htm",
+      "address": "",
+      "lat": 42.9108313888889,
+      "lng": 143.222795555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�ۿ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/hakodateshinminato.htm",
+      "address": "",
+      "lat": 41.7995233333333,
+      "lng": 140.733411388889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���̤Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/shibetsu-himawari.htm",
+      "address": "",
+      "lat": 44.1612222222222,
+      "lng": 142.400919444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȯ��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/hassamu.htm",
+      "address": "",
+      "lat": 43.09785,
+      "lng": 141.298148611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������륪������îŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-o-otaru.htm",
+      "address": "",
+      "lat": 43.1886805555555,
+      "lng": 141.003433333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥ܥ�ܥ�˭��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/p-bonbon-t.htm",
+      "address": "",
+      "lat": 43.7577036111111,
+      "lng": 142.397322222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��Ҷ��Ҥޤ��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/teshikaga-himawari.htm",
+      "address": "",
+      "lat": 43.4915588888889,
+      "lng": 144.458376666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼����",
+      "url": "https://www.p-world.co.jp/hokkaido/wakakusa.htm",
+      "address": "",
+      "lat": 43.0990532172563,
+      "lng": 141.540000406808,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playlandhappy-azabu.htm",
+      "address": "",
+      "lat": 43.1007135362961,
+      "lng": 141.342901216724,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥ܥ�ܥ���ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/bonbon-omachi.htm",
+      "address": "",
+      "lat": 43.7853722222222,
+      "lng": 142.359470833333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����֥�����ƣ��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/clubj-fujino.htm",
+      "address": "",
+      "lat": 42.959405,
+      "lng": 141.301238333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ì��ϩ������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-tanukikouji2.htm",
+      "address": "",
+      "lat": 43.0554694444444,
+      "lng": 141.359299722222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ڣţգ�",
+      "url": "https://www.p-world.co.jp/hokkaido/zeus.htm",
+      "address": "",
+      "lat": 42.3575333333333,
+      "lng": 140.988886111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-tsukisamu.htm",
+      "address": "",
+      "lat": 43.02191,
+      "lng": 141.397501111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������ƥ�",
+      "url": "https://www.p-world.co.jp/hokkaido/corecity.htm",
+      "address": "",
+      "lat": 42.6207388888889,
+      "lng": 141.549875,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������르���̶�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-go-kitagou.htm",
+      "address": "",
+      "lat": 43.0539355555556,
+      "lng": 141.422838611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ξ��Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/himawari-shiretoko.htm",
+      "address": "",
+      "lat": 43.8980266666667,
+      "lng": 144.665675277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��ã�Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/date-himawari.htm",
+      "address": "",
+      "lat": 42.4826083333333,
+      "lng": 140.844675,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���������ץ쥹��������",
+      "url": "https://www.p-world.co.jp/hokkaido/jp-aqua.htm",
+      "address": "",
+      "lat": 42.9946666666667,
+      "lng": 144.403194444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy-shi.htm",
+      "address": "",
+      "lat": 43.0418888888889,
+      "lng": 141.423083333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ݤ��Ѿ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/gachapon-tomakomai.htm",
+      "address": "",
+      "lat": 42.6595244444444,
+      "lng": 141.629310555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥�����ë��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-ooyachi.htm",
+      "address": "",
+      "lat": 43.0252072413599,
+      "lng": 141.452882073696,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤�����ӹ�",
+      "url": "https://www.p-world.co.jp/hokkaido/rising-obihiro.htm",
+      "address": "",
+      "lat": 42.8867480555556,
+      "lng": 143.200741111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ���ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/playlandhappy.htm",
+      "address": "",
+      "lat": 43.0816388888889,
+      "lng": 141.285194444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "EBH",
+      "url": "https://www.p-world.co.jp/hokkaido/ebh-bdhgroup.htm",
+      "address": "",
+      "lat": 43.1038444444444,
+      "lng": 141.296461111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ӥå������åȡ��̣���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/bigslot500.htm",
+      "address": "",
+      "lat": 43.062011239111,
+      "lng": 141.334790761819,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ��󽽻͸�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy-ni.htm",
+      "address": "",
+      "lat": 43.0669274545007,
+      "lng": 141.318201910622,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���������ץ쥹���ͥ�",
+      "url": "https://www.p-world.co.jp/hokkaido/jp-neo.htm",
+      "address": "",
+      "lat": 43.0031222222222,
+      "lng": 144.374447222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���������ץ쥹���ѥ�å�",
+      "url": "https://www.p-world.co.jp/hokkaido/jp-palette.htm",
+      "address": "",
+      "lat": 42.9871388888889,
+      "lng": 144.391194444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/makomanai-himawari.htm",
+      "address": "",
+      "lat": 43.0030544444444,
+      "lng": 141.353635833333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��������̸�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/royal-kitami.htm",
+      "address": "",
+      "lat": 43.7975011237482,
+      "lng": 143.852916013205,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���ߥ塼�����ȥѡ��顼����",
+      "url": "https://www.p-world.co.jp/hokkaido/kiccho.htm",
+      "address": "",
+      "lat": 43.0834166666667,
+      "lng": 141.518361111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "˭ʿ�Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/himawari-toyohira.htm",
+      "address": "",
+      "lat": 43.0456305555556,
+      "lng": 141.382319444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥�������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-sapporo.htm",
+      "address": "",
+      "lat": 43.0645277777778,
+      "lng": 141.358611111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���ĤҤޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/kiyota-himawari.htm",
+      "address": "",
+      "lat": 42.9982875,
+      "lng": 141.440656666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��ϩ�Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/himawari-shinoro.htm",
+      "address": "",
+      "lat": 43.1411608333333,
+      "lng": 141.366739166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ե����������̤�Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/himawari-fighters.htm",
+      "address": "",
+      "lat": 43.0724111111111,
+      "lng": 141.369427777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/nemuro-himawari.htm",
+      "address": "",
+      "lat": 43.3117361111111,
+      "lng": 145.601858333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/himawari-ekimaetower.htm",
+      "address": "",
+      "lat": 43.0642472222222,
+      "lng": 141.356072222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�۸��ǳ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-goryokaku.htm",
+      "address": "",
+      "lat": 41.7865777777778,
+      "lng": 140.752171111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/royal-abashiri.htm",
+      "address": "",
+      "lat": 44.0198005555556,
+      "lng": 144.271219444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��������ӹ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/royal-obihiro.htm",
+      "address": "",
+      "lat": 42.9220691883708,
+      "lng": 143.120827827387,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-takikawa.htm",
+      "address": "",
+      "lat": 43.5605558333333,
+      "lng": 141.914273611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playlandhappy-atsu.htm",
+      "address": "",
+      "lat": 43.0509764288368,
+      "lng": 141.44533733334,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy-h.htm",
+      "address": "",
+      "lat": 41.7964955555556,
+      "lng": 140.781868888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ����ܤ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/plhappy-nishimiya.htm",
+      "address": "",
+      "lat": 43.0995833333333,
+      "lng": 141.262833333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "α˨�Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/rumoi-himawari.htm",
+      "address": "",
+      "lat": 43.9278833333333,
+      "lng": 141.674783333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "DAIGORO��Z�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/daigoroz-teine.htm",
+      "address": "",
+      "lat": 43.1105722222222,
+      "lng": 141.251388888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����꡼����ϩ��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/early-one.htm",
+      "address": "",
+      "lat": 43.0061388888889,
+      "lng": 144.405527777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�۹�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-hakodateminato.htm",
+      "address": "",
+      "lat": 41.8078872185559,
+      "lng": 140.716563299729,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��̳�ƻ���������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-higashikariki.htm",
+      "address": "",
+      "lat": 43.0863644444444,
+      "lng": 141.418179444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���������������",
+      "url": "https://www.p-world.co.jp/hokkaido/monako2222.htm",
+      "address": "",
+      "lat": 42.3393333333333,
+      "lng": 142.354258333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����꡼�С�������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/earlybird-moiwa.htm",
+      "address": "",
+      "lat": 43.0272666666667,
+      "lng": 141.349063888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "DAIGORO��Z������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/daigoro-z-bihoro.htm",
+      "address": "",
+      "lat": 43.8280222222222,
+      "lng": 144.119977777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥర���ʸŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-chikabumi.htm",
+      "address": "",
+      "lat": 43.7793055555556,
+      "lng": 142.341,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ�̾��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-nayoro.htm",
+      "address": "",
+      "lat": 44.333475,
+      "lng": 142.456019444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ༼��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-muroran.htm",
+      "address": "",
+      "lat": 42.3144370832128,
+      "lng": 140.980325317824,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��̸�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-kitami.htm",
+      "address": "",
+      "lat": 43.7956663888889,
+      "lng": 143.84097,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��ϩ��ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-kusirotakara.htm",
+      "address": "",
+      "lat": 42.9933888888889,
+      "lng": 144.370361111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥຽ��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-sunagawa.htm",
+      "address": "",
+      "lat": 43.5424583333333,
+      "lng": 141.919929166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ࿼��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-hukagawa.htm",
+      "address": "",
+      "lat": 43.7297981559974,
+      "lng": 142.044718549761,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��Ѿ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-tomakomai.htm",
+      "address": "",
+      "lat": 42.6072222222222,
+      "lng": 141.514472222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ɥ�å������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/uno-nangou.htm",
+      "address": "",
+      "lat": 43.0383055555556,
+      "lng": 141.414583333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ���б���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/happy-chitose.htm",
+      "address": "",
+      "lat": 42.8237951369675,
+      "lng": 141.657084259165,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�ûұ����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/koshien-nango.htm",
+      "address": "",
+      "lat": 43.0257777777778,
+      "lng": 141.445833333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ӣ̣ϣԡ��£��ҡ��͡ǣ�",
+      "url": "https://www.p-world.co.jp/hokkaido/slot-bar-ms.htm",
+      "address": "",
+      "lat": 43.0931755555556,
+      "lng": 141.374681388889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥ܥ�ܥ�ʻ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/bonbon-nagayama.htm",
+      "address": "",
+      "lat": 43.7883111111111,
+      "lng": 142.405208333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�£ɣ��粦����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/bigdaiou-higasi.htm",
+      "address": "",
+      "lat": 43.0819894444444,
+      "lng": 141.378106666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����ե���6����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/alpha-minami6.htm",
+      "address": "",
+      "lat": 43.7489338888889,
+      "lng": 142.382011111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼����ѥ�ͷ�ѥ���",
+      "url": "https://www.p-world.co.jp/hokkaido/japan-yupachikan.htm",
+      "address": "",
+      "lat": 43.114175,
+      "lng": 141.328755555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��ɸ�ŤҤޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/nakashibetu-himawari.htm",
+      "address": "",
+      "lat": 43.5648069444444,
+      "lng": 145.015604166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ӹ��Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/obihiro-himawari.htm",
+      "address": "",
+      "lat": 42.9142380555556,
+      "lng": 143.222683611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��������ϩŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/royal-kushiro.htm",
+      "address": "",
+      "lat": 42.9945016666667,
+      "lng": 144.415744166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "TAMAYA���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/tamaya.htm",
+      "address": "",
+      "lat": 42.8292544444444,
+      "lng": 141.636672222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ì��ϩŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-tanukikouji.htm",
+      "address": "",
+      "lat": 43.0550319444444,
+      "lng": 141.356140277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥�����������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-utukushigaoka.htm",
+      "address": "",
+      "lat": 42.9783740855341,
+      "lng": 141.467057795109,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�۵���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-hakodate.htm",
+      "address": "",
+      "lat": 41.7905097583447,
+      "lng": 140.733852235477,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥�����ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-sakaemachi.htm",
+      "address": "",
+      "lat": 43.1115027777778,
+      "lng": 141.371386111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/otofuke-himawari.htm",
+      "address": "",
+      "lat": 42.9588666666667,
+      "lng": 143.2111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤���󥰸�Į",
+      "url": "https://www.p-world.co.jp/hokkaido/rising-motomachi.htm",
+      "address": "",
+      "lat": 43.0959127777778,
+      "lng": 141.373963888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����ե���ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/plaza-alpha-asa.htm",
+      "address": "",
+      "lat": 43.7842638888889,
+      "lng": 142.357513888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�Ѿ��ҤҤޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/tomakomai-himawari.htm",
+      "address": "",
+      "lat": 42.6125611111111,
+      "lng": 141.534397222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡݥ�ݣģ��ɣǣϣңϡ���",
+      "url": "https://www.p-world.co.jp/hokkaido/daigorouz.htm",
+      "address": "",
+      "lat": 43.7993763369825,
+      "lng": 143.880824416948,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤���󥰹���",
+      "url": "https://www.p-world.co.jp/hokkaido/rising-ebetsu.htm",
+      "address": "",
+      "lat": 43.0940336722225,
+      "lng": 141.540472714981,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����ե����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/plaza-alpha-minami.htm",
+      "address": "",
+      "lat": 43.7516841666667,
+      "lng": 142.380006944444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���̤Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/monbetsu-himawari.htm",
+      "address": "",
+      "lat": 44.3268805555556,
+      "lng": 143.354631944444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����ե��ľ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/plaza-alpha-kanjyou.htm",
+      "address": "",
+      "lat": 43.7805063888889,
+      "lng": 142.416536944444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������",
+      "url": "https://www.p-world.co.jp/hokkaido/ishikari-gaea.htm",
+      "address": "",
+      "lat": 43.1451944444444,
+      "lng": 141.296472222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼����ѥ�",
+      "url": "https://www.p-world.co.jp/hokkaido/palor-japan.htm",
+      "address": "",
+      "lat": 43.1136489707053,
+      "lng": 141.328520217979,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�ϥӥ�丫��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/habiniwamizawa.htm",
+      "address": "",
+      "lat": 43.1917361111111,
+      "lng": 141.764830555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼����ѥ�α˨Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/conpal.htm",
+      "address": "",
+      "lat": 43.9335971627619,
+      "lng": 141.654548931999,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������륦��������ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/eaglewest-nishimachi.htm",
+      "address": "",
+      "lat": 43.0765333333333,
+      "lng": 141.292263888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�۶�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/hakodatekukomaeten.htm",
+      "address": "",
+      "lat": 41.7705630555556,
+      "lng": 140.801788888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������륦��������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-wing-fushiko.htm",
+      "address": "",
+      "lat": 43.0967508333333,
+      "lng": 141.394095,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������륿������ë��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-town-ooyachi.htm",
+      "address": "",
+      "lat": 43.0266444444444,
+      "lng": 141.458291666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ݤ��ڿ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/gachapon-sapporo.htm",
+      "address": "",
+      "lat": 43.0991111111111,
+      "lng": 141.312475,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�ûұ���ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/koshien-nishimachi.htm",
+      "address": "",
+      "lat": 43.0771983259475,
+      "lng": 141.291107533549,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤���󥰶׻�",
+      "url": "https://www.p-world.co.jp/hokkaido/rising-kotoni.htm",
+      "address": "",
+      "lat": 43.0804656133936,
+      "lng": 141.306110129709,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�ϥӥ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/habin-ashibestu.htm",
+      "address": "",
+      "lat": 43.4989391571945,
+      "lng": 142.205702391094,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��ǵ�ФҤޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/hinode-himawari.htm",
+      "address": "",
+      "lat": 41.7702813888889,
+      "lng": 140.756624722222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�������륦�����֡�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-wave-atsubetsu.htm",
+      "address": "",
+      "lat": 43.0500044444444,
+      "lng": 141.454661944444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�����������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/royal-sizunai.htm",
+      "address": "",
+      "lat": 42.3385416666667,
+      "lng": 142.353620833333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ��������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy-t.htm",
+      "address": "",
+      "lat": 43.1212027777778,
+      "lng": 141.255086111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ���6��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy-m.htm",
+      "address": "",
+      "lat": 43.0493277777778,
+      "lng": 141.347243888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "��������ԥ奢���ƥ��컥��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/eagle-purecity-east.htm",
+      "address": "",
+      "lat": 43.049525,
+      "lng": 141.389425277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/happy-hnaebo.htm",
+      "address": "",
+      "lat": 43.0844480001822,
+      "lng": 141.411437359063,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ���ĮŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy-sa.htm",
+      "address": "",
+      "lat": 43.11075,
+      "lng": 141.370277777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/muroran-himawari.htm",
+      "address": "",
+      "lat": 42.34545,
+      "lng": 141.028722222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playlandhappy-san.htm",
+      "address": "",
+      "lat": 42.6509069241587,
+      "lng": 141.618383187632,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ǥ���������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/goldentaiho.htm",
+      "address": "",
+      "lat": 43.1625833333333,
+      "lng": 141.312055555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����Ҥޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/takigawa-himawari.htm",
+      "address": "",
+      "lat": 43.571775,
+      "lng": 141.919039166667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "KEIZ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/keiz-teine.htm",
+      "address": "",
+      "lat": 43.1189866666667,
+      "lng": 141.240610277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ץ쥤���ɥϥåԡ�Ȭ��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/playland-happy.htm",
+      "address": "",
+      "lat": 43.0855077511214,
+      "lng": 141.31764891994,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���ڤҤޤ��",
+      "url": "https://www.p-world.co.jp/hokkaido/bihoro-himawari.htm",
+      "address": "",
+      "lat": 43.8231888888889,
+      "lng": 144.124302777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������ǥ󥴥åɱ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/urakawa1133.htm",
+      "address": "",
+      "lat": 42.1589555555556,
+      "lng": 142.779563888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/zoonsumikawa.htm",
+      "address": "",
+      "lat": 43.0140547222222,
+      "lng": 141.36982,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥����Ѿ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegasvegas-tomakomai.htm",
+      "address": "",
+      "lat": 42.6394972222222,
+      "lng": 141.598472222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ��Ѿ��ұ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-tomakomaieki.htm",
+      "address": "",
+      "lat": 42.6392630555556,
+      "lng": 141.601285277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�٥����٥���ȡ�ۿ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/vegas-kamiyama.htm",
+      "address": "",
+      "lat": 41.8083008333333,
+      "lng": 140.772880555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥��㥤�����",
+      "url": "https://www.p-world.co.jp/hokkaido/giants.htm",
+      "address": "",
+      "lat": 43.9351711111111,
+      "lng": 141.658605833333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�֥롼�С��ɥͥ�",
+      "url": "https://www.p-world.co.jp/hokkaido/bluebirdneo.htm",
+      "address": "",
+      "lat": 42.8741388888889,
+      "lng": 141.586472222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥ѡ��顼��������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/towa-komaba.htm",
+      "address": "",
+      "lat": 44.0001018236949,
+      "lng": 144.286234920227,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤��������",
+      "url": "https://www.p-world.co.jp/hokkaido/risingsimizu.htm",
+      "address": "",
+      "lat": 43.0074555555556,
+      "lng": 142.893398611111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���������̸�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/aurora-kitami.htm",
+      "address": "",
+      "lat": 43.7949944444444,
+      "lng": 143.837252777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����֥���������ϩŹ",
+      "url": "https://www.p-world.co.jp/hokkaido/clubj-shinoro.htm",
+      "address": "",
+      "lat": 43.1425678653941,
+      "lng": 141.3627616924,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥ѡ��顼��������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/towa-bihoro.htm",
+      "address": "",
+      "lat": 43.8254166666667,
+      "lng": 144.125444444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼�ޥ�⥹��21�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/mammoth21.htm",
+      "address": "",
+      "lat": 43.0255,
+      "lng": 141.402111111111,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��̳�ƻ��������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-kiyota.htm",
+      "address": "",
+      "lat": 42.9992063888889,
+      "lng": 141.438498888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��ӹ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-obihiro.htm",
+      "address": "",
+      "lat": 42.9138050423867,
+      "lng": 143.227480103069,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��м�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-isikari.htm",
+      "address": "",
+      "lat": 43.1819175,
+      "lng": 141.320701388889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-chitose.htm",
+      "address": "",
+      "lat": 42.8343194444444,
+      "lng": 141.667297222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ����ͼ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-kamiiso.htm",
+      "address": "",
+      "lat": 41.8186227777778,
+      "lng": 140.699806388889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ๾��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-ebetu.htm",
+      "address": "",
+      "lat": 43.0826063888889,
+      "lng": 141.520396388889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ᥬ���ॺ������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/megams.htm",
+      "address": "",
+      "lat": 43.0196322222222,
+      "lng": 141.386645555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������뷪��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/royal-kuriyama.htm",
+      "address": "",
+      "lat": 43.0507838904864,
+      "lng": 141.801437993976,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�饤����Ȭ��",
+      "url": "https://www.p-world.co.jp/hokkaido/rising-yakumo.htm",
+      "address": "",
+      "lat": 42.2456723878235,
+      "lng": 140.289730107745,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����꡼�С��ɡ��պ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/earlybirdharutori111.htm",
+      "address": "",
+      "lat": 42.9673985870537,
+      "lng": 144.406505772587,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "ͷ�ӹ�˼������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/asobikobo-eniwa.htm",
+      "address": "",
+      "lat": 42.9003805555556,
+      "lng": 141.579188888889,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "������������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/keio-hakodate.htm",
+      "address": "",
+      "lat": 41.7780638888889,
+      "lng": 140.786905555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼������ǥ󥴥å�",
+      "url": "https://www.p-world.co.jp/hokkaido/golden-god.htm",
+      "address": "",
+      "lat": 42.5165527777778,
+      "lng": 142.027858333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "���ޥ���޹�",
+      "url": "https://www.p-world.co.jp/hokkaido/smile-esashi.htm",
+      "address": "",
+      "lat": 44.9185861111111,
+      "lng": 142.586141666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-muroran.htm",
+      "address": "",
+      "lat": 42.3502136111111,
+      "lng": 141.009291944444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳥ѡ��顼���¡��̸�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/towa-kitami.htm",
+      "address": "",
+      "lat": 43.7972969444444,
+      "lng": 143.876710833333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "GOD��SLOT��PARK",
+      "url": "https://www.p-world.co.jp/hokkaido/god-slot-park.htm",
+      "address": "",
+      "lat": 43.0517977777778,
+      "lng": 144.845536666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "����ե�˭��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/plaza-alpha-toyo.htm",
+      "address": "",
+      "lat": 43.7566425,
+      "lng": 142.401508333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�͡ǣ󣶣����ƿ�Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/ms666-kikusui.htm",
+      "address": "",
+      "lat": 43.0528227888494,
+      "lng": 141.384482665144,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ޥ�ϥ��������Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/maruhan-w-daikoku.htm",
+      "address": "",
+      "lat": 45.3974119444444,
+      "lng": 141.688862777778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѡ��顼���¡�����",
+      "url": "https://www.p-world.co.jp/hokkaido/daiwa-king.htm",
+      "address": "",
+      "lat": 43.0443866102816,
+      "lng": 141.400312991334,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�ѥ��󥳡������åȡ��ԡ�����������",
+      "url": "https://www.p-world.co.jp/hokkaido/ptown-noboribetu.htm",
+      "address": "",
+      "lat": 42.4072583333333,
+      "lng": 141.106694444444,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��̳�ƻ�丫����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-iwamizawa-s.htm",
+      "address": "",
+      "lat": 43.1765902777778,
+      "lng": 141.763710555556,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-noboribetu.htm",
+      "address": "",
+      "lat": 42.3845383333333,
+      "lng": 141.084040277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��̳�ƻ�̹���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-kitahiroshima.htm",
+      "address": "",
+      "lat": 42.9795472222222,
+      "lng": 141.556098333333,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��Ѿ�����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-tomakomai-e.htm",
+      "address": "",
+      "lat": 42.65906,
+      "lng": 141.654170277778,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥర��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-asahikawa.htm",
+      "address": "",
+      "lat": 43.7927605183795,
+      "lng": 142.415309620609,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ�丫��Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-iwamizawa.htm",
+      "address": "",
+      "lat": 43.2201063888889,
+      "lng": 141.7923325,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ��ϩ����Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-kushirokaiduka.htm",
+      "address": "",
+      "lat": 42.994935,
+      "lng": 144.412977222222,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    },
+    {
+      "name": "�����ʥ���Ź",
+      "url": "https://www.p-world.co.jp/hokkaido/dynam-teine.htm",
+      "address": "",
+      "lat": 43.1211666666667,
+      "lng": 141.226416666667,
+      "source": "P-WORLD",
+      "is_grand_open": false,
+      "open_date": "",
+      "machines": {
+        "total": 0,
+        "pachinko": 0,
+        "pachinko_4en": 0,
+        "pachinko_1en": 0,
+        "slot": 0,
+        "slot_20en": 0,
+        "slot_5en": 0
+      },
+      "pref": "北海道"
+    }
+  ]
+}
