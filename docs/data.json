@@ -3575,6 +3575,21 @@
     "lng": 139.773071
   },
   {
+    "name": "やすだ清水町店",
+    "address": "東京都板橋区清水町32-7",
+    "open_date": "2026/03/30",
+    "url": "https://5pachi.com/hall/details/2/104879",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 198,
+      "slot": 120,
+      "total": 318
+    },
+    "lat": 35.762486,
+    "lng": 139.70665
+  },
+  {
     "name": "オリエンタルパサージュ自由が丘",
     "address": "東京都目黒区自由が丘1-14-7",
     "open_date": "2026/03/30",
@@ -3753,21 +3768,6 @@
     },
     "lat": 35.776188,
     "lng": 139.693298
-  },
-  {
-    "name": "将軍田端店",
-    "address": "東京都北区田端6-2-33",
-    "open_date": "2026/03/16",
-    "url": "https://5pachi.com/hall/details/2/105203",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 380,
-      "slot": 212,
-      "total": 592
-    },
-    "lat": 35.738609,
-    "lng": 139.759766
   },
   {
     "name": "ＡＩＳ昭島店",
@@ -3979,21 +3979,6 @@
     "lng": 139.614105
   },
   {
-    "name": "ジアス新百合ヶ丘",
-    "address": "神奈川県川崎市麻生区万福寺1-16-1",
-    "open_date": "2026/03/16",
-    "url": "https://5pachi.com/hall/details/2/106687",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 339,
-      "slot": 187,
-      "total": 526
-    },
-    "lat": 35.604919,
-    "lng": 139.507553
-  },
-  {
     "name": "ＺＡＰ衣笠店",
     "address": "神奈川県横須賀市衣笠栄町2-4",
     "open_date": "2026/03/16",
@@ -4112,21 +4097,6 @@
     },
     "lat": 35.526009,
     "lng": 139.517807
-  },
-  {
-    "name": "クリエ湘南台店",
-    "address": "神奈川県藤沢市石川1877-1",
-    "open_date": "2026/03/06",
-    "url": "https://5pachi.com/hall/details/2/127745",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 520,
-      "slot": 460,
-      "total": 980
-    },
-    "lat": 35.379307,
-    "lng": 139.452927
   },
   {
     "name": "ガイア川崎スロット専門店",
@@ -4321,6 +4291,35 @@
     },
     "lat": 35.46312,
     "lng": 139.587219
+  },
+  {
+    "name": "アクセス",
+    "address": "神奈川県川崎市中原区新城3-2-3",
+    "open_date": "2026/02/20",
+    "url": "https://5pachi.com/hall/details/2/106614",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 347,
+      "total": 347
+    },
+    "lat": 35.586468,
+    "lng": 139.630051
+  },
+  {
+    "name": "東横フェスタ２",
+    "address": "神奈川県横浜市戸塚区戸塚町16-1戸塚西口共同ビルＢ－２０１",
+    "open_date": "2026/02/20",
+    "url": "https://5pachi.com/hall/details/2/1200167",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 484,
+      "slot": 116,
+      "total": 600
+    },
+    "lat": 35.400028,
+    "lng": 139.532776
   },
   {
     "name": "ダムズイン紫竹",
@@ -7216,6 +7215,21 @@
     "lng": 135.71489
   },
   {
+    "name": "Ｑ－Ｂａｎｇ４ｔｈ東梅田店",
+    "address": "大阪府大阪市北区梅田1-11-4大阪駅前第４ビルＢ２Ｆ",
+    "open_date": "2026/04/06",
+    "url": "https://5pachi.com/hall/details/2/20060",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 166,
+      "slot": 101,
+      "total": 267
+    },
+    "lat": 34.699581,
+    "lng": 135.499298
+  },
+  {
     "name": "ＳＵＰＥＲ　ＣＯＳＭＯ　ＰＲＥＭＩＵＭ岸和田店",
     "address": "大阪府岸和田市並松町28-18",
     "open_date": "2026/03/24",
@@ -7646,21 +7660,6 @@
     },
     "lat": 34.523701,
     "lng": 135.606995
-  },
-  {
-    "name": "ＳＵＰＥＲ　ＣＯＳＭＯ　ＰＲＥＭＩＵＭ大東店",
-    "address": "大阪府大東市大東町8-33",
-    "open_date": "2026/02/06",
-    "url": "https://5pachi.com/hall/details/2/20264",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 720,
-      "slot": 543,
-      "total": 1263
-    },
-    "lat": 34.71682,
-    "lng": 135.6194
   },
   {
     "name": "ヴィーナスギャラリー神戸",
