@@ -133,8 +133,8 @@ def collect_store_urls(session: requests.Session, dir_name: str, pref_name: str)
                 logger.warning(f"  {pref_name} p{page}: HTTP {resp.status_code}")
                 break
 
-            resp.encoding = "utf-8"
-            soup = BeautifulSoup(resp.text, "html.parser")
+            # バイト列をそのまま渡してBeautifulSoupにエンコーディングを自動検出させる
+            soup = BeautifulSoup(resp.content, "html.parser")
 
             # 一覧コンテナを探す
             container = soup.select_one("div.hallList-body") or soup.select_one("div.hallList")
@@ -171,16 +171,36 @@ def collect_store_urls(session: requests.Session, dir_name: str, pref_name: str)
 # ================================================================
 # 個別ページから lat/lng・住所・台数を取得
 # ================================================================
-LAT_LNG_RE = re.compile(
-    r"show_group_hall_page\s*\(\s*\{[^}]*?lng\s*:\s*['\"]([^'\"]+)['\"][^}]*?lat\s*:\s*['\"]([^'\"]+)['\"]",
-    re.DOTALL,
-)
-LAT_LNG_RE2 = re.compile(
-    r"show_group_hall_page\s*\(\s*\{[^}]*?lat\s*:\s*['\"]([^'\"]+)['\"][^}]*?lng\s*:\s*['\"]([^'\"]+)['\"]",
-    re.DOTALL,
-)
+# lat/lng抽出: シンプルな個別パターンで確実にマッチ
+LAT_RE = re.compile(r"lat\s*:\s*['\"]([0-9]+\.[0-9]+)['\"]")
+LNG_RE = re.compile(r"lng\s*:\s*['\"]([0-9]+\.[0-9]+)['\"]")
 MACHINE_RE = re.compile(r"設置台数[^\d]*(\d+)\s*台")
 ADDR_RE = re.compile(r"住\s*所[　\s]*([^\n\r<]{5,50})")
+
+
+def _geocode_address(address: str) -> tuple[Optional[float], Optional[float]]:
+    """国土地理院APIで住所→緯度経度変換。失敗時はNominatimを試みる"""
+    import urllib.parse
+    try:
+        q = urllib.parse.quote(address)
+        url = f"https://msearch.gsi.go.jp/address-search/AddressSearch?q={q}"
+        resp = requests.get(url, timeout=10)
+        data = resp.json()
+        if data:
+            coords = data[0]["geometry"]["coordinates"]
+            return float(coords[1]), float(coords[0])
+    except Exception:
+        pass
+    try:
+        q = urllib.parse.quote(address)
+        url = f"https://nominatim.openstreetmap.org/search?q={q}&format=json&limit=1&countrycodes=jp"
+        resp = requests.get(url, timeout=10, headers={"User-Agent": "pachinko-map-scraper/1.0"})
+        data = resp.json()
+        if data:
+            return float(data[0]["lat"]), float(data[0]["lon"])
+    except Exception:
+        pass
+    return None, None
 
 
 def scrape_detail(session: requests.Session, url: str) -> Optional[dict]:
@@ -190,21 +210,29 @@ def scrape_detail(session: requests.Session, url: str) -> Optional[dict]:
         if resp.status_code != 200:
             return None
 
-        resp.encoding = "utf-8"
-        html = resp.text
+        # エンコーディング検出: バイト列にregexを直接適用（BeautifulSoup経由より確実）
+        # P-WORLDはほぼ全ページEUC-JPを使用
+        raw_head = resp.content[:4000]
+        charset_match = re.search(rb'charset\s*=\s*["\']?\s*([A-Za-z0-9\-_]+)', raw_head, re.I)
+        if charset_match:
+            encoding = charset_match.group(1).decode("ascii", errors="ignore").strip("\"'")
+        else:
+            encoding = "euc-jp"  # P-WORLD デフォルト
+        try:
+            html = resp.content.decode(encoding, errors="replace")
+        except (LookupError, UnicodeDecodeError):
+            html = resp.content.decode("euc-jp", errors="replace")
 
         # ── lat/lng ──
         lat = lng = None
-        m = LAT_LNG_RE.search(html)
-        if m:
-            lng, lat = float(m.group(1)), float(m.group(2))
-        else:
-            m2 = LAT_LNG_RE2.search(html)
-            if m2:
-                lat, lng = float(m2.group(1)), float(m2.group(2))
-
-        if lat is None:
-            return None  # 座標なし → スキップ
+        m_lat = LAT_RE.search(html)
+        m_lng = LNG_RE.search(html)
+        if m_lat and m_lng:
+            lat = float(m_lat.group(1))
+            lng = float(m_lng.group(1))
+            # 日本国内の座標チェック (lat: 20-46, lng: 122-154)
+            if not (20 < lat < 46 and 122 < lng < 154):
+                lat = lng = None
 
         soup = BeautifulSoup(html, "html.parser")
 
@@ -250,6 +278,13 @@ def scrape_detail(session: requests.Session, url: str) -> Optional[dict]:
 
         if total == 0 and pachinko > 0:
             total = pachinko + slot
+
+        # lat/lngが取れなかった場合は住所でジオコーディング
+        if lat is None and address:
+            lat, lng = _geocode_address(address)
+
+        if lat is None:
+            return None  # 座標なし → スキップ
 
         return {
             "name": name,
@@ -299,6 +334,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--pref", nargs="*", help="都道府県dirを指定 (例: tokyo osaka)")
     parser.add_argument("--resume", action="store_true", help="チェックポイントから再開")
+    parser.add_argument("--update", action="store_true", help="既存のpworld_all.jsonに指定都道府県を上書きマージ")
     parser.add_argument("--list-only", action="store_true", help="URL収集のみ（個別ページ取得しない）")
     args = parser.parse_args()
 
@@ -308,8 +344,20 @@ def main():
     else:
         target_prefs = ALL_PREFS
 
-    # チェックポイント
-    cp = load_checkpoint() if args.resume else {"done_prefs": [], "stores": []}
+    # --update: 既存JSONから対象都道府県のデータを除いてベースにする
+    if args.update and args.pref and OUTPUT_FILE.exists():
+        existing = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
+        update_prefs = set(args.pref)
+        # 対象都道府県の日本語名を取得
+        pref_ja = {d: n for d, n in ALL_PREFS}
+        update_ja = {pref_ja[d] for d in update_prefs if d in pref_ja}
+        stores = [s for s in existing if s.get("pref") not in update_ja]
+        logger.info(f"既存データ読み込み: {len(existing)}件 → {len(stores)}件（{update_ja} を除外）")
+        cp = {"done_prefs": [], "stores": stores}
+    else:
+        # チェックポイント
+        cp = load_checkpoint() if args.resume else {"done_prefs": [], "stores": []}
+
     done_prefs = set(cp["done_prefs"])
     stores: list[dict] = cp["stores"]
 
