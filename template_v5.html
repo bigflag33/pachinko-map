@@ -74,10 +74,14 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 #map{flex:1;position:relative}
 
 /* ── Analysis panel ── */
-#toggle{flex-shrink:0;background:#161b2a;border-top:1px solid #21262d;padding:5px 16px;cursor:pointer;font-size:11px;color:#555;text-align:center;user-select:none}
+#toggle{flex-shrink:0;background:#161b2a;border-top:1px solid #21262d;padding:5px 16px;cursor:pointer;font-size:11px;color:#555;text-align:center;user-select:none;display:flex;align-items:center;justify-content:center;gap:8px}
 #toggle:hover{color:#e8eaed}
+#expand-btn{margin-left:auto;font-size:13px;padding:1px 6px;border-radius:4px;background:#21262d;color:#888;cursor:pointer;user-select:none;border:1px solid #30363d}
+#expand-btn:hover{color:#e8eaed;background:#30363d}
 #analysis{height:0;background:#0d1117;border-top:2px solid #21262d;overflow:hidden;transition:height .3s;flex-shrink:0}
 #analysis.open{height:280px;overflow-y:auto}
+#analysis.fullscreen{position:fixed;inset:0;height:100vh!important;z-index:9999;overflow-y:auto;border-top:none}
+#analysis.fullscreen #ap{min-height:100vh}
 #ap{display:flex;height:100%;min-height:280px}
 .asec{flex:1;padding:12px 14px;border-right:1px solid #21262d;min-width:135px;overflow:hidden}
 .asec:last-child{border-right:none}
@@ -270,7 +274,7 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
         <div class="li"><div class="ld" style="background:rgba(124,106,247,.4)"></div>商圏半径</div>
       </div>
     </div>
-    <div id="toggle" onclick="togglePanel()">▲ エリア分析パネルを表示</div>
+    <div id="toggle" onclick="togglePanel()"><span id="toggle-txt">▲ エリア分析パネルを表示</span><span id="expand-btn" onclick="event.stopPropagation();toggleFullscreen()" title="全画面">⤢</span></div>
     <div id="analysis">
       <div id="ap">
         <div class="asec" id="ap-pop"></div>
@@ -775,15 +779,6 @@ const CITIES = [
   {n:"宇和島市", la:33.2236,lo:132.5608,p10:84387,p15:79453,p20:74358,a:461,y0:9.5,ya:21.5,wa:32.5,s:36.5,m:47.5},
   {n:"高知市", la:33.5597,lo:133.5311,p10:340130,p15:330006,p20:320084,a:309,y0:10.8,ya:25.0,wa:33.5,s:30.7,m:47.8},
   {n:"南国市", la:33.5893,lo:133.638,p10:50432,p15:49723,p20:48718,a:126,y0:11.0,ya:24.5,wa:34.0,s:30.5,m:48.5},
-  {n:"四万十市", la:32.9899,lo:132.9349,p10:36729,p15:34973,p20:33010,a:642,y0:9.0,ya:20.5,wa:32.0,s:38.5,m:47.0},
-  {n:"土佐市", la:33.4993,lo:133.4272,p10:29024,p15:27318,p20:25665,a:91,y0:9.5,ya:21.0,wa:32.5,s:37.0,m:47.5},
-  {n:"須崎市", la:33.4027,lo:133.2829,p10:25906,p15:23704,p20:21574,a:104,y0:9.0,ya:20.5,wa:31.5,s:39.0,m:47.0},
-  {n:"宿毛市", la:32.9379,lo:132.729,p10:22030,p15:20271,p20:18765,a:286,y0:9.0,ya:20.0,wa:31.5,s:39.5,m:47.0},
-  {n:"土佐清水市", la:32.7836,lo:133.0018,p10:16185,p15:14457,p20:12997,a:266,y0:8.5,ya:19.5,wa:30.5,s:41.5,m:47.0},
-  {n:"香南市", la:33.5541,lo:133.6911,p10:35879,p15:34502,p20:33273,a:126,y0:10.5,ya:24.0,wa:33.5,s:32.0,m:48.0},
-  {n:"香美市", la:33.6104,lo:133.6818,p10:30698,p15:28918,p20:27388,a:775,y0:9.5,ya:21.0,wa:32.5,s:37.0,m:47.5},
-  {n:"安芸市", la:33.4993,lo:134.0802,p10:20616,p15:18792,p20:17256,a:317,y0:9.0,ya:20.0,wa:31.0,s:40.0,m:47.0},
-  {n:"室戸市", la:33.287,lo:134.1456,p10:16028,p15:14180,p20:12698,a:248,y0:8.5,ya:19.0,wa:30.0,s:42.5,m:47.0},
   {n:"福岡市", la:33.5904,lo:130.4017,p10:1463743,p15:1538681,p20:1612392,a:341,y0:11.5,ya:32.5,wa:36.0,s:20.0,m:49.0},
   {n:"北九州市", la:33.8839,lo:130.8751,p10:976846,p15:961286,p20:939029,a:492,y0:10.5,ya:23.5,wa:34.0,s:32.0,m:48.2},
   {n:"久留米市", la:33.3197,lo:130.508,p10:302478,p15:304767,p20:301744,a:229,y0:11.8,ya:25.5,wa:35.0,s:27.7,m:48.8},
@@ -821,23 +816,10 @@ const CITIES = [
   {n:"別府市", la:33.2844,lo:131.4917,p10:124388,p15:123236,p20:121524,a:126,y0:11.0,ya:26.5,wa:33.5,s:29.0,m:47.5},
   {n:"中津市", la:33.5987,lo:131.1886,p10:84895,p15:84120,p20:83207,a:491,y0:11.0,ya:25.0,wa:34.5,s:29.5,m:48.5},
   {n:"佐伯市", la:32.9601,lo:131.9002,p10:77374,p15:72981,p20:68413,a:903,y0:9.5,ya:21.5,wa:32.5,s:36.5,m:47.5},
-  {n:"日田市", la:33.3217,lo:130.941,p10:71523,p15:68213,p20:64028,a:666,y0:9.5,ya:21.5,wa:32.5,s:36.5,m:47.5},
-  {n:"臼杵市", la:33.1262,lo:131.8028,p10:42720,p15:40325,p20:37879,a:290,y0:9.5,ya:21.0,wa:32.0,s:37.5,m:47.0},
-  {n:"津久見市", la:33.0701,lo:131.8665,p10:20890,p15:19163,p20:17477,a:77,y0:9.0,ya:20.5,wa:31.5,s:39.0,m:47.0},
-  {n:"竹田市", la:32.9744,lo:131.3944,p10:25073,p15:23120,p20:21384,a:479,y0:9.0,ya:20.0,wa:31.0,s:40.0,m:47.0},
-  {n:"宇佐市", la:33.5259,lo:131.3494,p10:60219,p15:57469,p20:54490,a:439,y0:10.0,ya:22.0,wa:33.0,s:35.0,m:47.5},
-  {n:"豊後大野市", la:32.9762,lo:131.5832,p10:41005,p15:38128,p20:35244,a:604,y0:9.0,ya:20.0,wa:31.0,s:40.0,m:47.0},
-  {n:"由布市", la:33.2097,lo:131.5655,p10:36816,p15:35441,p20:33895,a:320,y0:10.0,ya:22.5,wa:33.5,s:34.0,m:48.0},
-  {n:"国東市", la:33.558,lo:131.7369,p10:31748,p15:29783,p20:27718,a:318,y0:9.0,ya:20.0,wa:31.0,s:40.0,m:47.0},
   {n:"宮崎市", la:31.9111,lo:131.4239,p10:400583,p15:399985,p20:400019,a:644,y0:11.5,ya:26.5,wa:34.5,s:27.5,m:48.5},
   {n:"都城市", la:31.7186,lo:131.0638,p10:168509,p15:165947,p20:163393,a:653,y0:11.0,ya:24.0,wa:34.0,s:31.0,m:48.0},
   {n:"延岡市", la:32.5819,lo:131.6668,p10:127428,p15:124499,p20:120936,a:868,y0:10.5,ya:23.5,wa:33.5,s:32.5,m:47.8},
   {n:"日南市", la:31.6116,lo:131.3738,p10:57521,p15:54162,p20:50905,a:315,y0:10.0,ya:22.0,wa:33.0,s:35.0,m:47.5},
-  {n:"小林市", la:31.9978,lo:130.9737,p10:50312,p15:47140,p20:44014,a:562,y0:10.5,ya:23.0,wa:33.5,s:33.0,m:48.0},
-  {n:"日向市", la:32.4229,lo:131.6244,p10:64389,p15:62844,p20:61165,a:332,y0:11.0,ya:24.5,wa:34.0,s:30.5,m:48.5},
-  {n:"串間市", la:31.463,lo:131.2312,p10:22053,p15:20015,p20:18219,a:268,y0:9.0,ya:20.0,wa:31.0,s:40.0,m:47.0},
-  {n:"西都市", la:32.103,lo:131.3927,p10:33497,p15:31277,p20:29442,a:438,y0:9.5,ya:21.0,wa:32.5,s:37.0,m:47.5},
-  {n:"えびの市", la:32.0424,lo:130.8324,p10:22246,p15:20597,p20:19044,a:282,y0:9.5,ya:21.0,wa:32.0,s:37.5,m:47.5},
   {n:"鹿児島市", la:31.5602,lo:130.5581,p10:605846,p15:600165,p20:599814,a:548,y0:12.0,ya:26.5,wa:34.5,s:27.0,m:48.2},
   {n:"霧島市", la:31.7373,lo:130.7665,p10:127478,p15:127290,p20:126702,a:603,y0:12.0,ya:25.5,wa:35.0,s:27.5,m:49.0},
   {n:"鹿屋市", la:31.3824,lo:130.8514,p10:99799,p15:99697,p20:99389,a:448,y0:11.5,ya:25.0,wa:34.5,s:29.0,m:49.0},
@@ -1087,10 +1069,18 @@ function buildPopup(h,i){
 // 分析パネル
 // ================================================================
 let panelOpen=false;
+let fullscreenOpen=false;
+function toggleFullscreen(){
+  fullscreenOpen=!fullscreenOpen;
+  const a=document.getElementById('analysis');
+  a.classList.toggle('fullscreen',fullscreenOpen);
+  document.getElementById('expand-btn').textContent=fullscreenOpen?'✕':'⤢';
+  if(fullscreenOpen&&!panelOpen){panelOpen=true;a.classList.add('open');document.getElementById('toggle-txt').textContent='▼ エリア分析パネルを閉じる';if(selIdx>=0)showAnalysis(selIdx);}
+}
 function togglePanel(){
   panelOpen=!panelOpen;
   document.getElementById('analysis').classList.toggle('open',panelOpen);
-  document.getElementById('toggle').textContent=panelOpen?'▼ エリア分析パネルを閉じる':'▲ エリア分析パネルを表示';
+  document.getElementById('toggle-txt').textContent=panelOpen?'▼ エリア分析パネルを閉じる':'▲ エリア分析パネルを表示';
   if(panelOpen&&selIdx>=0) showAnalysis(selIdx);
 }
 
