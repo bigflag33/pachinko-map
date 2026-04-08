@@ -1198,8 +1198,8 @@ function calcEconomics(lat,lng,r){
     const yaBonus=(c.ya-26)*2.5;                     // 若年層多い=高収入
     const inc=Math.round(base+dBonus+sBonus+yaBonus);
     // ── 教養娯楽費 (千円/月/世帯) ──
-    // 全国平均世帯年収約550万に対し教養娯楽費は年約36万 ≈ 3万/月
-    const ent=parseFloat((inc*0.065/12).toFixed(1));
+    // inc は万円単位 → ×10 で千円に換算 (例: 437万 × 0.065 ÷ 12 × 10 ≈ 23.7千円)
+    const ent=parseFloat((inc*0.065/12*10).toFixed(1));
     // ── 昼夜間人口比率 (%) ──
     const dDN=Math.min(22, density/180);              // 高密度=昼間流入大
     let sDN=0;
