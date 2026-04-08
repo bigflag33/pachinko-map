@@ -174,8 +174,14 @@ def collect_store_urls(session: requests.Session, dir_name: str, pref_name: str)
 # lat/lng抽出: シンプルな個別パターンで確実にマッチ
 LAT_RE = re.compile(r"lat\s*:\s*['\"]([0-9]+\.[0-9]+)['\"]")
 LNG_RE = re.compile(r"lng\s*:\s*['\"]([0-9]+\.[0-9]+)['\"]")
+# lat/lngの別パターン（Google Maps埋め込みなど）
+LAT_RE2 = re.compile(r"[?&,](-?[0-9]{2}\.[0-9]{4,})")
+LNG_RE2 = re.compile(r"[?&,](1[23][0-9]\.[0-9]{4,})")
 MACHINE_RE = re.compile(r"設置台数[^\d]*(\d+)\s*台")
-ADDR_RE = re.compile(r"住\s*所[　\s]*([^\n\r<]{5,50})")
+TOTAL_RE  = re.compile(r"総台数[^\d]*(\d+)\s*台")
+# 住所抽出パターン（複数試行）
+ADDR_RE   = re.compile(r"住\s*所[　\s:：]*([^\n\r<]{5,60})")
+ADDR_RE2  = re.compile(r"〒\s*\d{3}[-－]\d{4}\s*([^\n\r<]{5,60})")
 
 
 def _geocode_address(address: str) -> tuple[Optional[float], Optional[float]]:
@@ -248,36 +254,108 @@ def scrape_detail(session: requests.Session, url: str) -> Optional[dict]:
 
         # ── 住所 ──
         address = ""
-        addr_tag = soup.select_one(".hallData-address") or soup.select_one(".shopAddress")
+        # 優先順位でCSSセレクタを試す
+        addr_tag = (
+            soup.select_one(".hallData-address")
+            or soup.select_one(".shopAddress")
+            or soup.select_one(".hall-address")
+            or soup.select_one("[class*='address']")
+            or soup.select_one("td.address")
+        )
         if addr_tag:
             address = addr_tag.get_text(strip=True)
+        # テーブル行から「住所」ラベルの次セルを探す
+        if not address:
+            for th in soup.find_all(["th", "td", "dt"]):
+                if "住所" in th.get_text():
+                    sib = th.find_next_sibling(["td", "dd"])
+                    if sib:
+                        address = sib.get_text(strip=True)
+                        break
+        # regex fallback
         if not address:
             m_addr = ADDR_RE.search(html)
+            if m_addr:
+                address = m_addr.group(1).strip()
+        if not address:
+            m_addr = ADDR_RE2.search(html)
             if m_addr:
                 address = m_addr.group(1).strip()
 
         # ── 台数 ──
         total = pachinko = slot = 0
-        machine_section = soup.select_one(".machineInfo") or soup.select_one(".hallData-machine")
-        if machine_section:
-            text = machine_section.get_text()
-            nums = re.findall(r"(\d+)\s*台", text)
-            if nums:
-                total = int(nums[0])
-            # パチンコ / スロット
-            for row in machine_section.find_all(["tr", "div", "li"]):
-                row_text = row.get_text()
-                if "パチンコ" in row_text and "スロ" not in row_text:
-                    m_n = re.search(r"(\d+)\s*台", row_text)
-                    if m_n:
-                        pachinko = int(m_n.group(1))
-                elif "スロ" in row_text:
-                    m_n = re.search(r"(\d+)\s*台", row_text)
-                    if m_n:
-                        slot = int(m_n.group(1))
 
-        if total == 0 and pachinko > 0:
-            total = pachinko + slot
+        # 候補セクションを優先順位で探す
+        machine_section = (
+            soup.select_one(".machineInfo")
+            or soup.select_one(".hallData-machine")
+            or soup.select_one(".hall-machine")
+            or soup.select_one(".machineData")
+            or soup.select_one("[class*='machine']")
+            or soup.select_one("[class*='台数']")
+        )
+
+        def _extract_machines(text: str):
+            """テキストからパチンコ/スロット台数を抽出して (total, pachinko, slot) を返す"""
+            p = s = t = 0
+            # 「総台数」「合計」「設置台数」から total を先に取得
+            m = MACHINE_RE.search(text) or TOTAL_RE.search(text)
+            if m:
+                t = int(m.group(1))
+            # パチンコ行
+            for pat in [r"パチンコ[^\d]*(\d+)\s*台", r"CR[^\d]*(\d+)\s*台"]:
+                mp = re.search(pat, text)
+                if mp:
+                    p = int(mp.group(1))
+                    break
+            # スロット行
+            for pat in [r"スロット?[^\d]*(\d+)\s*台", r"スロ[^\d]*(\d+)\s*台"]:
+                ms = re.search(pat, text)
+                if ms:
+                    s = int(ms.group(1))
+                    break
+            # totalが取れなかったらパチンコ+スロットの和で推定
+            if t == 0 and (p > 0 or s > 0):
+                t = p + s
+            return t, p, s
+
+        if machine_section:
+            sec_text = machine_section.get_text()
+            total, pachinko, slot = _extract_machines(sec_text)
+
+            # セクション内で取れなかった場合、行単位でも試す
+            if total == 0:
+                for row in machine_section.find_all(["tr", "div", "li"]):
+                    row_text = row.get_text()
+                    nums = re.findall(r"(\d+)\s*台", row_text)
+                    if nums:
+                        row_total, row_p, row_s = _extract_machines(row_text)
+                        if row_p > 0: pachinko = row_p
+                        if row_s > 0: slot = row_s
+                if pachinko > 0 or slot > 0:
+                    total = pachinko + slot
+
+        # セクションが見つからなかった場合、ページ全体から台数を抽出
+        if total == 0:
+            # テーブル行の「設置台数」「総台数」「合計台数」ラベルを探す
+            for th in soup.find_all(["th", "td", "dt", "span", "div"]):
+                th_text = th.get_text(strip=True)
+                if re.search(r"(設置|総|合計)?台数", th_text) and len(th_text) < 15:
+                    sib = th.find_next_sibling(["td", "dd", "span"])
+                    if sib:
+                        m_n = re.search(r"(\d+)", sib.get_text())
+                        if m_n and int(m_n.group(1)) > 10:
+                            total = int(m_n.group(1))
+                            break
+            # それでも0ならページ全体のテキストから「設置台数」を正規表現で
+            if total == 0:
+                m_total = MACHINE_RE.search(html) or TOTAL_RE.search(html)
+                if m_total:
+                    total = int(m_total.group(1))
+            # パチンコ/スロット個別も試す
+            if total == 0:
+                full_total, full_p, full_s = _extract_machines(html)
+                total, pachinko, slot = full_total, full_p, full_s
 
         # lat/lngが取れなかった場合は住所でジオコーディング
         if lat is None and address:
