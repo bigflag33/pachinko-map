@@ -86,6 +86,15 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
   white-space:nowrap;
 }
 #expand-btn:hover{background:linear-gradient(135deg,#0284c7,#0ea5e9);box-shadow:0 0 12px rgba(14,165,233,.5)}
+#fs-close-btn{
+  display:none;position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(14,165,233,.2);
+  padding:10px 24px;font-size:13px;font-weight:700;color:#0369a1;
+  cursor:pointer;text-align:right;user-select:none;transition:background .15s;
+}
+#fs-close-btn:hover{background:rgba(255,255,255,.95)}
+#analysis.fullscreen #fs-close-btn{display:block}
 #note-btn{margin-left:auto;font-size:13px;padding:2px 8px;border-radius:5px;background:#1f2937;color:#6b7280;cursor:pointer;user-select:none;border:1px solid #374151;transition:all .15s;font-style:normal}
 #note-btn:hover{color:#60a5fa;background:#374151}
 #data-note{max-height:0;overflow:hidden;transition:max-height .35s ease;background:#060b14;border-top:none}
@@ -500,6 +509,7 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
       </div>
     </div>
     <div id="analysis">
+      <div id="fs-close-btn" onclick="toggleFullscreen()">✕ 閉じる</div>
       <div id="ap">
         <div id="ap-summary"></div>
         <div class="asec" id="ap-pop"></div>
@@ -1437,6 +1447,49 @@ function areaStats(focal,comps){
 }
 
 // ================================================================
+// 全国平均台数統計 (HALLS全データからサンプリング計算)
+// ================================================================
+// ページロード後に1回だけ計算。6000店対応後も自動更新。
+let NAT_MACH_AVG = {};   // {r: {stores,total,p4,p1,s20,s5,n}}
+
+function computeNatMachAvg(){
+  const RADII=[1,2,3,5,7,10];
+  // 最大200件をサンプリング (均等間引き)
+  const step=Math.max(1,Math.floor(HALLS.length/200));
+  const sample=HALLS.filter((_,i)=>i%step===0&&HALLS[i].lat&&HALLS[i].lng);
+
+  RADII.forEach(r=>{
+    let sStores=0,sTotal=0,sP4=0,sP1=0,sS20=0,sS5=0,n=0;
+    sample.forEach(h=>{
+      try{
+        const comps=getCompetitors(h,r);
+        const s=areaStats(h,comps);
+        sStores+=s.stores; sTotal+=s.total;
+        sP4+=s.p4en; sP1+=s.p1en; sS20+=s.s20en; sS5+=s.s5en;
+        n++;
+      }catch(e){}
+    });
+    if(n>0) NAT_MACH_AVG[r]={
+      stores: parseFloat((sStores/n).toFixed(1)),
+      total:  Math.round(sTotal/n),
+      p4:     Math.round(sP4/n),
+      p1:     Math.round(sP1/n),
+      s20:    Math.round(sS20/n),
+      s5:     Math.round(sS5/n),
+      n,
+    };
+  });
+  console.log(`✅ 全国平均計算完了 (${sample.length}店サンプル)`,NAT_MACH_AVG);
+}
+
+// 指定半径に最も近い計算済みキーを返す
+function getNatAvg(r){
+  const keys=Object.keys(NAT_MACH_AVG).map(Number).sort((a,b)=>a-b);
+  if(!keys.length) return null;
+  return NAT_MACH_AVG[keys.reduce((best,k)=>Math.abs(k-r)<Math.abs(best-r)?k:best,keys[0])];
+}
+
+// ================================================================
 // 類似商圏
 // ================================================================
 function findSimilarHalls(focal,r){
@@ -1614,6 +1667,10 @@ function showAnalysis(i){
     </div>
     <div class="hero-num">${fmtPop(trend.p20)}</div>
     <div class="hero-sub">2020年国勢調査ベース · 概算</div>
+    <div style="margin:6px 0 8px;padding:5px 8px;background:rgba(14,165,233,.08);border-radius:6px;font-size:9px;color:#64748b;display:flex;justify-content:space-between;align-items:center">
+      <span>全国平均（${curR}km圏）</span>
+      <strong style="color:#0369a1;font-size:11px">${fmtPop2(natPop)}</strong>
+    </div>
     <div class="kpi-row">
       <div class="kpi"><div class="kpi-l">2010年</div><div class="kpi-v" style="color:#58a6ff">${fmtPop2(trend.p10)}</div></div>
       <div class="kpi"><div class="kpi-l">2025予</div><div class="kpi-v" style="color:#f7c948">${fmtPop2(trend.p25)}</div></div>
@@ -1635,10 +1692,10 @@ function showAnalysis(i){
       <div class="db-s" style="width:${demo.s}%"></div>
     </div>
     <div class="demo-legend">
-      <div class="dl"><div class="dl-dot" style="background:#f72585"></div>0-14歳 <strong style="color:#ccc;margin-left:2px">${demo.y0}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#7c6af7"></div>15-39歳 <strong style="color:#c084fc;margin-left:2px">${demo.ya}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#4cc9f0"></div>40-64歳 <strong style="color:#79c0ff;margin-left:2px">${demo.wa}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#1e293b"></div>65歳+ <strong style="color:#6b7280;margin-left:2px">${demo.s}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#f72585"></div>0-14歳 <strong style="color:#ccc;margin-left:2px">${demo.y0}%</strong><span style="color:#374151;font-size:8px;margin-left:3px">(全国11.9%)</span></div>
+      <div class="dl"><div class="dl-dot" style="background:#7c6af7"></div>15-39歳 <strong style="color:#c084fc;margin-left:2px">${demo.ya}%</strong><span style="color:#374151;font-size:8px;margin-left:3px">(全国26.4%)</span></div>
+      <div class="dl"><div class="dl-dot" style="background:#4cc9f0"></div>40-64歳 <strong style="color:#79c0ff;margin-left:2px">${demo.wa}%</strong><span style="color:#374151;font-size:8px;margin-left:3px">(全国35.0%)</span></div>
+      <div class="dl"><div class="dl-dot" style="background:#1e293b"></div>65歳+ <strong style="color:#6b7280;margin-left:2px">${demo.s}%</strong><span style="color:#374151;font-size:8px;margin-left:3px">(全国28.6%)</span></div>
     </div>
     <div style="margin-top:10px;font-size:9px;color:#374151;margin-bottom:4px">男女比</div>
     <div class="gender-bar">
@@ -1646,8 +1703,8 @@ function showAnalysis(i){
       <div class="gb-f" style="width:${100-demo.m}%"></div>
     </div>
     <div class="demo-legend" style="margin-top:4px">
-      <div class="dl"><div class="dl-dot" style="background:#38bdf8"></div>男性 <strong style="color:#38bdf8;margin-left:2px">${demo.m}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#f472b6"></div>女性 <strong style="color:#f472b6;margin-left:2px">${(100-demo.m).toFixed(1)}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#38bdf8"></div>男性 <strong style="color:#38bdf8;margin-left:2px">${demo.m}%</strong><span style="color:#374151;font-size:8px;margin-left:3px">(全国48.7%)</span></div>
+      <div class="dl"><div class="dl-dot" style="background:#f472b6"></div>女性 <strong style="color:#f472b6;margin-left:2px">${(100-demo.m).toFixed(1)}%</strong><span style="color:#374151;font-size:8px;margin-left:3px">(全国51.3%)</span></div>
     </div>
     <div class="eff-card" style="margin-top:10px">
       <div class="eff-label">若年成人層 (15-39歳)</div>
@@ -1669,7 +1726,8 @@ function showAnalysis(i){
     ${cb('trend', trend.pct5)}`;
 
   // ── 4. 台数メトリクス ──
-  const maxM=Math.max(stats.total,1);
+  const natAvg=getNatAvg(curR);
+  const maxM=Math.max(stats.total, natAvg?natAvg.total:0, 1);
   document.getElementById('ap-mach').innerHTML=`
     <div class="card-hd">
       <span class="card-icon">🎰</span>
@@ -1677,15 +1735,33 @@ function showAnalysis(i){
     </div>
     <div class="hero-num">${stats.total.toLocaleString()}</div>
     <div class="hero-sub">${stats.stores}店舗 · 最大競合 ${stats.maxComp}台</div>
+    ${natAvg
+      ?`<div style="margin:6px 0 8px;padding:5px 8px;background:rgba(14,165,233,.08);border-radius:6px;font-size:9px;color:#64748b;display:flex;justify-content:space-between;align-items:center">
+          <span>全国平均（${curR}km・${natAvg.n}店サンプル）</span>
+          <strong style="color:#0369a1;font-size:11px">${natAvg.total}台 / ${natAvg.stores}店</strong>
+        </div>`
+      :`<div style="margin:6px 0 8px;font-size:9px;color:#374151;font-style:italic">全国平均計算中…</div>`}
     <div class="ametrics">
-      ${[['4円パチ',stats.p4en,'#58a6ff'],['1円パチ',stats.p1en,'#79c0ff'],['20円スロ',stats.s20en,'#3fb950'],['5円スロ',stats.s5en,'#56d364']]
-        .map(([l,v,c])=>`<div class="am"><div class="am-label">${l}</div><div class="am-bar"><div class="am-fill" style="width:${(v/maxM*100).toFixed(1)}%;background:${c}"></div></div><div class="am-val" style="color:${c}">${v}台</div></div>`).join('')}
+      ${[['4円パチ',stats.p4en,natAvg?.p4,'#58a6ff'],['1円パチ',stats.p1en,natAvg?.p1,'#79c0ff'],['20円スロ',stats.s20en,natAvg?.s20,'#3fb950'],['5円スロ',stats.s5en,natAvg?.s5,'#56d364']]
+        .map(([l,v,nv,c])=>`
+          <div class="am">
+            <div class="am-label">${l}</div>
+            <div class="am-bar" style="position:relative">
+              <div class="am-fill" style="width:${(v/maxM*100).toFixed(1)}%;background:${c}"></div>
+              ${nv!=null?`<div style="position:absolute;top:-1px;left:calc(${(nv/maxM*100).toFixed(1)}% - 1px);width:2px;height:calc(100% + 2px);background:#fbbf24;border-radius:1px;opacity:.9"></div>`:''}
+            </div>
+            <div class="am-val" style="color:${c}">${v}台${nv!=null?`<span style="font-size:8px;color:#4b5563;display:block;line-height:1">全国${nv}</span>`:''}</div>
+          </div>`).join('')}
     </div>
     ${(()=>{
-      // 台あたり人口で競合評価: 全国平均≒2000人/台想定
-      const p4perMach=stats.p4en>0?trend.p20/stats.p4en:0;
-      const natPerMach=2000;
-      return cb('mach', p4perMach>0?p4perMach/natPerMach:0.5);
+      if(stats.total===0){
+        return `<div style="margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.05);border-left:3px solid #374151;font-size:10px;color:#6b7280">📭 競合台数データが取得できていません</div>`;
+      }
+      const baseMach=stats.p4en>0?stats.p4en:stats.total;
+      const perMach=trend.p20/baseMach;
+      // 全国平均が計算済みならそれを使う、未計算はデフォルト2000人/台
+      const natPerMach=natAvg&&natAvg.p4>0?(trend.p20/natAvg.p4):2000;
+      return cb('mach', perMach/natPerMach);
     })()}`;
 
   // ── 5. 競合ランキング ──
@@ -2068,6 +2144,8 @@ cluster.addLayers(markers.filter(Boolean));
 map.addLayer(cluster);
 renderList(HALLS);
 document.getElementById('loading').style.display='none';
+// 全国平均台数を非同期で計算（UIをブロックしないよう少し遅延）
+setTimeout(computeNatMachAvg, 800);
 </script>
 </body>
 </html>
