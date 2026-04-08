@@ -74,75 +74,101 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 #map{flex:1;position:relative}
 
 /* ── Analysis panel ── */
-#toggle{flex-shrink:0;background:#161b2a;border-top:1px solid #21262d;padding:5px 16px;cursor:pointer;font-size:11px;color:#555;text-align:center;user-select:none;display:flex;align-items:center;justify-content:center;gap:8px}
-#toggle:hover{color:#e8eaed}
-#expand-btn{margin-left:auto;font-size:13px;padding:1px 6px;border-radius:4px;background:#21262d;color:#888;cursor:pointer;user-select:none;border:1px solid #30363d}
-#expand-btn:hover{color:#e8eaed;background:#30363d}
-#analysis{height:0;background:#0d1117;border-top:2px solid #21262d;overflow:hidden;transition:height .3s;flex-shrink:0}
-#analysis.open{height:280px;overflow-y:auto}
+#toggle{flex-shrink:0;background:#111827;border-top:1px solid #1f2937;padding:6px 16px;cursor:pointer;font-size:11px;color:#6b7280;text-align:center;user-select:none;display:flex;align-items:center;justify-content:center;gap:8px}
+#toggle:hover{color:#e8eaed;background:#161b2a}
+#expand-btn{margin-left:auto;font-size:13px;padding:2px 8px;border-radius:5px;background:#1f2937;color:#6b7280;cursor:pointer;user-select:none;border:1px solid #374151;transition:all .15s}
+#expand-btn:hover{color:#e8eaed;background:#374151}
+#analysis{height:0;background:#0a0e17;border-top:2px solid #1f2937;overflow:hidden;transition:height .3s;flex-shrink:0}
+#analysis.open{height:320px;overflow-y:auto}
 #analysis.fullscreen{position:fixed;inset:0;height:100vh!important;z-index:9999;overflow-y:auto;border-top:none}
-#analysis.fullscreen #ap{min-height:100vh}
-#ap{display:flex;height:100%;min-height:280px}
-.asec{flex:1;padding:12px 14px;border-right:1px solid #21262d;min-width:135px;overflow:hidden}
-.asec:last-child{border-right:none}
-.atitle{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
-.atitle::before{content:'';display:block;width:3px;height:12px;border-radius:2px}
-.at-pop::before{background:#7c6af7}.at-trend::before{background:#f7c948}
-.at-mach::before{background:#58a6ff}.at-eff::before{background:#3fb950}
-.at-rank::before{background:#f72585}.at-similar::before{background:#ff851b}
-.at-demo::before{background:#f7c948}
+#ap{display:flex;gap:10px;padding:12px;align-items:flex-start;min-height:300px}
+#analysis.fullscreen #ap{flex-wrap:wrap;align-content:flex-start;min-height:100vh;padding:20px}
 
-/* 人口トレンドグラフ */
-.trend-stats{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
-.tstat{display:flex;flex-direction:column;gap:2px}
-.tstat-l{font-size:9px;color:#555}
-.tstat-v{font-size:13px;font-weight:700}
-.trend-badge{display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:4px 9px;border-radius:5px;font-size:10px;font-weight:700}
-.tb-grow{background:#0a2018;border:1px solid #1a5030;color:#3fb950}
-.tb-flat{background:#1a1a10;border:1px solid #3a3a10;color:#f7c948}
-.tb-shrink{background:#1a0a0a;border:1px solid #5a1a1a;color:#ff851b}
-.tb-big-shrink{background:#250505;border:1px solid #7a0a0a;color:#ff4136}
+/* カード共通 */
+.asec{
+  flex:1;min-width:160px;max-width:240px;
+  background:#111827;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  padding:14px 16px;
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.asec:hover{border-color:rgba(124,106,247,.25)}
+#analysis.fullscreen .asec{min-width:200px;flex:1}
 
-/* 台数メトリクス */
-.ametrics{display:flex;flex-direction:column;gap:7px;margin-top:4px}
-.am{display:flex;align-items:center;gap:7px}
-.am-label{font-size:10px;color:#666;width:90px;flex-shrink:0}
-.am-bar{flex:1;height:5px;border-radius:3px;background:#1a2035;overflow:hidden}
-.am-fill{height:100%;border-radius:3px}
-.am-val{font-size:10px;font-weight:700;min-width:46px;text-align:right}
+/* カードヘッダー */
+.card-hd{display:flex;align-items:center;gap:7px;margin-bottom:12px}
+.card-icon{font-size:16px;line-height:1}
+.card-label{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+
+/* ヒーロー数字 */
+.hero-num{font-size:28px;font-weight:800;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#c084fc,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:9px;color:#374151;margin-bottom:10px}
+
+/* KPIチップ行 */
+.kpi-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.kpi{flex:1;min-width:50px;background:#0d1117;border-radius:7px;padding:6px 8px;text-align:center;border:1px solid #1f2937}
+.kpi-l{font-size:8px;color:#4b5563;margin-bottom:3px}
+.kpi-v{font-size:12px;font-weight:700}
+
+/* トレンドバッジ */
+.trend-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
+.tb-grow{background:#052e16;border:1px solid #166534;color:#4ade80}
+.tb-flat{background:#1c1917;border:1px solid #57534e;color:#fbbf24}
+.tb-shrink{background:#1c0a00;border:1px solid #9a3412;color:#fb923c}
+.tb-big-shrink{background:#1a0000;border:1px solid #991b1b;color:#f87171}
 
 /* 年齢構成バー */
-.demo-bar{display:flex;height:16px;border-radius:4px;overflow:hidden;margin:8px 0 3px}
-.db-y{background:#f72585}.db-ya{background:#7c6af7}.db-wa{background:#58a6ff}.db-s{background:#2a3050}
-.demo-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.dl{display:flex;align-items:center;gap:3px;font-size:9px;color:#666}
-.dl-dot{width:7px;height:7px;border-radius:2px}
-.gender-bar{display:flex;height:10px;border-radius:3px;overflow:hidden;margin:6px 0 2px}
-.gb-m{background:#58a6ff}.gb-f{background:#f72585}
+.demo-bar{display:flex;height:20px;border-radius:6px;overflow:hidden;margin:8px 0 4px}
+.db-y{background:linear-gradient(90deg,#f72585,#b5179e)}
+.db-ya{background:linear-gradient(90deg,#7c6af7,#4361ee)}
+.db-wa{background:linear-gradient(90deg,#4cc9f0,#4361ee)}
+.db-s{background:#1e293b}
+.demo-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.dl{display:flex;align-items:center;gap:4px;font-size:9px;color:#6b7280}
+.dl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.gender-bar{display:flex;height:12px;border-radius:4px;overflow:hidden;margin:8px 0 4px}
+.gb-m{background:linear-gradient(90deg,#38bdf8,#0ea5e9)}
+.gb-f{background:linear-gradient(90deg,#f472b6,#ec4899)}
+
+/* 台数メトリクス */
+.ametrics{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.am{display:flex;align-items:center;gap:8px}
+.am-label{font-size:10px;color:#6b7280;width:80px;flex-shrink:0}
+.am-bar{flex:1;height:6px;border-radius:3px;background:#1e293b;overflow:hidden}
+.am-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.am-val{font-size:10px;font-weight:700;min-width:44px;text-align:right}
 
 /* 競合ランキング */
-.comp-list{max-height:180px;overflow-y:auto}
-.comp-list::-webkit-scrollbar{width:2px}
-.comp-list::-webkit-scrollbar-thumb{background:#2a2f3e;border-radius:2px}
-.citem{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #161b2a;font-size:10px}
-.crank{color:#444;min-width:16px}.cname{flex:1;color:#ccc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ctotal{font-weight:700;color:#e8eaed;min-width:42px;text-align:right}
-.cdist{color:#444;min-width:33px;text-align:right}
+.comp-list{display:flex;flex-direction:column;gap:3px;margin-top:4px}
+.citem{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:6px;font-size:10px;background:#0d1117;border:1px solid transparent;transition:border-color .15s}
+.citem:hover{border-color:#374151}
+.crank{color:#374151;min-width:16px;font-weight:700;font-size:9px}
+.cname{flex:1;color:#d1d5db;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ctotal{font-weight:700;color:#e8eaed;min-width:38px;text-align:right;font-size:11px}
+.cdist{color:#4b5563;min-width:30px;text-align:right;font-size:9px}
 
 /* 類似商圏 */
-.sim-item{padding:6px 0;border-bottom:1px solid #161b2a;cursor:pointer;transition:opacity .15s}
-.sim-item:last-child{border-bottom:none}
-.sim-item:hover{opacity:.75}
-.sim-header{display:flex;align-items:center;gap:5px;margin-bottom:3px}
-.sim-rank{font-size:10px;color:#444;min-width:14px}
-.sim-name{font-size:11px;font-weight:700;color:#ccc;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sim-score{font-size:9px;padding:1px 6px;border-radius:10px;font-weight:700;white-space:nowrap}
-.ss-hi{background:#0a2018;border:1px solid #1a5030;color:#3fb950}
-.ss-md{background:#1a1a10;border:1px solid #3a3a10;color:#f7c948}
-.ss-lo{background:#1a0f05;border:1px solid #3a2a10;color:#ff851b}
-.sim-metrics{display:flex;gap:8px;margin-top:2px;flex-wrap:wrap}
-.sim-m{display:flex;flex-direction:column}
-.sim-ml{font-size:8px;color:#444}.sim-mv{font-size:10px;font-weight:600;color:#888}
+.sim-item{padding:7px 8px;border-radius:8px;cursor:pointer;transition:background .15s;background:#0d1117;margin-bottom:4px;border:1px solid transparent}
+.sim-item:hover{background:#161b2a;border-color:#374151}
+.sim-header{display:flex;align-items:center;gap:5px;margin-bottom:4px}
+.sim-rank{font-size:10px;color:#374151;min-width:14px;font-weight:700}
+.sim-name{font-size:11px;font-weight:700;color:#d1d5db;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sim-score{font-size:9px;padding:2px 7px;border-radius:10px;font-weight:700}
+.ss-hi{background:#052e16;border:1px solid #166534;color:#4ade80}
+.ss-md{background:#1c1917;border:1px solid #57534e;color:#fbbf24}
+.ss-lo{background:#1c0a00;border:1px solid #9a3412;color:#fb923c}
+.sim-metrics{display:flex;gap:8px;flex-wrap:wrap}
+.sim-m{display:flex;flex-direction:column;gap:1px}
+.sim-ml{font-size:8px;color:#374151}
+.sim-mv{font-size:10px;font-weight:600;color:#9ca3af}
+
+/* 効率スコアカード */
+.eff-card{background:#0d1117;border-radius:8px;padding:8px 10px;margin-top:6px;border:1px solid #1f2937}
+.eff-label{font-size:9px;color:#4b5563;margin-bottom:3px}
+.eff-val{font-size:16px;font-weight:800;color:#c084fc}
+.eff-unit{font-size:9px;color:#6b7280;margin-left:2px}
 
 /* ── Popup ── */
 .leaflet-popup-content-wrapper{background:#161b2a!important;border:1px solid #2a2f3e!important;border-radius:10px!important;box-shadow:0 4px 24px rgba(0,0,0,.7)!important;color:#e8eaed!important;min-width:270px}
@@ -1112,19 +1138,25 @@ function showAnalysis(i){
 
   // ── 1. 商圏人口 ──
   document.getElementById('ap-pop').innerHTML=`
-    <div class="atitle at-pop">商圏人口 (${curR}km)</div>
-    <div style="font-size:24px;font-weight:800;color:#c084fc">${fmtPop(trend.p20)}</div>
-    <div style="font-size:9px;color:#555;margin-top:2px">2020年国勢調査ベース・概算</div>
-    <div class="trend-stats">
-      <div class="tstat"><div class="tstat-l">2010年</div><div class="tstat-v" style="color:#58a6ff">${fmtPop2(trend.p10)}</div></div>
-      <div class="tstat"><div class="tstat-l">2025予</div><div class="tstat-v" style="color:#f7c948">${fmtPop2(trend.p25)}</div></div>
-      <div class="tstat"><div class="tstat-l">2030予</div><div class="tstat-v" style="color:#ff851b">${fmtPop2(trend.p30)}</div></div>
+    <div class="card-hd">
+      <span class="card-icon">🏙</span>
+      <span class="card-label">商圏人口 · ${curR}km</span>
+    </div>
+    <div class="hero-num">${fmtPop(trend.p20)}</div>
+    <div class="hero-sub">2020年国勢調査ベース · 概算</div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-l">2010年</div><div class="kpi-v" style="color:#58a6ff">${fmtPop2(trend.p10)}</div></div>
+      <div class="kpi"><div class="kpi-l">2025予</div><div class="kpi-v" style="color:#f7c948">${fmtPop2(trend.p25)}</div></div>
+      <div class="kpi"><div class="kpi-l">2030予</div><div class="kpi-v" style="color:#ff851b">${fmtPop2(trend.p30)}</div></div>
     </div>`;
 
   // ── 2. 年齢構成・男女比 ──
   document.getElementById('ap-demo').innerHTML=`
-    <div class="atitle at-demo">年齢構成・男女比 (商圏加重平均)</div>
-    <div style="font-size:9px;color:#555;margin-bottom:4px">0-14歳 / 15-39歳 / 40-64歳 / 65歳以上</div>
+    <div class="card-hd">
+      <span class="card-icon">📊</span>
+      <span class="card-label">年齢構成 · 男女比</span>
+    </div>
+    <div style="font-size:9px;color:#374151;margin-bottom:5px">0-14 / 15-39 / 40-64 / 65歳+</div>
     <div class="demo-bar">
       <div class="db-y" style="width:${demo.y0}%"></div>
       <div class="db-ya" style="width:${demo.ya}%"></div>
@@ -1134,47 +1166,58 @@ function showAnalysis(i){
     <div class="demo-legend">
       <div class="dl"><div class="dl-dot" style="background:#f72585"></div>0-14歳 <strong style="color:#ccc;margin-left:2px">${demo.y0}%</strong></div>
       <div class="dl"><div class="dl-dot" style="background:#7c6af7"></div>15-39歳 <strong style="color:#c084fc;margin-left:2px">${demo.ya}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#58a6ff"></div>40-64歳 <strong style="color:#79c0ff;margin-left:2px">${demo.wa}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#2a3050"></div>65歳+ <strong style="color:#888;margin-left:2px">${demo.s}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#4cc9f0"></div>40-64歳 <strong style="color:#79c0ff;margin-left:2px">${demo.wa}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#1e293b"></div>65歳+ <strong style="color:#6b7280;margin-left:2px">${demo.s}%</strong></div>
     </div>
-    <div style="margin-top:10px;font-size:9px;color:#555;margin-bottom:3px">男女比</div>
+    <div style="margin-top:10px;font-size:9px;color:#374151;margin-bottom:4px">男女比</div>
     <div class="gender-bar">
       <div class="gb-m" style="width:${demo.m}%"></div>
       <div class="gb-f" style="width:${100-demo.m}%"></div>
     </div>
-    <div class="demo-legend">
-      <div class="dl"><div class="dl-dot" style="background:#58a6ff"></div>男性 <strong style="color:#58a6ff;margin-left:2px">${demo.m}%</strong></div>
-      <div class="dl"><div class="dl-dot" style="background:#f72585"></div>女性 <strong style="color:#f72585;margin-left:2px">${(100-demo.m).toFixed(1)}%</strong></div>
+    <div class="demo-legend" style="margin-top:4px">
+      <div class="dl"><div class="dl-dot" style="background:#38bdf8"></div>男性 <strong style="color:#38bdf8;margin-left:2px">${demo.m}%</strong></div>
+      <div class="dl"><div class="dl-dot" style="background:#f472b6"></div>女性 <strong style="color:#f472b6;margin-left:2px">${(100-demo.m).toFixed(1)}%</strong></div>
     </div>
-    <div style="margin-top:8px;padding:5px 8px;background:#0d1117;border-radius:5px;font-size:9px;color:#555">
-      <span style="color:#7c6af7;font-weight:700">若年成人 ${demo.ya}%</span> = 商圏人口の約
-      <span style="color:#c084fc;font-weight:700">${fmtPop2(Math.round(trend.p20*demo.ya/100))}</span>
+    <div class="eff-card" style="margin-top:10px">
+      <div class="eff-label">若年成人層 (15-39歳)</div>
+      <div><span class="eff-val">${fmtPop2(Math.round(trend.p20*demo.ya/100))}</span><span class="eff-unit">人 (${demo.ya}%)</span></div>
     </div>`;
 
   // ── 3. 人口トレンド ──
   document.getElementById('ap-trend').innerHTML=`
-    <div class="atitle at-trend">人口トレンド (2010→2030)</div>
-    ${sparklineSVG(trend)}
-    <div class="trend-stats">
-      <div class="tstat"><div class="tstat-l">5年変化</div><div class="tstat-v" style="color:${trend.pct5>=0?'#3fb950':'#ff851b'}">${fmtPct(trend.pct5)}</div></div>
-      <div class="tstat"><div class="tstat-l">10年変化</div><div class="tstat-v" style="color:${trend.pct10>=0?'#3fb950':'#ff4136'}">${fmtPct(trend.pct10)}</div></div>
+    <div class="card-hd">
+      <span class="card-icon">📈</span>
+      <span class="card-label">人口トレンド · 2010→2030</span>
     </div>
-    <div class="trend-badge ${tl.cls}">${tl.label}</div>`;
+    ${sparklineSVG(trend)}
+    <div class="kpi-row" style="margin-top:10px">
+      <div class="kpi"><div class="kpi-l">5年変化</div><div class="kpi-v" style="color:${trend.pct5>=0?'#4ade80':'#fb923c'}">${fmtPct(trend.pct5)}</div></div>
+      <div class="kpi"><div class="kpi-l">10年変化</div><div class="kpi-v" style="color:${trend.pct10>=0?'#4ade80':'#f87171'}">${fmtPct(trend.pct10)}</div></div>
+    </div>
+    <div class="trend-badge ${tl.cls}" style="margin-top:10px">${tl.label}</div>`;
 
   // ── 4. 台数メトリクス ──
   const maxM=Math.max(stats.total,1);
   document.getElementById('ap-mach').innerHTML=`
-    <div class="atitle at-mach">エリア台数合計</div>
-    <div class="ametrics">
-      ${[['総台数',stats.total,'#e8eaed'],['4円パチ',stats.p4en,'#58a6ff'],['1円パチ',stats.p1en,'#79c0ff'],['20円スロ',stats.s20en,'#3fb950'],['5円スロ',stats.s5en,'#56d364']]
-        .map(([l,v,c])=>`<div class="am"><div class="am-label">${l}</div><div class="am-bar"><div class="am-fill" style="width:${(v/maxM*100).toFixed(1)}%;background:${c}"></div></div><div class="am-val" style="color:${c}">${v}台</div></div>`).join('')}
+    <div class="card-hd">
+      <span class="card-icon">🎰</span>
+      <span class="card-label">エリア台数合計</span>
     </div>
-    <div style="margin-top:8px;font-size:10px;color:#555">店舗数: <strong style="color:#ccc">${stats.stores}</strong> / 最大競合: <strong style="color:#f7c948">${stats.maxComp}台</strong></div>`;
+    <div class="hero-num">${stats.total.toLocaleString()}</div>
+    <div class="hero-sub">${stats.stores}店舗 · 最大競合 ${stats.maxComp}台</div>
+    <div class="ametrics">
+      ${[['4円パチ',stats.p4en,'#58a6ff'],['1円パチ',stats.p1en,'#79c0ff'],['20円スロ',stats.s20en,'#3fb950'],['5円スロ',stats.s5en,'#56d364']]
+        .map(([l,v,c])=>`<div class="am"><div class="am-label">${l}</div><div class="am-bar"><div class="am-fill" style="width:${(v/maxM*100).toFixed(1)}%;background:${c}"></div></div><div class="am-val" style="color:${c}">${v}台</div></div>`).join('')}
+    </div>`;
 
   // ── 5. 競合ランキング ──
-  const effs=[[`4円パチ/台あたり人口`,trend.p20/(stats.p4en||1),`#58a6ff`],[`20円スロ/台あたり人口`,trend.p20/(stats.s20en||1),`#3fb950`]];
+  const p4eff=trend.p20/(stats.p4en||1);
+  const s20eff=trend.p20/(stats.s20en||1);
   document.getElementById('ap-rank').innerHTML=`
-    <div class="atitle at-rank">競合ランキング (${curR}km)</div>
+    <div class="card-hd">
+      <span class="card-icon">🏆</span>
+      <span class="card-label">競合ランキング · ${curR}km</span>
+    </div>
     <div class="comp-list">
       ${comps.length?comps.slice(0,8).map((c,j)=>`
         <div class="citem">
@@ -1184,17 +1227,21 @@ function showAnalysis(i){
           <div style="font-size:9px;color:#3fb950;min-width:30px">${c.machines?.slot_20en!=null?c.machines.slot_20en+'S20':''}</div>
           <div class="ctotal">${c.machines?.total!=null?c.machines.total+'台':'—'}</div>
           <div class="cdist">${c._dist.toFixed(1)}km</div>
-        </div>`).join(''):'<div style="color:#333;font-size:11px;padding:8px 0">商圏内に競合なし</div>'}
+        </div>`).join(''):'<div style="color:#374151;font-size:11px;padding:8px 0">商圏内に競合なし</div>'}
     </div>
-    <div style="margin-top:8px;border-top:1px solid #161b2a;padding-top:6px">
-      ${effs.map(([l,v,c])=>`<div style="font-size:9px;color:#555;margin-bottom:3px">${l}: <strong style="color:${c}">${v>=1000?(v/10000).toFixed(1)+'万':Math.round(v)}人</strong></div>`).join('')}
+    <div class="kpi-row" style="margin-top:10px">
+      <div class="kpi"><div class="kpi-l">4円/台あたり人口</div><div class="kpi-v" style="color:#58a6ff">${p4eff>=10000?(p4eff/10000).toFixed(1)+'万':Math.round(p4eff)}人</div></div>
+      <div class="kpi"><div class="kpi-l">20円スロ/台人口</div><div class="kpi-v" style="color:#3fb950">${s20eff>=10000?(s20eff/10000).toFixed(1)+'万':Math.round(s20eff)}人</div></div>
     </div>`;
 
   // ── 6. 類似商圏 ──
   const sims=findSimilarHalls(h,curR);
   const simScoreCls=sc=>sc>=70?'ss-hi':sc>=40?'ss-md':'ss-lo';
   document.getElementById('ap-similar').innerHTML=`
-    <div class="atitle at-similar">類似商圏 TOP3</div>
+    <div class="card-hd">
+      <span class="card-icon">🔍</span>
+      <span class="card-label">類似商圏 TOP3</span>
+    </div>
     ${sims.length?sims.map((s,j)=>`
       <div class="sim-item" onclick="selectHall(${HALLS.indexOf(s.h)},markers[${HALLS.indexOf(s.h)}])">
         <div class="sim-header">
@@ -1204,12 +1251,12 @@ function showAnalysis(i){
         </div>
         <div class="sim-metrics">
           <div class="sim-m"><div class="sim-ml">商圏人口</div><div class="sim-mv" style="color:#c084fc">${fmtPop2(s.t.p20)}</div></div>
-          <div class="sim-m"><div class="sim-ml">5年変化</div><div class="sim-mv" style="color:${s.t.pct5>=0?'#3fb950':'#ff851b'}">${fmtPct(s.t.pct5)}</div></div>
+          <div class="sim-m"><div class="sim-ml">5年変化</div><div class="sim-mv" style="color:${s.t.pct5>=0?'#4ade80':'#fb923c'}">${fmtPct(s.t.pct5)}</div></div>
           <div class="sim-m"><div class="sim-ml">競合店</div><div class="sim-mv">${s.s.stores}店</div></div>
         </div>
       </div>`).join('')
-    :'<div style="color:#333;font-size:11px;padding:8px 0">他のGO店がありません</div>'}
-    <div style="font-size:9px;color:#444;margin-top:8px;line-height:1.5">人口規模・トレンド・効率指標が近い<br>グランドオープン店</div>`;
+    :'<div style="color:#374151;font-size:11px;padding:8px 0">他のGO店がありません</div>'}
+    <div style="font-size:9px;color:#374151;margin-top:10px;line-height:1.6">人口規模・トレンド・効率指標が近い<br>グランドオープン店</div>`;
 }
 
 // ================================================================
