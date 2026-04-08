@@ -76,41 +76,132 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 /* ── Analysis panel ── */
 #toggle{flex-shrink:0;background:#111827;border-top:1px solid #1f2937;padding:6px 16px;cursor:pointer;font-size:11px;color:#6b7280;text-align:center;user-select:none;display:flex;align-items:center;justify-content:center;gap:8px}
 #toggle:hover{color:#e8eaed;background:#161b2a}
-#expand-btn{margin-left:auto;font-size:13px;padding:2px 8px;border-radius:5px;background:#1f2937;color:#6b7280;cursor:pointer;user-select:none;border:1px solid #374151;transition:all .15s}
-#expand-btn:hover{color:#e8eaed;background:#374151}
+#expand-btn{
+  margin-left:4px;font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:20px;
+  background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+  color:#fff;cursor:pointer;user-select:none;
+  border:none;transition:all .2s;letter-spacing:.3px;
+  animation:cta-pulse 2.5s ease-in-out infinite;
+  white-space:nowrap;
+}
+#expand-btn:hover{background:linear-gradient(135deg,#0284c7,#0ea5e9);box-shadow:0 0 12px rgba(14,165,233,.5)}
+#note-btn{margin-left:auto;font-size:13px;padding:2px 8px;border-radius:5px;background:#1f2937;color:#6b7280;cursor:pointer;user-select:none;border:1px solid #374151;transition:all .15s;font-style:normal}
+#note-btn:hover{color:#60a5fa;background:#374151}
+#data-note{max-height:0;overflow:hidden;transition:max-height .35s ease;background:#060b14;border-top:none}
+#data-note.open{max-height:320px;border-top:1px solid #1f2937}
+#data-note-inner{padding:14px 20px}
+.dn-title{font-size:12px;font-weight:700;color:#60a5fa;margin-bottom:8px;letter-spacing:.5px}
+.dn-body{font-size:10px;color:#6b7280;line-height:1.7}
+.dn-body p{margin:0 0 6px}
+.dn-body ul{margin:4px 0 6px;padding-left:16px}
+.dn-body li{margin-bottom:3px}
+.dn-body strong{color:#9ca3af}
+.dn-note{font-size:9px;color:#374151;border-top:1px solid #1f2937;padding-top:6px;margin-top:4px;font-style:italic}
 #analysis{height:0;background:#0a0e17;border-top:2px solid #1f2937;overflow:hidden;transition:height .3s;flex-shrink:0}
 #analysis.open{height:320px;overflow-y:auto}
-#analysis.fullscreen{position:fixed;inset:0;height:100vh!important;z-index:9999;overflow-y:auto;border-top:none}
-#ap{display:flex;gap:10px;padding:12px;align-items:flex-start;min-height:300px}
-#analysis.fullscreen #ap{flex-wrap:wrap;align-content:flex-start;min-height:100vh;padding:20px}
+#analysis.fullscreen{position:fixed;inset:0;height:100vh!important;z-index:9999;overflow-y:auto;border-top:none;background:linear-gradient(160deg,#0ea5e9 0%,#38bdf8 35%,#7dd3fc 65%,#bae6fd 100%)!important}
+
+/* 通常パネル: 4枚+CTA */
+#ap{display:flex;gap:10px;padding:12px;align-items:stretch;min-height:280px}
+#analysis:not(.fullscreen) #ap-rank,
+#analysis:not(.fullscreen) #ap-similar,
+#analysis:not(.fullscreen) #ap-econ-inc,
+#analysis:not(.fullscreen) #ap-econ-brk,
+#analysis:not(.fullscreen) #ap-econ-dn,
+#analysis:not(.fullscreen) #ap-econ-ent{display:none}
+#analysis.fullscreen #ap-cta{display:none}
+
+/* 全画面: 5×2グリッド */
+#analysis.fullscreen #ap{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:20px;padding:28px;
+  align-items:start;
+}
 
 /* カード共通 */
 .asec{
-  flex:1;min-width:160px;max-width:240px;
+  flex:1 1 170px;min-width:165px;max-width:220px;
   background:#111827;
   border:1px solid rgba(255,255,255,.07);
   border-radius:12px;
   padding:14px 16px;
   overflow:hidden;
   transition:border-color .2s;
+  box-sizing:border-box;
 }
 .asec:hover{border-color:rgba(124,106,247,.25)}
-#analysis.fullscreen .asec{min-width:200px;flex:1}
+#analysis.fullscreen .asec{
+  min-width:0;max-width:none;width:100%;
+  padding:24px 28px;
+  border-radius:18px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 4px 24px rgba(14,165,233,.12);
+  color:#0f172a;
+  box-sizing:border-box;
+}
+#analysis.fullscreen .asec:hover{border-color:rgba(14,165,233,.5);box-shadow:0 8px 36px rgba(14,165,233,.22)}
+
+/* CTAカード */
+#ap-cta{
+  flex:1.6;min-width:190px;
+  background:linear-gradient(135deg,#0c1a2e 0%,#0f2744 50%,#0c1a3a 100%);
+  border:1px solid rgba(14,165,233,.3);
+  border-radius:12px;padding:16px 18px;
+  cursor:pointer;
+  transition:all .25s;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  box-sizing:border-box;
+}
+#ap-cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(14,165,233,.08),rgba(56,189,248,.12));
+  opacity:0;transition:opacity .25s;
+}
+#ap-cta:hover{border-color:rgba(14,165,233,.7);box-shadow:0 0 24px rgba(14,165,233,.2)}
+#ap-cta:hover::before{opacity:1}
+.cta-inner{text-align:center;position:relative;z-index:1}
+.cta-label{font-size:9px;color:#38bdf8;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px}
+.cta-title{font-size:13px;font-weight:800;color:#e0f2fe;line-height:1.4;margin-bottom:10px}
+.cta-list{list-style:none;padding:0;margin:0 0 12px;text-align:left;display:inline-block}
+.cta-list li{font-size:10px;color:#7dd3fc;padding:2px 0;line-height:1.5}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+  color:#fff;font-size:11px;font-weight:800;
+  padding:7px 16px;border-radius:20px;
+  animation:cta-pulse 2.5s ease-in-out infinite;
+  letter-spacing:.3px;
+}
+@keyframes cta-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(14,165,233,.4)}
+  50%{box-shadow:0 0 0 8px rgba(14,165,233,0)}
+}
 
 /* カードヘッダー */
 .card-hd{display:flex;align-items:center;gap:7px;margin-bottom:12px}
 .card-icon{font-size:16px;line-height:1}
 .card-label{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+#analysis.fullscreen .card-icon{font-size:24px}
+#analysis.fullscreen .card-label{font-size:13px;color:#0369a1}
 
 /* ヒーロー数字 */
 .hero-num{font-size:28px;font-weight:800;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#c084fc,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-sub{font-size:9px;color:#374151;margin-bottom:10px}
+#analysis.fullscreen .hero-num{font-size:52px;background:linear-gradient(135deg,#0369a1,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+#analysis.fullscreen .hero-sub{font-size:13px;color:#64748b;margin-bottom:16px}
 
 /* KPIチップ行 */
 .kpi-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .kpi{flex:1;min-width:50px;background:#0d1117;border-radius:7px;padding:6px 8px;text-align:center;border:1px solid #1f2937}
 .kpi-l{font-size:8px;color:#4b5563;margin-bottom:3px}
 .kpi-v{font-size:12px;font-weight:700}
+#analysis.fullscreen .kpi{background:#e0f2fe;border:1px solid #bae6fd;border-radius:10px;padding:10px 14px}
+#analysis.fullscreen .kpi-l{font-size:11px;color:#64748b}
+#analysis.fullscreen .kpi-v{font-size:20px}
 
 /* トレンドバッジ */
 .trend-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
@@ -118,6 +209,11 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 .tb-flat{background:#1c1917;border:1px solid #57534e;color:#fbbf24}
 .tb-shrink{background:#1c0a00;border:1px solid #9a3412;color:#fb923c}
 .tb-big-shrink{background:#1a0000;border:1px solid #991b1b;color:#f87171}
+#analysis.fullscreen .trend-badge{font-size:15px;padding:8px 18px;border-radius:30px}
+#analysis.fullscreen .tb-grow{background:#dcfce7;border-color:#86efac;color:#16a34a}
+#analysis.fullscreen .tb-flat{background:#fef9c3;border-color:#fde047;color:#ca8a04}
+#analysis.fullscreen .tb-shrink{background:#ffedd5;border-color:#fdba74;color:#ea580c}
+#analysis.fullscreen .tb-big-shrink{background:#fee2e2;border-color:#fca5a5;color:#dc2626}
 
 /* 年齢構成バー */
 .demo-bar{display:flex;height:20px;border-radius:6px;overflow:hidden;margin:8px 0 4px}
@@ -125,12 +221,17 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 .db-ya{background:linear-gradient(90deg,#7c6af7,#4361ee)}
 .db-wa{background:linear-gradient(90deg,#4cc9f0,#4361ee)}
 .db-s{background:#1e293b}
+#analysis.fullscreen .demo-bar{height:36px;border-radius:10px;margin:12px 0 6px}
+#analysis.fullscreen .db-s{background:#cbd5e1}
 .demo-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 .dl{display:flex;align-items:center;gap:4px;font-size:9px;color:#6b7280}
 .dl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+#analysis.fullscreen .dl{font-size:13px;color:#475569}
+#analysis.fullscreen .dl-dot{width:12px;height:12px;border-radius:3px}
 .gender-bar{display:flex;height:12px;border-radius:4px;overflow:hidden;margin:8px 0 4px}
 .gb-m{background:linear-gradient(90deg,#38bdf8,#0ea5e9)}
 .gb-f{background:linear-gradient(90deg,#f472b6,#ec4899)}
+#analysis.fullscreen .gender-bar{height:20px;border-radius:6px}
 
 /* 台数メトリクス */
 .ametrics{display:flex;flex-direction:column;gap:8px;margin-top:6px}
@@ -139,6 +240,10 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 .am-bar{flex:1;height:6px;border-radius:3px;background:#1e293b;overflow:hidden}
 .am-fill{height:100%;border-radius:3px;transition:width .4s ease}
 .am-val{font-size:10px;font-weight:700;min-width:44px;text-align:right}
+#analysis.fullscreen .ametrics{gap:14px;margin-top:12px}
+#analysis.fullscreen .am-label{font-size:14px;color:#334155;width:100px}
+#analysis.fullscreen .am-bar{height:10px;background:#e0f2fe}
+#analysis.fullscreen .am-val{font-size:15px;min-width:60px}
 
 /* 競合ランキング */
 .comp-list{display:flex;flex-direction:column;gap:3px;margin-top:4px}
@@ -148,6 +253,12 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 .cname{flex:1;color:#d1d5db;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ctotal{font-weight:700;color:#e8eaed;min-width:38px;text-align:right;font-size:11px}
 .cdist{color:#4b5563;min-width:30px;text-align:right;font-size:9px}
+#analysis.fullscreen .citem{background:#f0f9ff;border:1px solid #e0f2fe;border-radius:10px;padding:9px 12px;font-size:14px}
+#analysis.fullscreen .citem:hover{border-color:#7dd3fc;background:#e0f2fe}
+#analysis.fullscreen .crank{color:#94a3b8;font-size:13px;min-width:22px}
+#analysis.fullscreen .cname{color:#0f172a}
+#analysis.fullscreen .ctotal{color:#0369a1;font-size:15px}
+#analysis.fullscreen .cdist{color:#64748b;font-size:12px}
 
 /* 類似商圏 */
 .sim-item{padding:7px 8px;border-radius:8px;cursor:pointer;transition:background .15s;background:#0d1117;margin-bottom:4px;border:1px solid transparent}
@@ -156,6 +267,14 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 .sim-rank{font-size:10px;color:#374151;min-width:14px;font-weight:700}
 .sim-name{font-size:11px;font-weight:700;color:#d1d5db;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sim-score{font-size:9px;padding:2px 7px;border-radius:10px;font-weight:700}
+#analysis.fullscreen .sim-item{background:#f0f9ff;border:1px solid #e0f2fe;border-radius:12px;padding:12px 14px;margin-bottom:8px}
+#analysis.fullscreen .sim-item:hover{background:#e0f2fe;border-color:#7dd3fc}
+#analysis.fullscreen .sim-rank{color:#94a3b8;font-size:14px;min-width:20px}
+#analysis.fullscreen .sim-name{font-size:15px;color:#0f172a}
+#analysis.fullscreen .sim-score{font-size:12px;padding:4px 10px}
+#analysis.fullscreen .ss-hi{background:#dcfce7;border-color:#86efac;color:#16a34a}
+#analysis.fullscreen .ss-md{background:#fef9c3;border-color:#fde047;color:#ca8a04}
+#analysis.fullscreen .ss-lo{background:#ffedd5;border-color:#fdba74;color:#ea580c}
 .ss-hi{background:#052e16;border:1px solid #166534;color:#4ade80}
 .ss-md{background:#1c1917;border:1px solid #57534e;color:#fbbf24}
 .ss-lo{background:#1c0a00;border:1px solid #9a3412;color:#fb923c}
@@ -164,11 +283,75 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
 .sim-ml{font-size:8px;color:#374151}
 .sim-mv{font-size:10px;font-weight:600;color:#9ca3af}
 
+/* 類似商圏メトリクス */
+.sim-metrics{display:flex;gap:8px;flex-wrap:wrap}
+.sim-m{display:flex;flex-direction:column;gap:1px}
+.sim-ml{font-size:8px;color:#374151}
+.sim-mv{font-size:10px;font-weight:600;color:#9ca3af}
+#analysis.fullscreen .sim-ml{font-size:11px;color:#64748b}
+#analysis.fullscreen .sim-mv{font-size:14px;color:#334155}
+
 /* 効率スコアカード */
 .eff-card{background:#0d1117;border-radius:8px;padding:8px 10px;margin-top:6px;border:1px solid #1f2937}
 .eff-label{font-size:9px;color:#4b5563;margin-bottom:3px}
 .eff-val{font-size:16px;font-weight:800;color:#c084fc}
 .eff-unit{font-size:9px;color:#6b7280;margin-left:2px}
+#analysis.fullscreen .eff-card{background:#e0f2fe;border:1px solid #bae6fd;border-radius:12px;padding:14px 16px;margin-top:12px}
+#analysis.fullscreen .eff-label{font-size:13px;color:#0369a1}
+#analysis.fullscreen .eff-val{font-size:28px;color:#0284c7}
+#analysis.fullscreen .eff-unit{font-size:13px;color:#0369a1}
+
+/* 年収ブラケットバー */
+.inc-bars{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.inc-row{display:flex;align-items:center;gap:7px}
+.inc-lbl{font-size:9px;color:#6b7280;min-width:68px;flex-shrink:0}
+.inc-track{flex:1;height:7px;background:#1e293b;border-radius:4px;overflow:hidden}
+.inc-fill{height:100%;border-radius:4px;transition:width .4s ease}
+.inc-pct{font-size:9px;font-weight:700;min-width:26px;text-align:right}
+#analysis.fullscreen .inc-lbl{font-size:13px;min-width:90px}
+#analysis.fullscreen .inc-track{height:12px}
+#analysis.fullscreen .inc-pct{font-size:13px;min-width:36px}
+#analysis.fullscreen .inc-row{gap:10px}
+
+/* 昼夜比ゲージ */
+.dn-gauge{display:flex;align-items:center;gap:10px;margin-top:10px}
+.dn-icon{font-size:20px}
+.dn-bar-wrap{flex:1}
+.dn-bar{display:flex;height:14px;border-radius:7px;overflow:hidden}
+.dn-day{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+.dn-night{background:linear-gradient(90deg,#3b82f6,#1d4ed8)}
+.dn-label{font-size:9px;color:#6b7280;margin-top:3px;display:flex;justify-content:space-between}
+#analysis.fullscreen .dn-icon{font-size:28px}
+#analysis.fullscreen .dn-bar{height:22px;border-radius:10px}
+#analysis.fullscreen .dn-label{font-size:13px}
+
+/* 総評バナー */
+#ap-summary{
+  grid-column:1/-1;
+  background:rgba(255,255,255,.88);
+  border-radius:16px;
+  padding:20px 28px;
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 4px 24px rgba(14,165,233,.12);
+  display:none;
+}
+#analysis.fullscreen #ap-summary{display:flex;align-items:center;gap:20px}
+.sum-score{text-align:center;flex-shrink:0}
+.sum-stars{font-size:18px;letter-spacing:2px;color:#fbbf24}
+.sum-overall{font-size:11px;font-weight:800;margin-top:3px;letter-spacing:.5px}
+.sum-avg{font-size:10px;color:#64748b;margin-top:1px}
+.sum-divider{width:1px;height:56px;background:#e2e8f0;flex-shrink:0}
+.sum-body{flex:1}
+.sum-label{font-size:10px;color:#0369a1;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.sum-text{font-size:13px;color:#0f172a;line-height:1.7;font-weight:500}
+
+/* コメントバッジ（全画面用） */
+.comment-badge-fs{
+  margin-top:14px;padding:12px 14px;border-radius:10px;
+  background:rgba(0,0,0,.04);border-left:4px solid;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.comment-badge-fs span:last-child{font-size:13px;font-weight:700;line-height:1.5}
 
 /* ── Popup ── */
 .leaflet-popup-content-wrapper{background:#161b2a!important;border:1px solid #2a2f3e!important;border-radius:10px!important;box-shadow:0 4px 24px rgba(0,0,0,.7)!important;color:#e8eaed!important;min-width:270px}
@@ -300,15 +483,49 @@ body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#0d1117;color:#e
         <div class="li"><div class="ld" style="background:rgba(124,106,247,.4)"></div>商圏半径</div>
       </div>
     </div>
-    <div id="toggle" onclick="togglePanel()"><span id="toggle-txt">▲ エリア分析パネルを表示</span><span id="expand-btn" onclick="event.stopPropagation();toggleFullscreen()" title="全画面">⤢</span></div>
+    <div id="toggle" onclick="togglePanel()"><span id="toggle-txt">▲ エリア分析パネルを表示</span><span id="note-btn" onclick="event.stopPropagation();toggleDataNote()" title="数値について">ℹ</span><span id="expand-btn" onclick="event.stopPropagation();toggleFullscreen()" title="全画面">⤢ 詳細分析</span></div>
+    <div id="data-note">
+      <div id="data-note-inner">
+        <div class="dn-title">📐 数値について</div>
+        <div class="dn-body">
+          <p>このツールの人口・経済指標は <strong>市区町村レベルの統計データ</strong> を商圏半径で加重平均した <strong>推計値</strong> です。</p>
+          <ul>
+            <li><strong>人口・年齢構成</strong>：総務省 国勢調査 2020年ベース。2025・2030年は線形外挿による予測値。</li>
+            <li><strong>推計年収・教養娯楽費</strong>：家計調査・国勢調査の組み合わせによる統計的近似。実際の値と異なる場合があります。</li>
+            <li><strong>昼夜間人口比率</strong>：人口密度・都市規模から算出した推計値。実測データではありません。</li>
+            <li><strong>空間精度</strong>：同一市区町村内での地域差（例：市内北部と南部）は反映されません。市区町村全体の平均値が適用されます。</li>
+          </ul>
+          <p class="dn-note">より精度の高い分析には、国土数値情報（丁目別）・NTTドコモ Mobaku・経済センサス詳細版の活用をご検討ください。</p>
+        </div>
+      </div>
+    </div>
     <div id="analysis">
       <div id="ap">
+        <div id="ap-summary"></div>
         <div class="asec" id="ap-pop"></div>
-        <div class="asec" id="ap-demo" style="flex:1.3;min-width:155px"></div>
-        <div class="asec" id="ap-trend" style="flex:1.4;min-width:180px"></div>
+        <div class="asec" id="ap-demo"></div>
+        <div class="asec" id="ap-trend"></div>
         <div class="asec" id="ap-mach"></div>
-        <div class="asec" id="ap-rank" style="flex:1.3"></div>
-        <div class="asec" id="ap-similar" style="flex:1.3"></div>
+        <div id="ap-cta" onclick="toggleFullscreen()">
+          <div class="cta-inner">
+            <div class="cta-label">さらに詳しく</div>
+            <div class="cta-title">競合分析・エリア経済<br>詳細データを見る</div>
+            <ul class="cta-list">
+              <li>🏆 競合ランキング</li>
+              <li>🔍 類似商圏 TOP3</li>
+              <li>💰 推計年収・年収分布</li>
+              <li>🌆 昼夜間人口比率</li>
+              <li>🎮 教養娯楽費</li>
+            </ul>
+            <div class="cta-btn">⤢ 全画面で開く</div>
+          </div>
+        </div>
+        <div class="asec" id="ap-rank"></div>
+        <div class="asec" id="ap-similar"></div>
+        <div class="asec" id="ap-econ-inc"></div>
+        <div class="asec" id="ap-econ-brk"></div>
+        <div class="asec" id="ap-econ-dn"></div>
+        <div class="asec" id="ap-econ-ent"></div>
       </div>
     </div>
   </div>
@@ -941,8 +1158,229 @@ function calcDemographics(lat,lng,r){
 }
 
 // ================================================================
+// エリア経済推計 (国勢調査+家計調査ベース統計的近似)
+// ================================================================
+// 推計ロジック:
+//   推計中央年収: 全国中央値437万 + 人口密度補正 + 都市規模補正 + 年齢構成補正
+//   教養娯楽費: 推計年収 × 娯楽支出率(約6.5%) ÷ 12ヶ月
+//   昼夜間比率: 密度・都市規模から昼間人口流入を推計
+function calcEconomics(lat,lng,r){
+  let totalW=0, incW=0, entW=0, dnW=0;
+  CITIES.forEach(c=>{
+    const d=haversine(lat,lng,c.la,c.lo);
+    const frac=cityFraction(d,r,Math.sqrt(c.a/Math.PI));
+    if(frac<=0) return;
+    const w=c.p20*frac;
+    // 人口密度 (人/km²)
+    const density=c.a>0?c.p20/c.a:0;
+    // ── 推計中央年収 (万円) ──
+    const base=437;
+    const dBonus=Math.min(100, density/40);          // 高密度=高収入
+    let sBonus=0;
+    if(c.p20>1000000) sBonus=55;
+    else if(c.p20>500000) sBonus=28;
+    else if(c.p20>200000) sBonus=12;
+    else if(c.p20>100000) sBonus=0;
+    else if(c.p20>50000)  sBonus=-12;
+    else sBonus=-28;
+    const yaBonus=(c.ya-26)*2.5;                     // 若年層多い=高収入
+    const inc=Math.round(base+dBonus+sBonus+yaBonus);
+    // ── 教養娯楽費 (千円/月/世帯) ──
+    // 全国平均世帯年収約550万に対し教養娯楽費は年約36万 ≈ 3万/月
+    const ent=parseFloat((inc*0.065/12).toFixed(1));
+    // ── 昼夜間人口比率 (%) ──
+    const dDN=Math.min(22, density/180);              // 高密度=昼間流入大
+    let sDN=0;
+    if(c.p20>500000) sDN=9;
+    else if(c.p20>200000) sDN=5;
+    else if(c.p20>100000) sDN=2;
+    else if(c.p20<30000)  sDN=-4;
+    const dn=parseFloat((100+dDN+sDN).toFixed(1));
+    // ── 加重平均 ──
+    incW+=inc*w; entW+=ent*w; dnW+=dn*w;
+    totalW+=w;
+  });
+  if(totalW===0) return {inc:437,ent:2.4,dn:100,young:0};
+  const inc=Math.round(incW/totalW);
+  const ent=parseFloat((entW/totalW).toFixed(1));
+  const dn=parseFloat((dnW/totalW).toFixed(1));
+  // 年収ブラケット分布 (パチンコ消費と相関の高い300-700万層)
+  // 正規分布近似: 中央±σ(100万)でブラケットを推定
+  const sigma=100;
+  function normPct(lo,hi){
+    const z1=(lo-inc)/sigma, z2=(hi-inc)/sigma;
+    const phi=x=>{const t=1/(1+0.2316419*Math.abs(x));const d=0.3989423*Math.exp(-x*x/2);return x<0?d*t*(0.319381530-0.356563782*t+1.781477937*t*t-1.821255978*t*t*t+1.330274429*t*t*t*t):1-d*t*(0.319381530-0.356563782*t+1.781477937*t*t-1.821255978*t*t*t+1.330274429*t*t*t*t);};
+    return Math.round((phi(z2)-phi(z1))*100);
+  }
+  const b300=normPct(0,300);
+  const b500=normPct(300,500);
+  const b700=normPct(500,700);
+  const b900=normPct(700,10000);
+  return {inc,ent,dn,b300,b500,b700,b900};
+}
+
+// ================================================================
 // フォーマット
 // ================================================================
+// ================================================================
+// エリア評価コメント生成
+// ================================================================
+// type別のコメント定義。 ratio = 実値/全国平均 (1.0=全国平均)
+const COMMENTS = {
+  // 商圏人口規模
+  pop: [
+    {min:1.5,  icon:'🏙', text:'超大型商圏！集客ポテンシャルは抜群です',       col:'#4ade80'},
+    {min:1.2,  icon:'🎯', text:'かなり大きな商圏。良いですね',                  col:'#4ade80'},
+    {min:0.8,  icon:'👍', text:'まあまあの商圏規模です',                        col:'#fbbf24'},
+    {min:0.5,  icon:'😐', text:'やや小さめの商圏ですね',                        col:'#fb923c'},
+    {min:0,    icon:'😔', text:'商圏人口が少なく、厳しいですね',                col:'#f87171'},
+  ],
+  // 人口トレンド (ratio = 5年変化率そのまま%, 全国平均≒-1%)
+  trend: [
+    {min:3,    icon:'🚀', text:'急成長エリア！超良いですね',                     col:'#4ade80'},
+    {min:1,    icon:'📈', text:'成長エリア。良好です',                           col:'#4ade80'},
+    {min:-0.5, icon:'➡', text:'ほぼ横ばい。まあまあですね',                     col:'#fbbf24'},
+    {min:-3,   icon:'📉', text:'緩やかな減少。注意が必要です',                   col:'#fb923c'},
+    {min:-7,   icon:'⚠', text:'人口減少が進んでいます。厳しいですね',           col:'#f87171'},
+    {min:-100, icon:'🚨', text:'急速な人口減少。かなり厳しいです',               col:'#ef4444'},
+  ],
+  // 競合台数効率 (ratio = 台あたり人口/全国平均2000人想定)
+  mach: [
+    {min:2.0,  icon:'💎', text:'競合希薄！1台あたり人口が多く超良いですね',      col:'#4ade80'},
+    {min:1.3,  icon:'🎯', text:'競合が少なめ。良いポジションです',               col:'#4ade80'},
+    {min:0.7,  icon:'👍', text:'競合バランスはまあまあですね',                   col:'#fbbf24'},
+    {min:0.4,  icon:'😐', text:'競合がやや多め。差別化が重要です',               col:'#fb923c'},
+    {min:0,    icon:'😔', text:'競合過多エリア。厳しいですね',                   col:'#f87171'},
+  ],
+  // 推計中央年収 (ratio = 実値/437万)
+  inc: [
+    {min:1.25, icon:'💰', text:'高所得エリア！購買力が高く超良いですね',         col:'#4ade80'},
+    {min:1.10, icon:'👍', text:'全国平均を大きく上回ります。良いですね',         col:'#4ade80'},
+    {min:0.95, icon:'🙂', text:'全国平均並み。まあまあですね',                   col:'#fbbf24'},
+    {min:0.85, icon:'😐', text:'全国平均をやや下回ります',                       col:'#fb923c'},
+    {min:0,    icon:'😔', text:'低所得エリア傾向。客単価に注意が必要ですね',     col:'#f87171'},
+  ],
+  // 500-700万層比率 (ratio = 実値/全国平均22%)
+  brk: [
+    {min:1.3,  icon:'🎰', text:'パチンコ主力顧客層が厚い！超良いですね',        col:'#4ade80'},
+    {min:1.1,  icon:'👍', text:'主力顧客層が多め。良いですね',                   col:'#4ade80'},
+    {min:0.9,  icon:'🙂', text:'主力顧客層は平均的。まあまあですね',             col:'#fbbf24'},
+    {min:0.7,  icon:'😐', text:'主力顧客層がやや薄め。工夫が必要です',           col:'#fb923c'},
+    {min:0,    icon:'😔', text:'主力顧客層が少ない。厳しいですね',               col:'#f87171'},
+  ],
+  // 昼夜間人口比率 (ratio = 実値/100)
+  dn: [
+    {min:1.15, icon:'🌞', text:'昼間人口が大幅増！集客しやすい立地ですね',      col:'#4ade80'},
+    {min:1.05, icon:'🌤', text:'昼間人口がやや多め。良いですね',                 col:'#4ade80'},
+    {min:0.97, icon:'⚖', text:'昼夜バランス良好。まあまあですね',               col:'#fbbf24'},
+    {min:0.90, icon:'🏡', text:'住宅街型。夕方以降の集客がカギですね',           col:'#fb923c'},
+    {min:0,    icon:'🛌', text:'ベッドタウン型。昼間の集客は厳しいですね',       col:'#f87171'},
+  ],
+  // 教養娯楽費 (ratio = 実値/24千円)
+  ent: [
+    {min:1.25, icon:'🎉', text:'娯楽支出が活発！パチンコ需要の下地が厚い',      col:'#4ade80'},
+    {min:1.08, icon:'👍', text:'娯楽支出が多め。良いですね',                     col:'#4ade80'},
+    {min:0.92, icon:'🙂', text:'娯楽支出は平均的。まあまあですね',               col:'#fbbf24'},
+    {min:0.75, icon:'😐', text:'娯楽支出がやや少なめです',                       col:'#fb923c'},
+    {min:0,    icon:'😔', text:'娯楽支出が少ない。需要喚起が必要ですね',         col:'#f87171'},
+  ],
+};
+
+function getComment(type, ratio){
+  const list=COMMENTS[type]||[];
+  for(const c of list){ if(ratio>=c.min) return c; }
+  return list[list.length-1]||{icon:'',text:'',col:'#6b7280'};
+}
+
+// コメントバッジHTML生成
+function commentBadge(type, ratio){
+  const c=getComment(type,ratio);
+  return `<div style="margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.05);border-left:3px solid ${c.col};display:flex;align-items:flex-start;gap:7px">
+    <span style="font-size:16px;line-height:1.2">${c.icon}</span>
+    <span style="font-size:10px;color:${c.col};font-weight:600;line-height:1.5">${c.text}</span>
+  </div>`;
+}
+// 全画面時は大きいバッジ
+function commentBadgeFS(type, ratio){
+  const c=getComment(type,ratio);
+  return `<div class="comment-badge-fs" style="border-left-color:${c.col}">
+    <span style="font-size:22px">${c.icon}</span>
+    <span style="color:${c.col}">${c.text}</span>
+  </div>`;
+}
+
+// ================================================================
+// エリア総評生成
+// ================================================================
+function scoreOf(type, ratio){
+  const list=COMMENTS[type]||[];
+  for(let i=0;i<list.length;i++){
+    if(ratio>=list[i].min) return list.length-i; // 5=最高, 1=最低
+  }
+  return 1;
+}
+
+function generateAreaSummary(trend, stats, econ, curR, natPop){
+  const ratios={
+    pop:  trend.p20/natPop,
+    trend: trend.pct5,       // raw%
+    mach: stats.p4en>0?(trend.p20/stats.p4en)/2000:0.5,
+    inc:  econ.inc/437,
+    brk:  econ.b700/22,
+    dn:   econ.dn/100,
+    ent:  econ.ent/24,
+  };
+  const scores={
+    pop:   scoreOf('pop',   ratios.pop),
+    trend: scoreOf('trend', ratios.trend),
+    mach:  scoreOf('mach',  ratios.mach),
+    inc:   scoreOf('inc',   ratios.inc),
+    brk:   scoreOf('brk',   ratios.brk),
+    dn:    scoreOf('dn',    ratios.dn),
+    ent:   scoreOf('ent',   ratios.ent),
+  };
+  const avg=(Object.values(scores).reduce((a,b)=>a+b,0)/7);
+
+  // ── 強み・弱みの上位2項目を特定 ──
+  const labels={pop:'商圏人口',trend:'人口動向',mach:'競合環境',inc:'エリア年収',brk:'主力顧客層',dn:'昼夜間人口',ent:'娯楽支出'};
+  const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const top2=sorted.slice(0,2).filter(([,v])=>v>=4).map(([k])=>labels[k]);
+  const bot2=sorted.slice(-2).filter(([,v])=>v<=2).map(([k])=>labels[k]);
+
+  // ── 総合評価レベル ──
+  let overall, overallCol;
+  if(avg>=4.2)     { overall='超優良立地';    overallCol='#4ade80'; }
+  else if(avg>=3.5){ overall='良好な商圏';    overallCol='#86efac'; }
+  else if(avg>=2.8){ overall='標準的な商圏';  overallCol='#fbbf24'; }
+  else if(avg>=2.0){ overall='やや厳しい商圏';overallCol='#fb923c'; }
+  else             { overall='厳しい立地';    overallCol='#f87171'; }
+
+  // ── 文章生成 ──
+  let text='';
+  const popDesc=trend.p20>=1000000?'100万人超の大商圏':trend.p20>=500000?'50万人超の大型商圏':trend.p20>=200000?'20万人超の中型商圏':trend.p20>=100000?'10万人規模の商圏':'小規模商圏';
+  const trendDesc=trend.pct5>=2?'人口増加中':trend.pct5>=0?'人口ほぼ横ばい':trend.pct5>=-3?'緩やかな人口減少':'急速な人口減少';
+  const machDesc=scores.mach>=4?'競合が少なく台あたり人口も豊富':scores.mach>=3?'競合環境は標準的':scores.mach>=2?'競合がやや多め':'競合過多で激戦区';
+  const econDesc=scores.inc>=4&&scores.ent>=4?'高所得・高娯楽支出で需要の下地が厚い':scores.inc>=3&&scores.ent>=3?'年収・娯楽支出ともに平均水準':scores.inc<=2||scores.ent<=2?'年収・娯楽支出が低く需要喚起が課題':'年収か娯楽支出に課題あり';
+
+  if(avg>=4.2){
+    text=`${popDesc}で${trendDesc}。${machDesc}、${econDesc}。出店ポテンシャルは非常に高く、強く推奨されます。`;
+  } else if(avg>=3.5){
+    const str=top2.length?`${top2.join('・')}が強み。`:'';
+    text=`${popDesc}で${trendDesc}。${str}${machDesc}。${econDesc}。バランスの取れた良好なエリアです。`;
+  } else if(avg>=2.8){
+    const weak=bot2.length?`${bot2.join('・')}に注意が必要ですが、`:'';
+    text=`${popDesc}で${trendDesc}。${weak}${machDesc}。${econDesc}。標準的な商圏で差別化が重要です。`;
+  } else if(avg>=2.0){
+    const weak=bot2.length?`${bot2.join('・')}が弱点。`:'';
+    text=`${popDesc}で${trendDesc}。${weak}${machDesc}。${econDesc}。出店には慎重な検討が必要です。`;
+  } else {
+    text=`${popDesc}で${trendDesc}。${machDesc}。${econDesc}。複数の指標が低く、出店リスクが高いエリアです。`;
+  }
+
+  const stars='★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg));
+  return {text, overall, overallCol, avg:avg.toFixed(1), stars};
+}
+
 function fmtPop(n){return n>=10000?(n/10000).toFixed(1)+' 万人':n.toLocaleString()+' 人';}
 function fmtPop2(n){return n>=10000?(n/10000).toFixed(1)+'万':n.toLocaleString();}
 function fmtPct(p,d=1){return (p>=0?'+':'')+p.toFixed(d)+'%';}
@@ -1096,12 +1534,20 @@ function buildPopup(h,i){
 // ================================================================
 let panelOpen=false;
 let fullscreenOpen=false;
+function toggleDataNote(){
+  const n=document.getElementById('data-note');
+  n.classList.toggle('open');
+  document.getElementById('note-btn').style.color=n.classList.contains('open')?'#60a5fa':'';
+}
 function toggleFullscreen(){
   fullscreenOpen=!fullscreenOpen;
   const a=document.getElementById('analysis');
   a.classList.toggle('fullscreen',fullscreenOpen);
-  document.getElementById('expand-btn').textContent=fullscreenOpen?'✕':'⤢';
-  if(fullscreenOpen&&!panelOpen){panelOpen=true;a.classList.add('open');document.getElementById('toggle-txt').textContent='▼ エリア分析パネルを閉じる';if(selIdx>=0)showAnalysis(selIdx);}
+  document.getElementById('expand-btn').textContent=fullscreenOpen?'✕ 閉じる':'⤢ 詳細分析';
+  if(fullscreenOpen){
+    if(!panelOpen){panelOpen=true;a.classList.add('open');document.getElementById('toggle-txt').textContent='▼ エリア分析パネルを閉じる';}
+    if(selIdx>=0) showAnalysis(selIdx); // 全画面切替時は必ず再描画（総評バナー含む）
+  }
 }
 function togglePanel(){
   panelOpen=!panelOpen;
@@ -1136,6 +1582,30 @@ function showAnalysis(i){
   const demo=calcDemographics(h.lat,h.lng,curR);
   const tl=trendLevel(trend.pct5);
 
+  // 全画面判定
+  const isFS=document.getElementById('analysis').classList.contains('fullscreen');
+  const cb=(type,ratio)=>isFS?commentBadgeFS(type,ratio):commentBadge(type,ratio);
+
+  // 全国平均商圏人口: 半径ごとの目安 (3km≒10万, 5km≒28万, 10km≒100万)
+  const natPop=curR<=2?30000:curR<=3?100000:curR<=5?280000:curR<=7?550000:1000000;
+
+  // ── 総評バナー (全画面時のみ表示) ──
+  if(isFS){
+    const econ0=calcEconomics(h.lat,h.lng,curR);
+    const sum=generateAreaSummary(trend,stats,econ0,curR,natPop);
+    document.getElementById('ap-summary').innerHTML=`
+      <div class="sum-score">
+        <div class="sum-stars">${sum.stars}</div>
+        <div class="sum-overall" style="color:${sum.overallCol}">${sum.overall}</div>
+        <div class="sum-avg">総合 ${sum.avg} / 5.0</div>
+      </div>
+      <div class="sum-divider"></div>
+      <div class="sum-body">
+        <div class="sum-label">📋 エリア総評 · ${h.name} 商圏 ${curR}km</div>
+        <div class="sum-text">${sum.text}</div>
+      </div>`;
+  }
+
   // ── 1. 商圏人口 ──
   document.getElementById('ap-pop').innerHTML=`
     <div class="card-hd">
@@ -1148,7 +1618,8 @@ function showAnalysis(i){
       <div class="kpi"><div class="kpi-l">2010年</div><div class="kpi-v" style="color:#58a6ff">${fmtPop2(trend.p10)}</div></div>
       <div class="kpi"><div class="kpi-l">2025予</div><div class="kpi-v" style="color:#f7c948">${fmtPop2(trend.p25)}</div></div>
       <div class="kpi"><div class="kpi-l">2030予</div><div class="kpi-v" style="color:#ff851b">${fmtPop2(trend.p30)}</div></div>
-    </div>`;
+    </div>
+    ${cb('pop', trend.p20/natPop)}`;
 
   // ── 2. 年齢構成・男女比 ──
   document.getElementById('ap-demo').innerHTML=`
@@ -1194,7 +1665,8 @@ function showAnalysis(i){
       <div class="kpi"><div class="kpi-l">5年変化</div><div class="kpi-v" style="color:${trend.pct5>=0?'#4ade80':'#fb923c'}">${fmtPct(trend.pct5)}</div></div>
       <div class="kpi"><div class="kpi-l">10年変化</div><div class="kpi-v" style="color:${trend.pct10>=0?'#4ade80':'#f87171'}">${fmtPct(trend.pct10)}</div></div>
     </div>
-    <div class="trend-badge ${tl.cls}" style="margin-top:10px">${tl.label}</div>`;
+    <div class="trend-badge ${tl.cls}" style="margin-top:10px">${tl.label}</div>
+    ${cb('trend', trend.pct5)}`;
 
   // ── 4. 台数メトリクス ──
   const maxM=Math.max(stats.total,1);
@@ -1208,7 +1680,13 @@ function showAnalysis(i){
     <div class="ametrics">
       ${[['4円パチ',stats.p4en,'#58a6ff'],['1円パチ',stats.p1en,'#79c0ff'],['20円スロ',stats.s20en,'#3fb950'],['5円スロ',stats.s5en,'#56d364']]
         .map(([l,v,c])=>`<div class="am"><div class="am-label">${l}</div><div class="am-bar"><div class="am-fill" style="width:${(v/maxM*100).toFixed(1)}%;background:${c}"></div></div><div class="am-val" style="color:${c}">${v}台</div></div>`).join('')}
-    </div>`;
+    </div>
+    ${(()=>{
+      // 台あたり人口で競合評価: 全国平均≒2000人/台想定
+      const p4perMach=stats.p4en>0?trend.p20/stats.p4en:0;
+      const natPerMach=2000;
+      return cb('mach', p4perMach>0?p4perMach/natPerMach:0.5);
+    })()}`;
 
   // ── 5. 競合ランキング ──
   const p4eff=trend.p20/(stats.p4en||1);
@@ -1257,6 +1735,131 @@ function showAnalysis(i){
       </div>`).join('')
     :'<div style="color:#374151;font-size:11px;padding:8px 0">他のGO店がありません</div>'}
     <div style="font-size:9px;color:#374151;margin-top:10px;line-height:1.6">人口規模・トレンド・効率指標が近い<br>グランドオープン店</div>`;
+
+  // ── 7〜10. エリア経済 (4カード) ──
+  const econ=calcEconomics(h.lat,h.lng,curR);
+  const INC_NAT=437; // 全国中央年収(万円)
+  const ENT_NAT=24;  // 全国平均教養娯楽費(千円/月)
+  // 全国平均年収ブラケット(家計調査)
+  const NAT_BRK={b300:32,b500:35,b700:22,b900:11};
+
+  // ── 7. 推計中央年収 ──
+  const incDiff=econ.inc-INC_NAT;
+  const incPct=Math.round((econ.inc/INC_NAT-1)*100);
+  const incColor=incDiff>=30?'#4ade80':incDiff>=-30?'#fbbf24':'#fb923c';
+  // 年収メーター (300〜700万を表示範囲)
+  const incMeterPct=Math.round(Math.min(100,Math.max(0,(econ.inc-300)/400*100)));
+  const natMeterPct=Math.round((INC_NAT-300)/400*100);
+  document.getElementById('ap-econ-inc').innerHTML=`
+    <div class="card-hd">
+      <span class="card-icon">💰</span>
+      <span class="card-label">推計中央年収</span>
+    </div>
+    <div class="hero-num">${econ.inc.toLocaleString()}<span style="font-size:13px;font-weight:500;background:none;-webkit-text-fill-color:#6b7280"> 万円</span></div>
+    <div class="hero-sub">全国中央値 ${INC_NAT}万円</div>
+    <div style="margin:10px 0 4px;font-size:9px;color:#4b5563">エリア推計値 vs 全国平均</div>
+    <div style="position:relative;height:10px;background:#1e293b;border-radius:5px;overflow:visible;margin-bottom:14px">
+      <div style="height:100%;border-radius:5px;background:linear-gradient(90deg,#818cf8,#c084fc);width:${incMeterPct}%"></div>
+      <div style="position:absolute;top:-3px;left:${natMeterPct}%;transform:translateX(-50%);width:2px;height:16px;background:#fbbf24;border-radius:1px"></div>
+    </div>
+    <div style="font-size:8px;color:#4b5563;display:flex;justify-content:space-between;margin-top:-10px;margin-bottom:10px"><span>300万</span><span style="color:#fbbf24">全国</span><span>700万+</span></div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-l">対全国比</div><div class="kpi-v" style="color:${incColor}">${incPct>=0?'+':''}${incPct}%</div></div>
+      <div class="kpi"><div class="kpi-l">差分</div><div class="kpi-v" style="color:${incColor}">${incDiff>=0?'+':''}${incDiff}万</div></div>
+    </div>
+    ${cb('inc', econ.inc/INC_NAT)}
+    <div style="font-size:8px;color:#374151;margin-top:6px">※人口密度・都市規模・年齢構成から推計</div>`;
+
+  // ── 8. 年収ブラケット分布 ──
+  const incBrackets=[
+    {lbl:'〜300万',val:econ.b300,nat:NAT_BRK.b300,col:'#94a3b8'},
+    {lbl:'300〜500万',val:econ.b500,nat:NAT_BRK.b500,col:'#60a5fa'},
+    {lbl:'500〜700万',val:econ.b700,nat:NAT_BRK.b700,col:'#818cf8'},
+    {lbl:'700万〜',val:econ.b900,nat:NAT_BRK.b900,col:'#c084fc'},
+  ];
+  document.getElementById('ap-econ-brk').innerHTML=`
+    <div class="card-hd">
+      <span class="card-icon">📊</span>
+      <span class="card-label">年収ブラケット分布</span>
+    </div>
+    <div style="font-size:9px;color:#4b5563;margin-bottom:8px">エリア推計 / <span style="color:#fbbf24">全国平均</span></div>
+    <div class="inc-bars">
+      ${incBrackets.map(b=>`
+        <div class="inc-row">
+          <div class="inc-lbl">${b.lbl}</div>
+          <div class="inc-track" style="position:relative">
+            <div class="inc-fill" style="width:${b.val}%;background:${b.col}"></div>
+            <div style="position:absolute;top:0;left:${b.nat}%;width:2px;height:100%;background:#fbbf24;opacity:.8"></div>
+          </div>
+          <div class="inc-pct" style="color:${b.col}">${b.val}%</div>
+        </div>`).join('')}
+    </div>
+    <div style="margin-top:10px;font-size:8px;color:#374151;line-height:1.6">
+      <span style="color:#818cf8;font-weight:700">500〜700万層</span>がパチンコ主力顧客。<br>
+      全国平均比 <span style="color:${econ.b700>=NAT_BRK.b700?'#4ade80':'#fb923c'};font-weight:700">${econ.b700>=NAT_BRK.b700?'+':''}${econ.b700-NAT_BRK.b700}pt</span>
+    </div>
+    ${cb('brk', econ.b700/NAT_BRK.b700)}`;
+
+  // ── 9. 昼夜間人口比率 ──
+  const dayRatio=Math.min(econ.dn,130);
+  const dayW=Math.round(dayRatio/(dayRatio+100)*100);
+  const dnColor=econ.dn>=110?'#f59e0b':econ.dn>=102?'#60a5fa':'#6366f1';
+  const dnType=econ.dn>=115?{icon:'🌞',lbl:'昼間商業地型',sub:'昼間に大きく人口増加'}
+    :econ.dn>=105?{icon:'🌤',lbl:'混在型',sub:'昼間人口がやや多い'}
+    :econ.dn>=98?{icon:'🌙',lbl:'均衡型',sub:'昼夜ほぼ同数'}
+    :econ.dn>=92?{icon:'🏡',lbl:'住宅街型',sub:'夜間居住人口が多い'}
+    :{icon:'🛌',lbl:'ベッドタウン型',sub:'昼間流出が顕著'};
+  document.getElementById('ap-econ-dn').innerHTML=`
+    <div class="card-hd">
+      <span class="card-icon">🌆</span>
+      <span class="card-label">昼夜間人口比率</span>
+    </div>
+    <div class="hero-num" style="font-size:34px">${econ.dn}<span style="font-size:13px;font-weight:500;background:none;-webkit-text-fill-color:#6b7280"> %</span></div>
+    <div class="hero-sub">全国平均 100% (昼夜同数)</div>
+    <div style="margin:10px 0 5px">
+      <div class="dn-bar" style="height:16px;border-radius:8px">
+        <div class="dn-day" style="width:${dayW}%"></div>
+        <div class="dn-night" style="width:${100-dayW}%"></div>
+      </div>
+      <div class="dn-label" style="margin-top:4px">
+        <span style="color:#f59e0b">☀ 昼間</span>
+        <span style="color:${dnColor};font-weight:700">${econ.dn>=100?'+':''}${(econ.dn-100).toFixed(1)}pt</span>
+        <span style="color:#3b82f6">🌙 夜間</span>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:7px 10px;background:#0d1117;border-radius:8px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:20px">${dnType.icon}</span>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:${dnColor}">${dnType.lbl}</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:1px">${dnType.sub}</div>
+      </div>
+    </div>
+    ${cb('dn', econ.dn/100)}`;
+
+  // ── 10. 教養娯楽費 ──
+  const entDiff=parseFloat((econ.ent-ENT_NAT).toFixed(1));
+  const entPct=Math.round((econ.ent/ENT_NAT-1)*100);
+  const entColor=entDiff>=2?'#4ade80':entDiff>=-2?'#fbbf24':'#fb923c';
+  const annualEnt=Math.round(econ.ent*12);
+  document.getElementById('ap-econ-ent').innerHTML=`
+    <div class="card-hd">
+      <span class="card-icon">🎮</span>
+      <span class="card-label">教養娯楽費</span>
+    </div>
+    <div class="hero-num">${econ.ent}<span style="font-size:13px;font-weight:500;background:none;-webkit-text-fill-color:#6b7280"> 千円/月</span></div>
+    <div class="hero-sub">全国平均 ${ENT_NAT}千円/月・世帯</div>
+    <div class="kpi-row" style="margin-top:12px">
+      <div class="kpi"><div class="kpi-l">対全国比</div><div class="kpi-v" style="color:${entColor}">${entPct>=0?'+':''}${entPct}%</div></div>
+      <div class="kpi"><div class="kpi-l">差分</div><div class="kpi-v" style="color:${entColor}">${entDiff>=0?'+':''}${entDiff}千円</div></div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi" style="flex:2"><div class="kpi-l">年間推計</div><div class="kpi-v" style="color:#c084fc">${annualEnt}千円/年</div></div>
+    </div>
+    <div style="margin-top:10px;padding:7px 10px;background:#0d1117;border-radius:8px;font-size:9px;color:#6b7280;line-height:1.6">
+      娯楽支出が高いエリアほど<br>パチンコ需要の下地がある
+    </div>
+    ${cb('ent', econ.ent/ENT_NAT)}
+    <div style="font-size:8px;color:#374151;margin-top:6px">※家計調査ベース統計的近似値</div>`;
 }
 
 // ================================================================
