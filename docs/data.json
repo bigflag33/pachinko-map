@@ -573,9 +573,9 @@
     "name": "クエスト青山",
     "address": "岩手県盛岡市西青山2-19-42",
     "open_date": "2026/04/07",
-    "url": "https://5pachi.com/hall/details/3/101017",
+    "url": "https://5pachi.com/hall/details/2/101017",
     "source": "ゴーパチ",
-    "is_grand_open": true,
+    "is_grand_open": false,
     "machines": {
       "pachinko": 360,
       "slot": 144,
@@ -585,16 +585,16 @@
     "lng": 141.108337
   },
   {
-    "name": "カネマン盛岡南",
+    "name": "カネマン盛岡南７７７",
     "address": "岩手県盛岡市東見前9地割18-1",
     "open_date": "2026/04/07",
     "url": "https://5pachi.com/hall/details/3/127846",
     "source": "ゴーパチ",
     "is_grand_open": true,
     "machines": {
-      "pachinko": 301,
-      "slot": 373,
-      "total": 674
+      "pachinko": 314,
+      "slot": 381,
+      "total": 695
     },
     "lat": 39.643436,
     "lng": 141.167831
