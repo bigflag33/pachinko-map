@@ -8283,21 +8283,6 @@
     "lng": 134.203796
   },
   {
-    "name": "グランワールドカップ鳥取駅前店",
-    "address": "鳥取県鳥取市扇町75-2",
-    "open_date": "2026/01/11",
-    "url": "https://5pachi.com/hall/details/3/112850",
-    "source": "ゴーパチ",
-    "is_grand_open": true,
-    "machines": {
-      "pachinko": 413,
-      "slot": 412,
-      "total": 825
-    },
-    "lat": 35.493671,
-    "lng": 134.224411
-  },
-  {
     "name": "ＵＦＯ黒田",
     "address": "島根県松江市黒田町439-1",
     "open_date": "2026/04/03",
