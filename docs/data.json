@@ -1615,21 +1615,6 @@
     "lng": 140.104141
   },
   {
-    "name": "パチンコ２２鶴岡店",
-    "address": "山形県鶴岡市平京田屋敷廻2-1",
-    "open_date": "2026/01/19",
-    "url": "https://5pachi.com/hall/details/2/101708",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 320,
-      "slot": 150,
-      "total": 470
-    },
-    "lat": 38.736404,
-    "lng": 139.804367
-  },
-  {
     "name": "ニラク福島太平寺店",
     "address": "福島県福島市太平寺字坿屋敷35",
     "open_date": "2026/04/21",
@@ -4660,21 +4645,6 @@
     "lng": 139.235092
   },
   {
-    "name": "パチンコ玉三郎竹尾店",
-    "address": "新潟県新潟市東区竹尾667",
-    "open_date": "2026/01/19",
-    "url": "https://5pachi.com/hall/details/2/107019",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 112,
-      "slot": 174,
-      "total": 286
-    },
-    "lat": 37.911076,
-    "lng": 139.097794
-  },
-  {
     "name": "エスタディオ小杉",
     "address": "富山県射水市鷲塚159",
     "open_date": "2026/04/13",
@@ -5095,21 +5065,6 @@
     "lng": 136.952911
   },
   {
-    "name": "サンマルコ",
-    "address": "石川県金沢市円光寺2-12-1",
-    "open_date": "2026/01/19",
-    "url": "https://5pachi.com/hall/details/2/127924",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 229,
-      "slot": 78,
-      "total": 307
-    },
-    "lat": 36.531445,
-    "lng": 136.646942
-  },
-  {
     "name": "ＡＬＥＡ　ＷＯＲＬＤ大和田店",
     "address": "福井県福井市高柳1-1205",
     "open_date": "2026/03/23",
@@ -5183,21 +5138,6 @@
     },
     "lat": 36.093376,
     "lng": 136.251099
-  },
-  {
-    "name": "クァトロブーム新田塚",
-    "address": "福井県福井市二の宮5-8-36",
-    "open_date": "2026/01/19",
-    "url": "https://5pachi.com/hall/details/2/127922",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 344,
-      "slot": 100,
-      "total": 444
-    },
-    "lat": 36.084591,
-    "lng": 136.208969
   },
   {
     "name": "ＡＢＣ甲府上阿原店",
@@ -7474,7 +7414,7 @@
     "lng": 135.712097
   },
   {
-    "name": "Ｐ．Ｅ．ＫＩＮＧ　ＯＦ　ＫＩＮＧＳ高槻店",
+    "name": "Ｐ．Ｅ．ＫＩＮＧ　ＯＦ　ＫＩＮＧＳ１３３３高槻",
     "address": "大阪府高槻市辻子3-6-6",
     "open_date": "2026/04/17",
     "url": "https://5pachi.com/hall/details/3/1179130",
@@ -7938,6 +7878,21 @@
     "lng": 134.6754
   },
   {
+    "name": "天一板宿店",
+    "address": "兵庫県神戸市須磨区飛松町2-2-3",
+    "open_date": "2026/04/15",
+    "url": "https://5pachi.com/hall/details/2/112040",
+    "source": "ゴーパチ",
+    "is_grand_open": false,
+    "machines": {
+      "pachinko": 179,
+      "slot": 112,
+      "total": 291
+    },
+    "lat": 34.660873,
+    "lng": 135.133926
+  },
+  {
     "name": "５カラット小野店",
     "address": "兵庫県小野市敷地町1382-26",
     "open_date": "2026/04/10",
@@ -8352,21 +8307,6 @@
     },
     "lat": 34.804646,
     "lng": 134.672791
-  },
-  {
-    "name": "パチンコ　アマガーデン",
-    "address": "兵庫県尼崎市神田北通2-17",
-    "open_date": "2026/02/26",
-    "url": "https://5pachi.com/hall/details/2/952012523",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 195,
-      "slot": 160,
-      "total": 355
-    },
-    "lat": 34.720428,
-    "lng": 135.4151
   },
   {
     "name": "ジェーピー３３３王寺駅前店",
@@ -10411,20 +10351,6 @@
     },
     "lat": 33.981766,
     "lng": 133.553665
-  },
-  {
-    "name": "ＢＩＧ２ＲＯＣＫＹ西条店",
-    "address": "愛媛県西条市玉津601",
-    "open_date": "2026/01/19",
-    "url": "https://5pachi.com/hall/details/2/114179",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "slot": 278,
-      "total": 278
-    },
-    "lat": 33.932045,
-    "lng": 133.19989
   },
   {
     "name": "ダイナム宿毛店",
