@@ -577,9 +577,9 @@
     "source": "ゴーパチ",
     "is_grand_open": true,
     "machines": {
-      "pachinko": 340,
-      "slot": 228,
-      "total": 568
+      "pachinko": 306,
+      "slot": 393,
+      "total": 699
     },
     "lat": 39.312016,
     "lng": 141.111221
@@ -592,8 +592,8 @@
     "source": "ゴーパチ",
     "is_grand_open": true,
     "machines": {
-      "pachinko": 396,
-      "slot": 170,
+      "pachinko": 324,
+      "slot": 242,
       "total": 566
     },
     "lat": 39.638996,
@@ -6983,7 +6983,11 @@
     "url": "https://5pachi.com/hall/details/1/952013143",
     "source": "ゴーパチ",
     "is_grand_open": true,
-    "machines": {},
+    "machines": {
+      "pachinko": 560,
+      "slot": 820,
+      "total": 1380
+    },
     "lat": 35.313931,
     "lng": 136.792297
   },
@@ -8360,7 +8364,8 @@
     "source": "ゴーパチ",
     "is_grand_open": true,
     "machines": {
-      "pachinko": 285,
+      "pachinko": 235,
+      "slot": 50,
       "total": 285
     },
     "lat": 34.695004,
@@ -8397,16 +8402,16 @@
     "lng": 135.44754
   },
   {
-    "name": "ハリウッド・ハリーズ高殿",
+    "name": "スーパーハリウッド・高殿",
     "address": "大阪府大阪市旭区高殿5-11-22",
     "open_date": "2026/04/25",
     "url": "https://5pachi.com/hall/details/3/1202010",
     "source": "ゴーパチ",
     "is_grand_open": true,
     "machines": {
-      "pachinko": 440,
-      "slot": 210,
-      "total": 650
+      "pachinko": 222,
+      "slot": 408,
+      "total": 630
     },
     "lat": 34.7202,
     "lng": 135.538559
@@ -12714,16 +12719,16 @@
     "lng": 130.911102
   },
   {
-    "name": "エーワン王子店",
+    "name": "Ａ１　ＯＨＪＩ　６６６",
     "address": "大分県大分市王子南町1-27",
     "open_date": "2026/04/25",
     "url": "https://5pachi.com/hall/details/3/20296",
     "source": "ゴーパチ",
     "is_grand_open": true,
     "machines": {
-      "pachinko": 240,
-      "slot": 182,
-      "total": 422
+      "pachinko": 160,
+      "slot": 255,
+      "total": 415
     },
     "lat": 33.240944,
     "lng": 131.593613
