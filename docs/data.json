@@ -5072,21 +5072,6 @@
     "lng": 138.755569
   },
   {
-    "name": "エヌワン葛塚店",
-    "address": "新潟県新潟市北区前新田字前新田乙4-1",
-    "open_date": "2026/01/26",
-    "url": "https://5pachi.com/hall/details/2/1176053",
-    "source": "ゴーパチ",
-    "is_grand_open": false,
-    "machines": {
-      "pachinko": 174,
-      "slot": 90,
-      "total": 264
-    },
-    "lat": 37.913841,
-    "lng": 139.235092
-  },
-  {
     "name": "キングオブノースランド魚津店",
     "address": "富山県魚津市江口247",
     "open_date": "2026/04/25",
